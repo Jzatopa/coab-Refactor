@@ -10,7 +10,7 @@ namespace engine
 
         internal static void set_background_tile(int tileId, int y, int x) /* sub_37046 */
         {
-            int tmpX = (gbl.byte_1AD34 * 6) + (gbl.byte_1AD35 * 5) + 21 + x;
+            int tmpX = (gbl.teamDirection * 6) + (gbl.byte_1AD35 * 5) + 21 + x;
             int tmpY = (gbl.byte_1AD35 * 5) + 10 + y;
 
             if (tmpX >= 0 &&
@@ -58,14 +58,14 @@ namespace engine
             {
                 for (int var_2 = 2; var_2 <= 4; var_2++)
                 {
-                    int posX = (gbl.byte_1AD34 * 6) + (gbl.byte_1AD35 * 5) + 0x15 + var_1 + var_2;
+                    int posX = (gbl.teamDirection * 6) + (gbl.byte_1AD35 * 5) + 0x15 + var_1 + var_2;
                     int posY = (gbl.byte_1AD35 * 5) + 0x0a + var_2;
 
                     if (posX >= 0 && posX <= 0x31 &&
                         posY >= 0 && posY <= 0x18)
                     {
                         if (gbl.BackGroundTiles[gbl.mapToBackGroundTile[posX, posY]].tile_index == 0x16 &&
-                            gbl.byte_1AD3D != 0 &&
+                            gbl.currentCityId != 0 &&
                             byte_1AD3E &&
                             ovr024.roll_dice(10, 1) <= 5)
                         {
@@ -501,9 +501,9 @@ namespace engine
         {
             for (gbl.byte_1AD35 = -2; gbl.byte_1AD35 <= 2; gbl.byte_1AD35++)
             {
-                for (gbl.byte_1AD34 = -6; gbl.byte_1AD34 <= 6; gbl.byte_1AD34++)
+                for (gbl.teamDirection = -6; gbl.teamDirection <= 6; gbl.teamDirection++)
                 {
-                    int mapX = gbl.mapPosX + gbl.byte_1AD34;
+                    int mapX = gbl.mapPosX + gbl.teamDirection;
                     int mapY = gbl.mapPosY + gbl.byte_1AD35;
 
                     gbl.dir_0_flags = get_dir_flags(0, mapY, mapX);
@@ -515,7 +515,7 @@ namespace engine
                     build_background_tiles_2();
                     build_backgrould_tiles_3(mapX, mapY);
                     build_background_tiles_4(mapX, mapY);
-                    gbl.byte_1AD3D = (byte)(ovr031.get_wall_x2(mapY, mapX) & 0x40);
+                    gbl.currentCityId = (byte)(ovr031.get_wall_x2(mapY, mapX) & 0x40);
                     sub_370D3();
                 }
             }
@@ -912,14 +912,14 @@ namespace engine
             tri_state state = tri_state.start;
             int row_scale = 0;
             int col_scale = 0;
-            int var_14 = 0;
+            int directionIndex = 0;
 
             int team_x = gbl.team_start_x[gbl.currentTeam];
             int team_y = gbl.team_start_y[gbl.currentTeam];
 
             do
             {
-                int half_dir = direction_165FC[gbl.team_direction[gbl.currentTeam], var_14] / 2;
+                int half_dir = direction_165FC[gbl.team_direction[gbl.currentTeam], directionIndex] / 2;
 
                 switch (state)
                 {
@@ -929,8 +929,8 @@ namespace engine
                             int delta_x = gbl.MapDirectionXDelta[iso_dir];
                             int delta_y = gbl.MapDirectionYDelta[iso_dir];
 
-                            base_x = unk_16610[(var_14 > 0 ? 4 : 0) + half_dir] + (row_scale * delta_x);
-                            base_y = unk_16618[(var_14 > 0 ? 4 : 0) + half_dir] + (row_scale * delta_y);
+                            base_x = unk_16610[(directionIndex > 0 ? 4 : 0) + half_dir] + (row_scale * delta_x);
+                            base_y = unk_16618[(directionIndex > 0 ? 4 : 0) + half_dir] + (row_scale * delta_y);
                             cur_x = base_x;
                             cur_y = base_y;
                             col_scale = 1;
@@ -978,7 +978,7 @@ namespace engine
 
                         if (gbl.currentTeam == 0 &&
                             (gbl.team_direction[0] & 1) == 1 &&
-                            var_14 == 0 &&
+                            directionIndex == 0 &&
                             row_scale == 1)
                         {
                             int tmpX = gbl.team_start_x[gbl.currentTeam] + gbl.mapPosX;
@@ -1013,14 +1013,14 @@ namespace engine
                     placed = false;
                     state = 0;
 
-                    while (var_14 < 3 && state != tri_state.start)
+                    while (directionIndex < 3 && state != tri_state.start)
                     {
-                        var_14++;
+                        directionIndex++;
 
                         int tmpX = gbl.team_start_x[gbl.currentTeam] + gbl.mapPosX;
                         int tmpY = gbl.team_start_y[gbl.currentTeam] + gbl.mapPosY;
 
-                        int tmpDir = direction_165EC[gbl.team_direction[gbl.currentTeam], var_14];
+                        int tmpDir = direction_165EC[gbl.team_direction[gbl.currentTeam], directionIndex];
 
                         if (gbl.game_state == GameState.WildernessMap ||
                             get_dir_flags(tmpDir, tmpY, tmpX) != 1)
@@ -1041,7 +1041,7 @@ namespace engine
 
                 if (any_cur_invalid == false)
                 {
-                    placed = try_place_combatant(var_14, team_y, team_x, cur_y, cur_x, player_index);
+                    placed = try_place_combatant(directionIndex, team_y, team_x, cur_y, cur_x, player_index);
                 }
             } while (placed == false && var_4 == false);
 

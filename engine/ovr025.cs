@@ -1437,7 +1437,7 @@ namespace engine
 					ovr029.RedrawView();
 					PartySummary(gbl.SelectedPlayer);
 					display_map_position_time();
-					gbl.byte_1EE98 = false;
+					gbl.isPlayerNotFound = false;
 					break;
 
 				case GameState.WildernessMap:

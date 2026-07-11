@@ -228,7 +228,7 @@ namespace engine
                             seg041.press_any_key("As you Leave the Shopkeeper says, \"Excuse me but you have Left Some Money here.\"  ", true, 10, TextRegion.NormalBottom);
                             seg041.press_any_key("Do you want to go back and get your Money?", false, 15, TextRegion.NormalBottom);
 
-                            int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
+                            int menu_selected = ovr008.HorizontalMenuSelect(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
 
                             if (menu_selected == 1)
                             {

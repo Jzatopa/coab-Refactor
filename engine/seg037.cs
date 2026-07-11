@@ -6,9 +6,9 @@ namespace engine
     {
         static int[] outer_frame_bottom /*unk_16EB0*/ = { 1, 8, 6, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 6, 8, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 4, 3 };
 
-        static byte[] unk_16ED6 = { 4, 3, 0, 6, 1, 1, 1, 1, 8, 1, 1, 4, 1, 1, 2, 1, 4 };
+        static byte[] topFrameSymbols = { 4, 3, 0, 6, 1, 1, 1, 1, 8, 1, 1, 4, 1, 1, 2, 1, 4 };
 
-        static byte[] unk_16F0A = { 0, 7, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2, 9, 4 };
+        static byte[] rightFrameSymbols = { 0, 7, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2, 9, 4 };
 
         static int[] outer_frame_top /*byte_16E60*/ = { 0, 6, 1, 1, 1, 1, 1, 1, 6, 1, 1, 1, 1, 4, 1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 8, 1, 1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 6, 1, 2 };
 
@@ -16,15 +16,15 @@ namespace engine
                                     1, 1, 1, 6, 1, 1, 1, 1, 1, 1, 1, 1, 1, 4, 1, 6, 1,
                                     1, 1, 1, 1, 8, 2 };
 
-        static byte[] unk_16EE3 = { 1, 2, 1, 4, 1, 1, 1, 1, 1, 1, 8, 4, 1, 1, 3 };
+        static byte[] bottomFrameSymbols = { 1, 2, 1, 4, 1, 1, 1, 1, 1, 1, 8, 4, 1, 1, 3 };
         static int[] outer_frame_left  /*unk_16EF2*/ = { 0, 2, 9, 5, 2, 2, 2, 2, 2, 2, 5, 7, 2, 2, 2, 2, 2, 9, 7, 2, 2, 2, 7, 1 };
         static int[] outer_frame_right /*unk_16F1B*/ = { 2, 2, 9, 7, 2, 2, 2, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 2, 5, 2 };
 
-        static byte[] unk_16F31 = { 5, 2, 0, 2, 7, 2, 2, 2, 2, 5, 2, 2, 2, 2, 1 };
-        static byte[] unk_16F3E = { 2, 1, 2, 5, 9, 2, 2, 2, 7, 5, 2, 2, 2, 2, 3 };
-        static byte[] unk_16F4D = { 0, 2, 9, 5, 2, 2, 2, 2, 2, 2, 5, 7, 2, 2, 2, 2, 2, 9, 7, 2, 2, 2, 1 };
-        static byte[] unk_16F64 = { 0, 7, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 5, 2, 2, 2, 2, 2, 2, 5, 2, 4 };
-        static byte[] unk_16F7B = { 2, 2, 9, 7, 2, 2, 2, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 2, 2 };
+        static byte[] leftFrameSymbols = { 5, 2, 0, 2, 7, 2, 2, 2, 2, 5, 2, 2, 2, 2, 1 };
+        static byte[] rightFrameSymbols2 = { 2, 1, 2, 5, 9, 2, 2, 2, 7, 5, 2, 2, 2, 2, 3 };
+        static byte[] leftFrameSymbols2 = { 0, 2, 9, 5, 2, 2, 2, 2, 2, 2, 5, 7, 2, 2, 2, 2, 2, 9, 7, 2, 2, 2, 1 };
+        static byte[] middleFrameSymbols = { 0, 7, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 5, 2, 2, 2, 2, 2, 2, 5, 2, 4 };
+        static byte[] rightFrameSymbols3 = { 2, 2, 9, 7, 2, 2, 2, 5, 2, 2, 2, 2, 2, 2, 2, 2, 2, 7, 2, 2, 2, 2, 2 };
 
 
 
@@ -83,19 +83,19 @@ namespace engine
 
             for (int rowY = 0; rowY <= 0x10; rowY++)
             {
-                ovr038.Put8x8Symbol(0, false, unk_16F0A[rowY] + 0x11E, rowY, 0x10);
+                ovr038.Put8x8Symbol(0, false, rightFrameSymbols[rowY] + 0x11E, rowY, 0x10);
             }
 
             for (int col_x = 2; col_x <= 14; col_x++)
             {
-                ovr038.Put8x8Symbol(0, false, unk_16ED6[col_x] + 0x114, 2, col_x);
-                ovr038.Put8x8Symbol(0, false, unk_16EE3[col_x] + 0x114, 14, col_x);
+                ovr038.Put8x8Symbol(0, false, topFrameSymbols[col_x] + 0x114, 2, col_x);
+                ovr038.Put8x8Symbol(0, false, bottomFrameSymbols[col_x] + 0x114, 14, col_x);
             }
 
             for (int row_y = 2; row_y <= 14; row_y++)
             {
-                ovr038.Put8x8Symbol(0, false, unk_16F31[row_y] + 0x114, row_y, 2);
-                ovr038.Put8x8Symbol(0, false, unk_16F3E[row_y] + 0x114, row_y, 14);
+                ovr038.Put8x8Symbol(0, false, leftFrameSymbols[row_y] + 0x114, row_y, 2);
+                ovr038.Put8x8Symbol(0, false, rightFrameSymbols2[row_y] + 0x114, row_y, 14);
             }
 
             Display.UpdateStart();
@@ -163,9 +163,9 @@ namespace engine
             // Three Vert Bars
             for (int row_y = 0; row_y <= 0x16; row_y++)
             {
-                ovr038.Put8x8Symbol(0, false, unk_16F4D[row_y] + 0x11e, row_y, 0);
-                ovr038.Put8x8Symbol(0, false, unk_16F64[row_y] + 0x11e, row_y, 0x16);
-                ovr038.Put8x8Symbol(0, false, unk_16F7B[row_y] + 0x11e, row_y, 0x27);
+                ovr038.Put8x8Symbol(0, false, leftFrameSymbols2[row_y] + 0x11e, row_y, 0);
+                ovr038.Put8x8Symbol(0, false, middleFrameSymbols[row_y] + 0x11e, row_y, 0x16);
+                ovr038.Put8x8Symbol(0, false, rightFrameSymbols3[row_y] + 0x11e, row_y, 0x27);
             }
 
             // Bottom Bar

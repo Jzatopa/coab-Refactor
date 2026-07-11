@@ -159,7 +159,7 @@ namespace engine
                     spell_id = player.actions.spell_id;
                     player.actions.spell_id = 0;
 
-                    ovr023.sub_5D2E1(true, QuickFight.False, spell_id);
+                    ovr023.castSpell(true, QuickFight.False, spell_id);
                     ovr025.clear_actions(player);
                 }
                 else
@@ -442,7 +442,7 @@ namespace engine
 
                         ovr033.RedrawPlayerBackground(ovr033.GetPlayerIndex(player));
 
-                        if (ovr033.sub_7515A(false, pos, player) == false)
+                        if (ovr033.canMoveToPosition(false, pos, player) == false)
                         {
                             arg_0 = true;
                         }
@@ -553,7 +553,7 @@ namespace engine
                             {
                                 if (player.actions.move > 0)
                                 {
-                                    ovr014.sub_3E748(dir, player);
+                                    ovr014.move_step(dir, player);
                                 }
 
                                 if (player.in_combat == false)

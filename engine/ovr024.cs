@@ -421,7 +421,7 @@ namespace engine
                     {
                         Player tmp_player_ptr = gbl.SelectedPlayer;
 
-                        gbl.SelectedPlayer = sub_63D03(gbl.unk_18AEA, 4, gbl.StinkingCloud, ovr033.PlayerMapPos(player));
+                        gbl.SelectedPlayer = sub_63D03(gbl.cloudDirections, 4, gbl.StinkingCloud, ovr033.PlayerMapPos(player));
 
                         ApplyAttackSpellAffect("starts to cough", save_passed, 0, false, 0xff, 1, Affects.stinking_cloud, player);
 
@@ -436,7 +436,7 @@ namespace engine
                     {
                         Player tmp_player_ptr = gbl.SelectedPlayer;
 
-                        gbl.SelectedPlayer = sub_63D03(gbl.unk_18AEA, 4, gbl.StinkingCloud, ovr033.PlayerMapPos(player));
+                        gbl.SelectedPlayer = sub_63D03(gbl.cloudDirections, 4, gbl.StinkingCloud, ovr033.PlayerMapPos(player));
 
                         ApplyAttackSpellAffect("chokes and gags from nausea", save_passed, 0, false, 0xff, (ushort)(roll_dice(4, 1) + 1), Affects.helpless, player);
 
@@ -835,7 +835,7 @@ namespace engine
         {
             int stat_b = 0;
             int str_00_b = 0;
-            int var_11 = 0x0FF;
+            int maxStatBonus = 0x0FF;
 
             int stat_a = player.stats2[(int)stat_index].cur;
             int str_00_a = player.stats2.Str00.full;
@@ -844,11 +844,11 @@ namespace engine
             {
                 if ((int)item.affect_3 > 0x80 && item.readied == true)
                 {
-                    int var_12 = (int)item.affect_3 & 0x7F;
+                    int itemAffect3 = (int)item.affect_3 & 0x7F;
 
                     if (stat_index == Stat.STR)
                     {
-                        if (var_12 == 5)
+                        if (itemAffect3 == 5)
                         {
                             switch ((int)item.affect_2)
                             {
@@ -882,7 +882,7 @@ namespace engine
                                     break;
                             }
                         }
-                        else if (var_12 == 8)
+                        else if (itemAffect3 == 8)
                         {
                             if (player.stats2.Str.cur < 18 &&
                                 item.affect_2 == 0)
@@ -891,20 +891,20 @@ namespace engine
                                 str_00_b = 0;
                             }
                         }
-                        else if (var_12 == 13)
+                        else if (itemAffect3 == 13)
                         {
-                            var_11 = 3;
+                            maxStatBonus = 3;
                         }
 
                         max_strength(ref stat_a, stat_b, ref str_00_a, str_00_b);
                     }
                     else if (stat_index == Stat.CON)
                     {
-                        if (var_12 == 6)
+                        if (itemAffect3 == 6)
                         {
                             stat_a++;
                         }
-                        else if (var_12 == 8 &&
+                        else if (itemAffect3 == 8 &&
                             player.stats2.Con.cur < 18 &&
                             (int)item.affect_2 == 4)
                         {
@@ -913,7 +913,7 @@ namespace engine
                     }
                     else if (stat_index == Stat.INT)
                     {
-                        if (var_12 == 8)
+                        if (itemAffect3 == 8)
                         {
                             if (player.stats2.Int.cur < 18 &&
                                 (int)item.affect_2 == 1)
@@ -921,18 +921,18 @@ namespace engine
                                 stat_a++;
                             }
                         }
-                        else if (var_12 == 12)
+                        else if (itemAffect3 == 12)
                         {
-                            var_11 = 7;
+                            maxStatBonus = 7;
                         }
-                        else if (var_12 == 13)
+                        else if (itemAffect3 == 13)
                         {
-                            var_11 = 3;
+                            maxStatBonus = 3;
                         }
                     }
                     else if (stat_index == Stat.WIS)
                     {
-                        if (var_12 == 8 &&
+                        if (itemAffect3 == 8 &&
                             (int)item.affect_2 == 2 &&
                             player.stats2.Wis.cur < 18)
                         {
@@ -941,7 +941,7 @@ namespace engine
                     }
                     else if (stat_index == Stat.DEX)
                     {
-                        if (var_12 == 2)
+                        if (itemAffect3 == 2)
                         {
                             if (player.stats2.Dex.cur >= 0 && player.stats2.Dex.cur <= 6)
                             {
@@ -956,7 +956,7 @@ namespace engine
                                 stat_a++;
                             }
                         }
-                        else if (var_12 == 8)
+                        else if (itemAffect3 == 8)
                         {
                             if (player.stats2.Dex.cur < 18 &&
                                 (int)item.affect_2 == 3)
@@ -964,18 +964,18 @@ namespace engine
                                 stat_a++;
                             }
                         }
-                        else if (var_12 == 10)
+                        else if (itemAffect3 == 10)
                         {
                             stat_a -= 2;
                         }
                     }
                     else if (stat_index == Stat.CHA)
                     {
-                        if (var_12 == 6)
+                        if (itemAffect3 == 6)
                         {
                             stat_a -= 1;
                         }
-                        else if (var_12 == 8 &&
+                        else if (itemAffect3 == 8 &&
                             player.stats2.Cha.cur < 18 &&
                             (int)item.affect_2 == 5)
                         {
@@ -1039,9 +1039,9 @@ namespace engine
                     max_strength(ref stat_a, stat_b, ref str_00_a, str_00_b);
                 }
 
-                if (var_11 != 0xff)
+                if (maxStatBonus != 0xff)
                 {
-                    player.stats2.Str.full = var_11;
+                    player.stats2.Str.full = maxStatBonus;
                     player.stats2.Str00.cur = 0;
                 }
                 else
@@ -1123,14 +1123,14 @@ namespace engine
             }
             else if (stat_index == Stat.INT)
             {
-                if (player.HasAffect(Affects.feeblemind) == true && var_11 > 7)
+                if (player.HasAffect(Affects.feeblemind) == true && maxStatBonus > 7)
                 {
-                    var_11 = 3;
+                    maxStatBonus = 3;
                 }
 
-                if (var_11 != 0xff)
+                if (maxStatBonus != 0xff)
                 {
-                    player.stats2.Int.full = var_11;
+                    player.stats2.Int.full = maxStatBonus;
                 }
                 else
                 {
@@ -1140,14 +1140,14 @@ namespace engine
             else if (stat_index == Stat.WIS)
             {
                 if (player.HasAffect(Affects.feeblemind) == true &&
-                    var_11 > 7)
+                    maxStatBonus > 7)
                 {
-                    var_11 = 3;
+                    maxStatBonus = 3;
                 }
 
-                if (var_11 != 0xff)
+                if (maxStatBonus != 0xff)
                 {
-                    player.stats2.Wis.full = var_11;
+                    player.stats2.Wis.full = maxStatBonus;
                 }
                 else
                 {
@@ -1156,9 +1156,9 @@ namespace engine
             }
             else if (stat_index == Stat.DEX)
             {
-                if (var_11 != 0xff)
+                if (maxStatBonus != 0xff)
                 {
-                    player.stats2.Dex.full = var_11;
+                    player.stats2.Dex.full = maxStatBonus;
                 }
                 else
                 {
@@ -1374,7 +1374,7 @@ namespace engine
 
         internal static bool combat_heal(byte arg_0, Player player)
         {
-            if (ovr033.sub_7515A(true, ovr033.PlayerMapPos(player), player) == true)
+            if (ovr033.canMoveToPosition(true, ovr033.PlayerMapPos(player), player) == true)
             {
                 player.health_status = Status.okey;
                 player.in_combat = true;

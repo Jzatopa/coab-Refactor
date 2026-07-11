@@ -91,52 +91,52 @@ namespace engine
 
         static MapReach canReachTargetCalc(Struct_1D1BC groundTilesMap, Point outPos, Point attacker) /* sub_733F1 */
         {
-            SteppingPath var_31 = new SteppingPath();
-            SteppingPath var_19 = new SteppingPath();
+            SteppingPath targetPath = new SteppingPath();
+            SteppingPath attackerPath = new SteppingPath();
 
             int max_range = (256 * 2) + 1;
-            var_19.attacker = attacker;
-            var_19.target = outPos;
+            attackerPath.attacker = attacker;
+            attackerPath.target = outPos;
 
-            var_19.CalculateDeltas();
+            attackerPath.CalculateDeltas();
 
-            var_31.attacker.x = 0;
-            var_31.attacker.y = gbl.BackGroundTiles[groundTilesMap[attacker]].field_1;
+            targetPath.attacker.x = 0;
+            targetPath.attacker.y = gbl.BackGroundTiles[groundTilesMap[attacker]].field_1;
 
-            if (var_19.diff_x > var_19.diff_y)
+            if (attackerPath.diff_x > attackerPath.diff_y)
             {
-                var_31.target.x = var_19.diff_x;
+                targetPath.target.x = attackerPath.diff_x;
             }
             else
             {
-                var_31.target.x = var_19.diff_y;
+                targetPath.target.x = attackerPath.diff_y;
             }
 
-            var_31.target.y = gbl.BackGroundTiles[groundTilesMap[attacker]].field_1;
-            var_31.CalculateDeltas();
+            targetPath.target.y = gbl.BackGroundTiles[groundTilesMap[attacker]].field_1;
+            targetPath.CalculateDeltas();
             bool finished = false;
 
             do
             {
-                int gt = groundTilesMap[var_19.current];
+                int gt = groundTilesMap[attackerPath.current];
                 Struct_189B4 s189 = gbl.BackGroundTiles[gt];
 
-                if (groundTilesMap.ignoreWalls == false && s189.field_2 > var_31.current.y)
+                if (groundTilesMap.ignoreWalls == false && s189.field_2 > targetPath.current.y)
                 {
-                    return new MapReach(false, var_19.steps, var_19.current);
+                    return new MapReach(false, attackerPath.steps, attackerPath.current);
                 }
 
                 // range is for cache hard coded to 256, thus max_range = 513, so skip this.
-                if (var_19.steps > max_range)
+                if (attackerPath.steps > max_range)
                 {
-                    return new MapReach(false, var_19.steps, var_19.current);
+                    return new MapReach(false, attackerPath.steps, attackerPath.current);
                 }
 
-                var_31.Step();
-                finished = !var_19.Step();
+                targetPath.Step();
+                finished = !attackerPath.Step();
             } while (finished == false);
 
-            return new MapReach(true, var_19.steps, outPos);
+            return new MapReach(true, attackerPath.steps, outPos);
         }
 
         /// <summary>

@@ -24,7 +24,7 @@ namespace engine
                         player.health_status != Status.okey &&
                         player.health_status != Status.running)
                     {
-                        gbl.byte_1AB14 = true;
+                        gbl.isInDungeon = true;
 
                         gbl.pooled_money += player.Money;
 
@@ -382,7 +382,7 @@ namespace engine
         {
             seg037.DrawFrame_Outer();
 
-            if (gbl.byte_1AB14 == true ||
+            if (gbl.isInDungeon == true ||
                 gbl.combat_type == CombatType.duel)
             {
                 if (gbl.party_fled == true)
@@ -631,7 +631,7 @@ namespace engine
                         break;
 
                     case 'D':
-                        ovr023.sub_5D2E1(false, QuickFight.False, spellId);
+                        ovr023.castSpell(false, QuickFight.False, spellId);
                         break;
 
                     case 'E':
@@ -642,7 +642,7 @@ namespace engine
                         {
                             seg041.press_any_key("There is still treasure left.  ", true, 10, TextRegion.NormalBottom);
                             seg041.press_any_key("Do you want to go back and claim your treasure?", false, 15, TextRegion.NormalBottom);
-                            int menu_selected = ovr008.sub_317AA(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
+                            int menu_selected = ovr008.HorizontalMenuSelect(false, false, gbl.defaultMenuColors, "~Yes ~No", "");
 
                             if (menu_selected == 1)
                             {
@@ -684,7 +684,7 @@ namespace engine
 
                 if (check || player.combat_team == CombatTeam.Enemy)
                 {
-                    gbl.byte_1AB14 = true;
+                    gbl.isInDungeon = true;
                     if (player.in_combat == false)
                     {
                         gbl.area2_ptr.field_590++;
@@ -763,7 +763,7 @@ namespace engine
         internal static void AfterCombatExpAndTreasure() // sub_2E7A2
         {
             gbl.area2_ptr.field_58E = 0;
-            gbl.byte_1AB14 = false;
+            gbl.isInDungeon = false;
 
             if (gbl.inDemo == false)
             {

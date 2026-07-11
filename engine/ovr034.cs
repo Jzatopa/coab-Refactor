@@ -31,7 +31,7 @@ namespace engine
         {
             if (tileIndex > 0x7f)
             {
-                seg040.OverlayUnbounded(gbl.dword_1C8FC, tileIndex, tileIndex & 0x7F, rowY, colX);
+                seg040.OverlayUnbounded(gbl.overlayDaxBlock, tileIndex, tileIndex & 0x7F, rowY, colX);
             }
             else
             {

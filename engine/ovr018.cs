@@ -326,7 +326,7 @@ namespace engine
         {
             bool menuRedraw;
             bool showExit;
-            byte var_20;
+            byte classLevel;
             short var_1E;
             byte var_1B;
 
@@ -753,7 +753,7 @@ namespace engine
                 player.attack1_DiceSizeBase = 2;
                 player.field_125 = 1;
                 player.base_movement = 12;
-                var_20 = 0;
+                classLevel = 0;
 
                 for (int i = 0; i < 5; i++)
                 {
@@ -800,7 +800,7 @@ namespace engine
                             player.LearnSpell(Spells.sleep);
                         }
 
-                        var_20++;
+                        classLevel++;
                     }
                 }
 
@@ -812,9 +812,9 @@ namespace engine
 
                 if (var_1E < 0)
                 {
-                    if (player.hit_point_max > (System.Math.Abs(var_1E) + var_20))
+                    if (player.hit_point_max > (System.Math.Abs(var_1E) + classLevel))
                     {
-                        player.hit_point_max = (byte)((player.hit_point_max + var_1E) / var_20);
+                        player.hit_point_max = (byte)((player.hit_point_max + var_1E) / classLevel);
                     }
                     else
                     {
@@ -823,11 +823,11 @@ namespace engine
                 }
                 else
                 {
-                    player.hit_point_max = (byte)((player.hit_point_max + var_1E) / var_20);
+                    player.hit_point_max = (byte)((player.hit_point_max + var_1E) / classLevel);
                 }
 
                 player.hit_point_current = player.hit_point_max;
-                player.hit_point_rolled = (byte)(player.hit_point_rolled / var_20);
+                player.hit_point_rolled = (byte)(player.hit_point_rolled / classLevel);
                 byte trainingClassMaskBackup = gbl.area2_ptr.training_class_mask;
 
                 ovr017.SilentTrainPlayer();
@@ -1478,9 +1478,9 @@ namespace engine
 
                         Player new_player = new Player();
 
-                        MenuItem var_10 = ovr027.getStringListEntry(strList, strList_index);
+                        MenuItem selectedPlayerEntry = ovr027.getStringListEntry(strList, strList_index);
 
-                        ovr017.import_char01(ref new_player, var_10.Text);
+                        ovr017.import_char01(ref new_player, selectedPlayerEntry.Text);
 
                         select_sl.Text = "* " + select_sl.Text;
                         pc_count = 0;
@@ -1634,7 +1634,7 @@ namespace engine
             Player player_ptr2;
             Player player;
             char var_1B = '\0'; /* Simeon */
-            byte var_1A = 0; /* Simeon */
+            byte iconColorIndex = 0; /* Simeon */
             bool second_color = false;
             byte color_index = 0;
             byte[] bkup_colours = new byte[6];
@@ -1709,7 +1709,7 @@ namespace engine
                         switch (var_8)
                         {
                             case 1:
-                                var_1A = 1;
+                                iconColorIndex = 1;
 
                                 switch (inputKey)
                                 {
@@ -1736,14 +1736,14 @@ namespace engine
                                         break;
 
                                     case 'E':
-                                        var_1A = 0;
+                                        iconColorIndex = 0;
                                         break;
                                 }
 
                                 break;
 
                             case 2:
-                                var_1A = 2;
+                                iconColorIndex = 2;
                                 if (unk_4FE94.MemberOf(inputKey) == true)
                                 {
                                     var_8 = 1;
@@ -1756,7 +1756,7 @@ namespace engine
                                 break;
 
                             case 3:
-                                var_1A = 3;
+                                iconColorIndex = 3;
 
                                 switch (inputKey)
                                 {
@@ -1836,7 +1836,7 @@ namespace engine
                                 break;
 
                             case 5:
-                                if (var_1A == 2)
+                                if (iconColorIndex == 2)
                                 {
                                     if (var_1B == 'H')
                                     {
@@ -1852,13 +1852,13 @@ namespace engine
                                         {
                                             player_ptr2 = gbl.SelectedPlayer;
                                             headIcon = player_ptr2.head_icon;
-                                            var_8 = var_1A;
+                                            var_8 = iconColorIndex;
                                             inputKey = ' ';
                                         }
                                         else if (inputKey == 'E' || inputKey == '\0')
                                         {
                                             player.head_icon = headIcon;
-                                            var_8 = var_1A;
+                                            var_8 = iconColorIndex;
                                             inputKey = ' ';
                                         }
 
@@ -1892,20 +1892,20 @@ namespace engine
                                         {
                                             player_ptr2 = gbl.SelectedPlayer;
                                             weaponIcon = player_ptr2.weapon_icon;
-                                            var_8 = var_1A;
+                                            var_8 = iconColorIndex;
                                             inputKey = ' ';
                                         }
                                         else if (inputKey == 'E' || inputKey == '\0')
                                         {
                                             player.weapon_icon = weaponIcon;
-                                            var_8 = var_1A;
+                                            var_8 = iconColorIndex;
                                             inputKey = ' ';
                                         }
 
                                         ovr017.LoadPlayerCombatIcon(false);
                                     }
                                 }
-                                else if (var_1A == 3)
+                                else if (iconColorIndex == 3)
                                 {
                                     byte low_color = (byte)(player.icon_colours[color_index] & 0x0F);
                                     byte high_color = (byte)((player.icon_colours[color_index] & 0xF0) >> 4);
@@ -1939,13 +1939,13 @@ namespace engine
                                     else if (inputKey == 'K')
                                     {
                                         System.Array.Copy(player.icon_colours, bkup_colours, 6);
-                                        var_8 = var_1A;
+                                        var_8 = iconColorIndex;
                                         inputKey = ' ';
                                     }
                                     else if (inputKey == 'E' || inputKey == '\0')
                                     {
                                         System.Array.Copy(bkup_colours, player.icon_colours, 6);
-                                        var_8 = var_1A;
+                                        var_8 = iconColorIndex;
                                         inputKey = ' ';
                                     }
                                 }
@@ -1955,7 +1955,7 @@ namespace engine
 
                     duplicateCombatIcon(true, 12, player.icon_id);
 
-                } while (var_1A != 0 || unk_4FE94.MemberOf(inputKey) == false);
+                } while (iconColorIndex != 0 || unk_4FE94.MemberOf(inputKey) == false);
 
                 player.head_icon = headIcon;
                 player.weapon_icon = weaponIcon;
@@ -2466,9 +2466,9 @@ namespace engine
 
                 player.hit_point_rolled += (byte)max_hp_increase;
 
-                int var_15 = get_con_hp_adj(gbl.SelectedPlayer);
+                int conHpAdjustment = get_con_hp_adj(gbl.SelectedPlayer);
 
-                max_hp_increase = (var_F + var_15) / class_count;
+                max_hp_increase = (var_F + conHpAdjustment) / class_count;
 
                 if (max_hp_increase < 1)
                 {

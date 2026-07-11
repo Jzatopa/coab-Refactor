@@ -202,17 +202,17 @@ namespace engine
 			int end_y = (spellSource == SpellSource.Memorize) ? 0x0F : 0x16;
 
 			bool show_exit = spellSource != SpellSource.Learn;
-			bool var_61 = false;
+			bool allowScrolling = false;
 
 			if (index < 0)
 			{
-				var_61 = true;
+				allowScrolling = true;
 				index = 0;
 			}
 
 			if (spellSource == SpellSource.Learn || spellSource == SpellSource.Cast)
 			{
-				var_61 = true;
+				allowScrolling = true;
 			}
 
 			MenuItem selected;
@@ -220,7 +220,7 @@ namespace engine
 
 			do
 			{
-				input_key = ovr027.sl_select_item(out selected, ref index, ref var_61, show_exit, gbl.spell_string_list,
+				input_key = ovr027.sl_select_item(out selected, ref index, ref allowScrolling, show_exit, gbl.spell_string_list,
 					end_y, 0x26, 5, 1, gbl.defaultMenuColors, text, prompt_text);
 
 			} while (asc_5C1D1.MemberOf(input_key) == false);
@@ -671,14 +671,14 @@ namespace engine
 		}
 
 
-		internal static void sub_5D2E1(bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
+		internal static void castSpell(bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
 		{
 			bool dummy = false;
-			sub_5D2E1(ref dummy, showCastingText, quick_fight, spell_id);
+			castSpell(ref dummy, showCastingText, quick_fight, spell_id);
 		}
 
 
-		internal static void sub_5D2E1(ref bool arg_0, bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
+		internal static void castSpell(ref bool arg_0, bool showCastingText, QuickFight quick_fight, int spell_id) // sub_5D2E1
 		{
 			Player caster = gbl.SelectedPlayer;
 			bool stillCast = true;
@@ -781,7 +781,7 @@ namespace engine
 					func();
 
 					gbl.spell_id = 0;
-					gbl.byte_1D2C7 = false;
+					gbl.isSpellTargetInvisible = false;
 				}
 				else
 				{
@@ -990,7 +990,7 @@ namespace engine
 
 		static void CastTeamSpell(string text, CombatTeam team) // sub_5DCA0
 		{
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
 			gbl.spellTargets.RemoveAll(target => target.combat_team != team ||
 				(gbl.spell_id == (int)Spells.bless && gbl.game_state == GameState.Combat && ovr025.BuildNearTargets(1, target).Count > 0));
@@ -1186,7 +1186,7 @@ namespace engine
 
 		internal static void SpellSleep() // falls_asleep
 		{
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 			int totalSpellPower = ovr024.roll_dice(4, 4);
 
 			gbl.spellTargets.RemoveAll(target =>
@@ -1371,33 +1371,33 @@ namespace engine
 
 		internal static void SpellStinkingCloud() //TODO similar to spell_poisonous_cloud
 		{
-			byte var_12;
+			byte cloudDirection;
 			int groundTile;
 			int[] var_C = new int[4];
 
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
-			byte var_10 = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
+			byte spellCount = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
 			int count = gbl.StinkingCloud.FindAll(cell => cell.player == gbl.SelectedPlayer).Count;
 
 			GasCloud var_8 = new GasCloud(gbl.SelectedPlayer, count, gbl.targetPos);
 			gbl.StinkingCloud.Add(var_8);
 
-			ovr024.add_affect(true, (byte)(var_10 + (count << 4)), var_10, Affects.affect_in_stinking_cloud, gbl.SelectedPlayer);
+			ovr024.add_affect(true, (byte)(spellCount + (count << 4)), spellCount, Affects.affect_in_stinking_cloud, gbl.SelectedPlayer);
 
-			for (int var_11 = 0; var_11 < StinkingCloudMaxTargets; var_11++)
+			for (int targetIndex = 0; targetIndex < StinkingCloudMaxTargets; targetIndex++)
 			{
-				var_12 = gbl.SmallCloudDirections[var_11];
+				cloudDirection = gbl.SmallCloudDirections[targetIndex];
 
-				ovr033.AtMapXY(out groundTile, out var_C[var_11], gbl.targetPos + gbl.MapDirectionDelta[var_12]);
+				ovr033.AtMapXY(out groundTile, out var_C[targetIndex], gbl.targetPos + gbl.MapDirectionDelta[cloudDirection]);
 
 				if (groundTile > 0 && gbl.BackGroundTiles[groundTile].move_cost < 0xFF)
 				{
-					var_8.present[var_11] = true;
+					var_8.present[targetIndex] = true;
 				}
 				else
 				{
-					var_8.present[var_11] = false;
+					var_8.present[targetIndex] = false;
 				}
 
 
@@ -1410,7 +1410,7 @@ namespace engine
 							for (int var_D = 0; var_D < 4; var_D++)
 							{
 								if (var_4.present[var_D] == true &&
-									gbl.targetPos + gbl.MapDirectionDelta[var_12] == var_4.targetPos + gbl.MapDirectionDelta[gbl.SmallCloudDirections[var_D]] &&
+									gbl.targetPos + gbl.MapDirectionDelta[cloudDirection] == var_4.targetPos + gbl.MapDirectionDelta[gbl.SmallCloudDirections[var_D]] &&
 									var_4.groundTile[var_D] != 0x1E)
 								{
 									groundTile = var_4.groundTile[var_D];
@@ -1421,17 +1421,17 @@ namespace engine
 				}
 				else if (groundTile == gbl.Tile_DownPlayer)
 				{
-					var c = gbl.downedPlayers.FindLast(cell => cell.map == gbl.targetPos + gbl.MapDirectionDelta[var_12]);
+					var c = gbl.downedPlayers.FindLast(cell => cell.map == gbl.targetPos + gbl.MapDirectionDelta[cloudDirection]);
 					if (c != null)
 					{
 						groundTile = c.originalBackgroundTile;
 					}
 				}
 
-				var_8.groundTile[var_11] = groundTile;
-				if (var_8.present[var_11] == true)
+				var_8.groundTile[targetIndex] = groundTile;
+				if (var_8.present[targetIndex] == true)
 				{
-					var pos = gbl.MapDirectionDelta[var_12] + gbl.targetPos;
+					var pos = gbl.MapDirectionDelta[cloudDirection] + gbl.targetPos;
 
 					gbl.mapToBackGroundTile[pos] = gbl.Tile_StinkingCloud;
 				}
@@ -1442,23 +1442,23 @@ namespace engine
 			ovr033.redrawCombatArea(8, 0xff, gbl.targetPos);
 			seg041.GameDelay();
 			ovr025.ClearPlayerTextArea();
-			for (int var_11 = 0; var_11 < 4; var_11++)
+			for (int targetIndex = 0; targetIndex < 4; targetIndex++)
 			{
 				for (int var_D = 0; var_D < 4; var_D++)
 				{
-					if (var_C[var_D] == var_C[var_11] &&
-						var_11 != var_D)
+					if (var_C[var_D] == var_C[targetIndex] &&
+						targetIndex != var_D)
 					{
-						var_C[var_11] = 0;
+						var_C[targetIndex] = 0;
 					}
 				}
 			}
 
-			for (int var_11 = 0; var_11 < 4; var_11++)
+			for (int targetIndex = 0; targetIndex < 4; targetIndex++)
 			{
-				if (var_C[var_11] > 0)
+				if (var_C[targetIndex] > 0)
 				{
-					ovr024.in_poison_cloud(1, gbl.player_array[var_C[var_11]]);
+					ovr024.in_poison_cloud(1, gbl.player_array[var_C[targetIndex]]);
 				}
 			}
 		}
@@ -1530,7 +1530,7 @@ namespace engine
 
 		internal static void SpellAnimateDead() // is_animated
 		{
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
 			int var_3 = ovr025.spellMaxTargetCount(gbl.spell_id);
 
@@ -1541,7 +1541,7 @@ namespace engine
 				if (player.health_status == Status.dead &&
 					player.monsterType == 0)
 				{
-					if (ovr033.sub_7515A(true, ovr033.PlayerMapPos(player), player) == true)
+					if (ovr033.canMoveToPosition(true, ovr033.PlayerMapPos(player), player) == true)
 					{
 						byte var_2 = (byte)(((int)player.combat_team << 4) + ovr025.spellMaxTargetCount(gbl.spell_id));
 
@@ -1666,7 +1666,7 @@ namespace engine
 
 		internal static void SpellDispelMagic() // is_affected3
 		{
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 			int maxTargetCount = ovr025.spellMaxTargetCount(gbl.spell_id);
 
 			if (gbl.spellTargets.Count > 0)
@@ -1771,23 +1771,23 @@ namespace engine
 					var looplist = (ground_tile == 0x1C) ? gbl.CloudKillCloud : gbl.StinkingCloud;
 
 					var mappos = new Point(xPos, yPos);
-					looplist.ForEach(var_18 =>
+					looplist.ForEach(gasCloud =>
 					{
 						for (int var_1 = 0; var_1 < targetCount; var_1++)
 						{
-							if (mappos == var_18.targetPos + gbl.MapDirectionDelta[gbl.SmallCloudDirections[var_1]] &&
-								var_18.field_1D == false)
+							if (mappos == gasCloud.targetPos + gbl.MapDirectionDelta[gbl.SmallCloudDirections[var_1]] &&
+								gasCloud.field_1D == false)
 							{
-								if (sub_5F126(var_18.player, maxTargetCount) == true)
+								if (sub_5F126(gasCloud.player, maxTargetCount) == true)
 								{
 									Affect affect = null;
 									bool found = false;
 
-									foreach (Affect tmpAffect in var_18.player.affects)
+									foreach (Affect tmpAffect in gasCloud.player.affects)
 									{
 										if (((affect.type == Affects.affect_in_cloud_kill && ground_tile == 0x1c) ||
 											 (affect.type == Affects.affect_in_stinking_cloud && ground_tile == 0x1E)) &&
-											(affect.affect_data >> 4) == var_18.field_1C)
+											(affect.affect_data >> 4) == gasCloud.field_1C)
 										{
 											affect = tmpAffect;
 											found = true;
@@ -1799,17 +1799,17 @@ namespace engine
 									{
 										if (ground_tile == 0x1C)
 										{
-											ovr024.remove_affect(affect, Affects.affect_in_cloud_kill, var_18.player);
+											ovr024.remove_affect(affect, Affects.affect_in_cloud_kill, gasCloud.player);
 										}
 										else
 										{
-											ovr024.remove_affect(affect, Affects.affect_in_stinking_cloud, var_18.player);
+											ovr024.remove_affect(affect, Affects.affect_in_stinking_cloud, gasCloud.player);
 										}
 									}
 								}
 								else
 								{
-									var_18.field_1D = true;
+									gasCloud.field_1D = true;
 								}
 							}
 						}
@@ -1879,7 +1879,7 @@ namespace engine
 		{
 			int dice_count;
 
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
 			if (gbl.spell_id == 0x40)
 			{
@@ -1909,7 +1909,7 @@ namespace engine
 
 		internal static void RemoveComplimentSpellFirst(string text, CombatTeam combatTeam, Affects affect) //sub_5F87B
 		{
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
 			int maxTargets = ovr025.spellMaxTargetCount(gbl.spell_id);
 
@@ -2007,7 +2007,7 @@ namespace engine
 			if (playerPos != gbl.targetPos)
 			{
 				int var_3C = arg_6 * 2;
-				gbl.byte_1D2C7 = true;
+				gbl.isSpellTargetInvisible = true;
 
 				while (var_3C > 0)
 				{
@@ -2095,7 +2095,7 @@ namespace engine
 					} while (var_36 == false && var_3C != 0);
 				}
 
-				gbl.byte_1D2C7 = false;
+				gbl.isSpellTargetInvisible = false;
 			}
 		}
 
@@ -2478,7 +2478,7 @@ namespace engine
 
 			ovr033.RedrawPlayerBackground(ovr033.GetPlayerIndex(player));
 
-			ovr033.sub_7515A(false, gbl.targetPos, player);
+			ovr033.canMoveToPosition(false, gbl.targetPos, player);
 
 			ovr033.redrawCombatArea(8, 0, ovr033.PlayerMapPos(player));
 
@@ -2609,35 +2609,35 @@ namespace engine
 		internal static void SpellCloudKill() // spell_poisonous_cloud // similar to create_noxious_cloud
 		{
 			byte dir = 0;
-			int var_16;
+			int cloudIndex;
 			int ground_tile = 0;
 			const int max_targets = 9;
 			int[] targets = new int[max_targets];
 
-			gbl.byte_1D2C7 = true;
+			gbl.isSpellTargetInvisible = true;
 
-			byte var_15 = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
+			byte cloudCount = (byte)ovr025.spellMaxTargetCount(gbl.spell_id);
 			int count = gbl.CloudKillCloud.FindAll(cell => cell.player == gbl.SelectedPlayer).Count;
 
 			GasCloud var_8 = new GasCloud(gbl.SelectedPlayer, count, gbl.targetPos);
 			gbl.CloudKillCloud.Add(var_8);
 
-			ovr024.add_affect(true, (byte)(var_15 + (count << 4)), var_15, Affects.affect_in_cloud_kill, gbl.SelectedPlayer);
+			ovr024.add_affect(true, (byte)(cloudCount + (count << 4)), cloudCount, Affects.affect_in_cloud_kill, gbl.SelectedPlayer);
 
-			for (var_16 = 0; var_16 < max_targets; var_16++)
+			for (cloudIndex = 0; cloudIndex < max_targets; cloudIndex++)
 			{
-				dir = gbl.CloudDirections[var_16];
+				dir = gbl.CloudDirections[cloudIndex];
 
-				ovr033.AtMapXY(out ground_tile, out targets[var_16], gbl.targetPos + gbl.MapDirectionDelta[dir]);
+				ovr033.AtMapXY(out ground_tile, out targets[cloudIndex], gbl.targetPos + gbl.MapDirectionDelta[dir]);
 
 				if (ground_tile > 0 &&
 					gbl.BackGroundTiles[ground_tile].move_cost < 0xff)
 				{
-					var_8.present[var_16] = true;
+					var_8.present[cloudIndex] = true;
 				}
 				else
 				{
-					var_8.present[var_16] = false;
+					var_8.present[cloudIndex] = false;
 				}
 
 				if (ground_tile == gbl.Tile_StinkingCloud)
@@ -2645,14 +2645,14 @@ namespace engine
 					bool found = false;
 					foreach (var var_4 in gbl.StinkingCloud)
 					{
-						for (int var_12 = 0; var_12 < 4; var_12++)
+						for (int cloudDirection = 0; cloudDirection < 4; cloudDirection++)
 						{
-							if (var_4.present[var_12] == true &&
-								(gbl.MapDirectionDelta[gbl.SmallCloudDirections[var_12]] + var_4.targetPos) == (gbl.MapDirectionDelta[dir] + gbl.targetPos) &&
-								var_4.groundTile[var_12] != 0x1E &&
-								var_4.groundTile[var_12] != 0x1C)
+							if (var_4.present[cloudDirection] == true &&
+								(gbl.MapDirectionDelta[gbl.SmallCloudDirections[cloudDirection]] + var_4.targetPos) == (gbl.MapDirectionDelta[dir] + gbl.targetPos) &&
+								var_4.groundTile[cloudDirection] != 0x1E &&
+								var_4.groundTile[cloudDirection] != 0x1C)
 							{
-								ground_tile = var_4.groundTile[var_12];
+								ground_tile = var_4.groundTile[cloudDirection];
 								found = true;
 							}
 						}
@@ -2667,14 +2667,14 @@ namespace engine
 					{
 						if (var_4 != var_8)
 						{
-							for (int var_12 = 0; var_12 < 9; var_12++)
+							for (int cloudDirection = 0; cloudDirection < 9; cloudDirection++)
 							{
-								if (var_4.present[var_12] == true &&
-									(gbl.MapDirectionDelta[gbl.CloudDirections[var_12]] + var_4.targetPos) == (gbl.MapDirectionDelta[dir] + gbl.targetPos) &&
-									var_4.groundTile[var_12] != 0x1E &&
-									var_4.groundTile[var_12] != 0x1C)
+								if (var_4.present[cloudDirection] == true &&
+									(gbl.MapDirectionDelta[gbl.CloudDirections[cloudDirection]] + var_4.targetPos) == (gbl.MapDirectionDelta[dir] + gbl.targetPos) &&
+									var_4.groundTile[cloudDirection] != 0x1E &&
+									var_4.groundTile[cloudDirection] != 0x1C)
 								{
-									ground_tile = var_4.groundTile[var_12];
+									ground_tile = var_4.groundTile[cloudDirection];
 									found = true;
 								}
 							}
@@ -2694,9 +2694,9 @@ namespace engine
 					}
 				}
 
-				var_8.groundTile[var_16] = ground_tile;
+				var_8.groundTile[cloudIndex] = ground_tile;
 
-				if (var_8.present[var_16] == true)
+				if (var_8.present[cloudIndex] == true)
 				{
 					var pos = gbl.MapDirectionDelta[dir] + gbl.targetPos;
 
@@ -2704,9 +2704,9 @@ namespace engine
 				}
 			}
 
-			var_8.groundTile[var_16] = ground_tile;
+			var_8.groundTile[cloudIndex] = ground_tile;
 
-			if (var_8.present[var_16] == true)
+			if (var_8.present[cloudIndex] == true)
 			{
 				var pos = gbl.MapDirectionDelta[dir] + gbl.targetPos;
 

@@ -249,7 +249,7 @@ namespace engine
         }
 
 
-        internal static void sub_3E748(int direction, Player player)
+        internal static void move_step(int direction, Player player)
         {
             int player_index = ovr033.GetPlayerIndex(player);
 
@@ -731,7 +731,7 @@ namespace engine
             gbl.bytes_1D2C9[2] = 0;
             gbl.bytes_1D900[1] = 0;
             gbl.bytes_1D900[2] = 0;
-            bool var_11 = false;
+            bool attackHit = false;
             bool targetNotInCombat = false;
             gbl.damage = 0;
 
@@ -754,7 +754,7 @@ namespace engine
                 attacker.attack1_AttacksLeft = 0;
                 attacker.attack2_AttacksLeft = 0;
 
-                var_11 = true;
+                attackHit = true;
                 turnComplete = true;
             }
             else
@@ -824,7 +824,7 @@ namespace engine
                             gbl.bytes_1D2C9[attackIdx] += 1;
 
                             seg044.PlaySound(Sound.sound_attackHeld);
-                            var_11 = true;
+                            attackHit = true;
                             sub_3E192(attackIdx, target, attacker);
                             DisplayAttackMessage(true, gbl.damage, gbl.damage, attack_type, target, attacker);
 
@@ -854,7 +854,7 @@ namespace engine
                     attacker.attack2_AttacksLeft = 0;
                 }
 
-                if (var_11 == false)
+                if (attackHit == false)
                 {
                     seg044.PlaySound(Sound.sound_9);
                     DisplayAttackMessage(false, 0, 0, attack_type, target, attacker);
@@ -1167,7 +1167,7 @@ namespace engine
 
             bool castSpell = true;
             gbl.spellTargets.Clear();
-            gbl.byte_1D2C7 = false;
+            gbl.isSpellTargetInvisible = false;
 
             gbl.targetPos = ovr033.PlayerMapPos(gbl.SelectedPlayer);
 
@@ -1292,7 +1292,7 @@ namespace engine
                         {
                             gbl.spellTargets.Add(sc.player);
                         }
-                        gbl.byte_1D2C7 = true;
+                        gbl.isSpellTargetInvisible = true;
                     }
                 }
                 else
@@ -1312,7 +1312,7 @@ namespace engine
                         gbl.spellTargets.Add(sc.player);
                     }
 
-                    gbl.byte_1D2C7 = true;
+                    gbl.isSpellTargetInvisible = true;
                 }
                 else
                 {
@@ -1405,7 +1405,7 @@ namespace engine
 
                 if (delay == 0)
                 {
-                    ovr023.sub_5D2E1(true, quick_fight, spell_id);
+                    ovr023.castSpell(true, quick_fight, spell_id);
 
                     casting_spell = true;
                     ovr025.clear_actions(player);
@@ -2420,17 +2420,17 @@ namespace engine
                     }
                     else if ((attacksTired & 0x10) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x54);
+                        ovr023.castSpell(true, QuickFight.True, 0x54);
                         attacksTired |= 0x10;
                     }
                     else if ((attacksTired & 0x20) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x37);
+                        ovr023.castSpell(true, QuickFight.True, 0x37);
                         attacksTired |= 0x20;
                     }
                     else if ((attacksTired & 0x40) == 0)
                     {
-                        ovr023.sub_5D2E1(true, QuickFight.True, 0x15);
+                        ovr023.castSpell(true, QuickFight.True, 0x15);
                         attacksTired |= 0x40;
                     }
                 }
@@ -2438,7 +2438,7 @@ namespace engine
         }
 
 
-        internal static void sub_425C6(Effect add_remove, object param, Player player)
+        internal static void AffectDragonHugAttack(Effect add_remove, object param, Player player)
         {
             Affect affect = (Affect)param;
 

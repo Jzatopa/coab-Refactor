@@ -59,7 +59,7 @@ namespace engine
 
             if (player.actions.spell_id > 0)
             {
-                ovr023.sub_5D2E1(true, QuickFight.True, player.actions.spell_id);
+                ovr023.castSpell(true, QuickFight.True, player.actions.spell_id);
 
                 ovr025.clear_actions(player);
                 return;
@@ -220,8 +220,8 @@ namespace engine
 
             if (bestWand != null)
             {
-                bool var_15 = false; /* simeon */
-                ovr020.UseMagicItem(ref var_15, bestWand);
+                bool wandSpellId = false; /* simeon */
+                ovr020.UseMagicItem(ref wandSpellId, bestWand);
                 return true;
             }
 
@@ -471,7 +471,7 @@ namespace engine
 
                         if (var_5 == false)
                         {
-                            gbl.focusCombatAreaOnPlayer = (gbl.byte_1D90E || ovr033.PlayerOnScreen(false, player) || player.combat_team == CombatTeam.Ours);
+                            gbl.focusCombatAreaOnPlayer = (gbl.isAutoSpellTargeting || ovr033.PlayerOnScreen(false, player) || player.combat_team == CombatTeam.Ours);
 
                             ovr033.draw_74B3F(false, Icon.Normal, var_2, player);
                             ovr014.move_step_away_attack(player.actions.direction, player);
@@ -485,7 +485,7 @@ namespace engine
                             {
                                 if (player.actions.move > 0)
                                 {
-                                    ovr014.sub_3E748(player.actions.direction, player);
+                                    ovr014.move_step(player.actions.direction, player);
                                 }
 
                                 if (player.in_combat == false)
@@ -558,7 +558,7 @@ namespace engine
                         TryGuarding(player);
                     }
 
-                    gbl.byte_1D90E = false;
+                    gbl.isAutoSpellTargeting = false;
                     int range = 1;
 
                     if (player.activeItems.primaryWeapon != null)
@@ -593,11 +593,11 @@ namespace engine
                         if (ovr032.canReachTarget(ref steps, targetPos, attackPos) == true &&
                             (steps / 2) <= range)
                         {
-                            gbl.byte_1D90E = true;
+                            gbl.isAutoSpellTargeting = true;
                         }
                     }
 
-                    if (gbl.byte_1D90E == false)
+                    if (gbl.isAutoSpellTargeting == false)
                     {
                         var nearTargets = ovr025.BuildNearTargets(range, player);
 
@@ -629,17 +629,17 @@ namespace engine
                             else if (ovr025.getTargetRange(target, player) == 1 ||
                                 ovr014.CanSeeTargetA(target, player) == true)
                             {
-                                gbl.byte_1D90E = true;
+                                gbl.isAutoSpellTargeting = true;
                             }
                         }
                     }
 
-                    if (gbl.byte_1D90E == true)
+                    if (gbl.isAutoSpellTargeting == true)
                     {
                         ovr033.redrawCombatArea(ovr014.getTargetDirection(target, player), 2, ovr033.PlayerMapPos(player));
                     }
 
-                    if (gbl.byte_1D90E == true)
+                    if (gbl.isAutoSpellTargeting == true)
                     {
                         if (ovr014.TrySweepAttack(target, player) == true)
                         {
@@ -654,7 +654,7 @@ namespace engine
 
                             if (ovr025.is_weapon_ranged(player) == true)
                             {
-                                gbl.byte_1D90E = ovr025.GetCurrentAttackItem(out item, player);
+                                gbl.isAutoSpellTargeting = ovr025.GetCurrentAttackItem(out item, player);
 
                                 if (ovr025.is_weapon_ranged_melee(player) == true &&
                                     ovr025.getTargetRange(target, player) == 1)
@@ -880,13 +880,13 @@ namespace engine
 
             Item var_4 = null;
             Item var_8 = null;
-            int var_15 = 1;
+            int wandSpellId = 1;
 
-            int var_16 = player.attack1_DiceSizeBase * player.attack1_DiceCountBase;
+            int weaponDamageRating = player.attack1_DiceSizeBase * player.attack1_DiceCountBase;
 
             if (player.attack1_DamageBonusBase > 0)
             {
-                var_16 += player.attack1_DamageBonusBase * 2;
+                weaponDamageRating += player.attack1_DamageBonusBase * 2;
             }
 
             int max_bonus = 0;
@@ -904,18 +904,18 @@ namespace engine
                     if ((gbl.ItemDataTable[item_type].field_E & ItemDataFlags.flag_08) != 0 ||
                         (gbl.ItemDataTable[item_type].field_E & ItemDataFlags.flag_10) != 0)
                     {
-                        if (power_rating > var_15)
+                        if (power_rating > wandSpellId)
                         {
                             var_4 = item;
-                            var_15 = power_rating;
+                            wandSpellId = power_rating;
                         }
                     }
 
                     if ((gbl.ItemDataTable[item_type].field_E & ItemDataFlags.flag_08) == 0 &&
-                        power_rating > var_16)
+                        power_rating > weaponDamageRating)
                     {
                         var_8 = item;
-                        var_16 = power_rating;
+                        weaponDamageRating = power_rating;
                     }
                 }
 
@@ -972,7 +972,7 @@ namespace engine
             Item weapon;
 
             if (var_4 != null &&
-                var_15 > (var_16 >> 1) &&
+                wandSpellId > (weaponDamageRating >> 1) &&
                 var_1F == true &&
                 (ranged_melee == true || ovr025.BuildNearTargets(1, player).Count == 0))
             {

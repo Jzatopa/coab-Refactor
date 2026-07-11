@@ -103,18 +103,18 @@ namespace engine
 
             ovr027.ClearPromptAreaNoUpdate();
 
-            int var_44;
+            int parsedValue;
             if (inputKey == 0x1B || 
                 (inputKey == 0x0D && currentValueStr.Length == 0))
             {
-                var_44 = 0;
+                parsedValue = 0;
             }
             else
             {
-                var_44 = int.Parse(currentValueStr);
+                parsedValue = int.Parse(currentValueStr);
             }
 
-            return (short)var_44;
+            return (short)parsedValue;
         }
 
 
@@ -357,7 +357,7 @@ namespace engine
 
 			do
 			{
-				bool var_118 = true;
+				bool isItemSelected = true;
 
 				money.Clear();
 
@@ -372,7 +372,7 @@ namespace engine
 				int dummyIndex = 0;
 
 				MenuItem var_C;
-				char input_key = ovr027.sl_select_item(out var_C, ref dummyIndex, ref var_118, true, money,
+				char input_key = ovr027.sl_select_item(out var_C, ref dummyIndex, ref isItemSelected, true, money,
 					8, 15, 2, 2, gbl.defaultMenuColors, "Select", "Select type of coin ");
 
 				if (var_C == null || input_key == 0)

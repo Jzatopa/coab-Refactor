@@ -180,7 +180,7 @@ namespace engine
                         redraw = true;
                         seg037.draw8x8_clear_area(TextRegion.NormalBottom);
 
-                        ovr023.sub_5D2E1(true, QuickFight.False, spell_id);
+                        ovr023.castSpell(true, QuickFight.False, spell_id);
                     }
                     else if (var_3 == true)
                     {
@@ -945,7 +945,7 @@ namespace engine
 
             foreach (Player player in gbl.TeamList)
             {
-                int var_10 = 0;
+                int spellCount = 0;
                 int var_A = 0;
                 int var_C = 0;
                 int var_E = 0;
@@ -964,13 +964,13 @@ namespace engine
 
                 if (var_A > 0)
                 {
-                    var_10 = 240;
+                    spellCount = 240;
                     maxHealing += 27;
                 }
 
                 if ((var_C + var_E) != 0)
                 {
-                    var_10 = 360;
+                    spellCount = 360;
 
                     if (var_E > 0)
                     {
@@ -982,19 +982,19 @@ namespace engine
                     }
                 }
 
-                var_10 += var_A + var_C + var_E;
+                spellCount += var_A + var_C + var_E;
 
-                if (maxTime < var_10)
+                if (maxTime < spellCount)
                 {
-                    maxTime = var_10;
+                    maxTime = spellCount;
                 }
             }
 
             if (TotalHitpointsLost() < maxHealing)
             {
-                int var_11 = maxHealing / TotalHitpointsLost();
+                int healingPerPlayer = maxHealing / TotalHitpointsLost();
 
-                maxTime /= var_11;
+                maxTime /= healingPerPlayer;
             }
 
             gbl.timeToRest.field_6 = maxTime / 60;
@@ -1085,7 +1085,7 @@ namespace engine
 
             gbl.timeToRest.Clear();
 
-            gbl.byte_1D5AB = gbl.lastDaxFile;
+            gbl.lastDaxFileName = gbl.lastDaxFile;
             gbl.byte_1D5B5 = gbl.lastDaxBlockId;
 
             ovr025.LoadPic();
@@ -1146,9 +1146,9 @@ namespace engine
                 }
             }
 
-            if (seg051.Copy(3, 1, gbl.byte_1D5AB) == "PIC")
+            if (seg051.Copy(3, 1, gbl.lastDaxFileName) == "PIC")
             {
-                ovr030.load_pic_final(ref gbl.byte_1D556, 0, gbl.byte_1D5B5, gbl.byte_1D5AB);
+                ovr030.load_pic_final(ref gbl.byte_1D556, 0, gbl.byte_1D5B5, gbl.lastDaxFileName);
             }
 
             cancel_spells();

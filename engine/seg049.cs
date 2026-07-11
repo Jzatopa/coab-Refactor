@@ -97,6 +97,22 @@ namespace engine
         }
 
 
+        // KEYBOARD INPUT INVESTIGATION (2026-07-11): this emulates the real
+        // DOS INT 16h "get keystroke" convention. An extended key (arrows,
+        // Home/End, PageUp/PageDown, function keys) is delivered as an AL=0
+        // marker on one call, then the real BIOS scan code as the return
+        // value of the *next* call (stashed here in skipReadFlag). Any
+        // caller that only reads once per logical keystroke will treat that
+        // marker-then-scancode pair as two separate events -- see
+        // engine/seg041.cs's getUserInputString, which had exactly this bug
+        // (it read once per loop iteration, so an arrow key's scan code byte
+        // landed on the *next* iteration and got misread as a literal typed
+        // character, since e.g. Up's scan code 0x48 is also the ASCII byte
+        // for 'H'). Callers that read twice per keystroke when the first
+        // read comes back 0 (e.g. ovr027.cs's displayInput) handle this
+        // correctly. Full findings:
+        // references/ssi-engine/docs/coab-keyboard-input-findings-2026-07-11.md
+        // (in the sibling Java engine project).
         internal static byte READKEY()
         {
             byte lastCode = skipReadFlag;

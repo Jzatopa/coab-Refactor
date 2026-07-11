@@ -48,7 +48,7 @@ namespace engine
                     }
                     else
                     {
-                        gbl.unk_1D972[strIndex] = string.Empty;
+                        gbl.gameMessageStrings[strIndex] = string.Empty;
                     }
 
                     //System.Console.WriteLine("   code: {0,2:X} strIndex: {1} strLen: {2} str: '{3}'",
@@ -91,7 +91,7 @@ namespace engine
             gbl.spriteChanged = false;
             gbl.redrawPartySummary1 = false;
             gbl.redrawPartySummary2 = false;
-            gbl.byte_1EE91 = true;
+            gbl.isPlayerPositionChanged = true;
 
             gbl.encounter_flags[0] = false;
             gbl.encounter_flags[1] = false;
@@ -154,7 +154,7 @@ namespace engine
         }
 
 
-        internal static byte sub_304B4(int map_dir, int map_y, int map_x)
+        internal static byte CalculateEncounterDistance(int map_dir, int map_y, int map_x)
         {
             byte var_1 = 0;
 
@@ -207,7 +207,7 @@ namespace engine
 
         internal static void set_and_draw_head_body(byte body_id, byte head_id) /* sub_30543 */
         {
-            gbl.byte_1EE8D = false;
+            gbl.playerSpriteDisplayed = false;
 
             gbl.head_block_id = head_id;
             gbl.body_block_id = body_id;
@@ -217,7 +217,7 @@ namespace engine
         }
 
 
-        internal static void sub_30580(bool[] flags, int encounter_distance, byte pic_block_id, byte sprite_block_id)
+        internal static void updateEncounterFlags(bool[] flags, int encounter_distance, byte pic_block_id, byte sprite_block_id)
         {
             if (flags[1] == false)
             {
@@ -269,7 +269,7 @@ namespace engine
                     {
                         set_and_draw_head_body(pic_block_id, (byte)gbl.area2_ptr.HeadBlockId);
                         flags[1] = true;
-                        gbl.byte_1EE8D = false;
+                        gbl.playerSpriteDisplayed = false;
                     }
                 }
             }
@@ -749,7 +749,7 @@ namespace engine
                             break;
 
                         case 0xB8:
-                            gbl.word_1EE78 = value;
+                            gbl.encounterFlag = value;
                             break;
 
                         case 0xB9:
@@ -806,11 +806,11 @@ namespace engine
                             break;
 
                         case 0xF1:
-                            gbl.byte_1EE91 = true;
+                            gbl.isPlayerPositionChanged = true;
                             break;
 
                         case 0xF7:
-                            gbl.byte_1EE91 = true;
+                            gbl.isPlayerPositionChanged = true;
                             break;
                     }
                 }
@@ -862,7 +862,7 @@ namespace engine
                                 break;
 
                             case 0x00FC:
-                                val = (ushort)gbl.word_1D916;
+                                val = (ushort)gbl.combatantCount;
                                 break;
 
                             case 0x033D:
@@ -1072,7 +1072,7 @@ namespace engine
 
             gbl.ecl_offset += (ushort)inputLength;
 
-            gbl.unk_1D972[strIndex] = DecompressString(data);
+            gbl.gameMessageStrings[strIndex] = DecompressString(data);
         }
 
 
@@ -1123,7 +1123,7 @@ namespace engine
                     break;
             }
 
-            gbl.unk_1D972[strIndex] = sb.ToString();
+            gbl.gameMessageStrings[strIndex] = sb.ToString();
         }
 
         static Set unk_31673 = new Set(48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90); 
@@ -1167,7 +1167,7 @@ namespace engine
         static Set validkeys = new Set(48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90); // unk_3178A
 
 
-        internal static int sub_317AA(bool useOverlay, bool acceptReturn, MenuColorSet colors, string displayString, string extraString)
+        internal static int HorizontalMenuSelect(bool useOverlay, bool acceptReturn, MenuColorSet colors, string displayString, string extraString)
         {
             char key_pressed;
             int ret_val;
@@ -1398,7 +1398,7 @@ namespace engine
         }
 
 
-        internal static void sub_32200(Player player, int damage) /* sub_32200 */
+        internal static void ApplyDamageToPlayer(Player player, int damage) /* sub_32200 */
         {
             if (player.health_status != Status.dead)
             {

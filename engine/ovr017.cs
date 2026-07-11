@@ -26,17 +26,17 @@ namespace engine
 
                     string playerName = Sys.ArrayToString(data, 0, 15).Trim();
 
-                    byte var_164;
+                    byte npcFlag;
 
                     if (gbl.import_from == ImportSource.Hillsfar)
                     {
-                        var_164 = 0;
+                        npcFlag = 0;
                     }
                     else
                     {
                         stream.Seek(npcOffset, SeekOrigin.Begin);
                         stream.Read(data, 0, 1);
-                        var_164 = data[0];
+                        npcFlag = data[0];
                     }
 
 
@@ -46,7 +46,7 @@ namespace engine
 
                     bool found = gbl.TeamList.Find(player => playerName == player.name.Trim()) != null;
 
-                    if (found == false && var_164 <= 0x7F)
+                    if (found == false && npcFlag <= 0x7F)
                     {
                         fileNames.Add(new MenuItem(filePath));
                         displayNames.Add(new MenuItem(fullNameText));
@@ -80,7 +80,7 @@ namespace engine
             }
         }
 
-        static Set unk_47635 = new Set(0, 5);
+        static Set saveGameKeys = new Set(0, 5);
 
 
         internal static void LoadPlayerCombatIcon(bool recolour) /* sub_47A90 */
@@ -517,11 +517,11 @@ namespace engine
                 seg051.BlockRead(HillsFarPlayer.StructSize, data, file);
                 seg051.Close(file);
 
-                HillsFarPlayer var_1C4 = new HillsFarPlayer(data);
+                HillsFarPlayer hillsFarPlayer = new HillsFarPlayer(data);
 
-                player = ConvertHillsFarPlayer(var_1C4, arg_8);
+                player = ConvertHillsFarPlayer(hillsFarPlayer, arg_8);
 
-                var_1C4 = null;
+                hillsFarPlayer = null;
             }
 
             if (gbl.import_from == ImportSource.Curse)
@@ -1025,7 +1025,7 @@ namespace engine
             int number_of_players = data[0];
 
             seg051.BlockRead(0x148, data, file);
-            string[] var_148 = Sys.ArrayToStrings(data, 0, System.Math.Min(0x148, 0x29 * number_of_players), 0x29);
+            string[] playerNames = Sys.ArrayToStrings(data, 0, System.Math.Min(0x148, 0x29 * number_of_players), 0x29);
 
             seg051.Close(file);
 
@@ -1036,13 +1036,13 @@ namespace engine
 
             for (int index = 0; index < number_of_players; index++)
             {
-                string var_1F6 = seg042.clean_string(var_148[index]);
+                string cleanFileName = seg042.clean_string(playerNames[index]);
 
-                if (seg042.file_find(Path.Combine(Config.GetSavePath(), var_1F6 + ".sav")) == true)
+                if (seg042.file_find(Path.Combine(Config.GetSavePath(), cleanFileName + ".sav")) == true)
                 {
                     Player player = new Player();
 
-                    import_char01(ref player, var_1F6 + ".sav");
+                    import_char01(ref player, cleanFileName + ".sav");
                     AssignPlayerIconId(player);
                 }
             }
@@ -1102,21 +1102,21 @@ namespace engine
             gbl.game_state = GameState.StartGameMenu;
         }
 
-        static Set unk_4AEA0 = new Set(0, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74); 
-        static Set unk_4AEEF = new Set(0, 2, 18); 
+        static Set validSaveLetterKeys = new Set(0, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74); 
+        static Set validSaveFileResults = new Set(0, 2, 18); 
 
 
         internal static void SaveGame()
         {
             char inputKey;
             Classes.File save_file = new Classes.File();
-            string[] var_171 = new string[9];
+            string[] partyMemberNames = new string[9];
 
             do
             {
                 inputKey = ovr027.displayInput((gbl.game_state == GameState.Camping), 0, gbl.defaultMenuColors, "A B C D E F G H I J", "Save Which Game: ");
 
-            } while (unk_4AEA0.MemberOf(inputKey) == false);
+            } while (validSaveLetterKeys.MemberOf(inputKey) == false);
 
             if (inputKey != '\0')
             {
@@ -1130,13 +1130,13 @@ namespace engine
                     seg051.Rewrite(save_file);
                     var_1FC = gbl.FIND_result;
 
-                    if (unk_4AEEF.MemberOf(var_1FC) == false)
+                    if (validSaveFileResults.MemberOf(var_1FC) == false)
                     {
                         seg041.DisplayAndPause("Unexpected error during save: " + var_1FC.ToString(), 14);
                         seg051.Close(save_file);
                         return;
                     }
-                } while (unk_4AEEF.MemberOf(var_1FC) == false);
+                } while (validSaveFileResults.MemberOf(var_1FC) == false);
 
                 ovr027.ClearPromptArea();
                 seg041.displayString("Saving...Please Wait", 0, 10, 0x18, 0);
@@ -1178,7 +1178,7 @@ namespace engine
                 foreach (Player tmp_player in gbl.TeamList)
                 {
                     party_count++;
-                    var_171[party_count - 1] = "CHRDAT" + inputKey + party_count.ToString();
+                    partyMemberNames[party_count - 1] = "CHRDAT" + inputKey + party_count.ToString();
                 }
 
                 data[0] = (byte)party_count;
@@ -1186,7 +1186,7 @@ namespace engine
 
                 for (int i = 0; i < party_count; i++)
                 {
-                    Sys.StringToArray(data, 0x29 * i, 0x29, var_171[i]);
+                    Sys.StringToArray(data, 0x29 * i, 0x29, partyMemberNames[i]);
                 }
                 seg051.BlockWrite(0x148, data, save_file);
                 seg051.Close(save_file);

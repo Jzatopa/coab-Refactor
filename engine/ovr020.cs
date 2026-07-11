@@ -1034,12 +1034,12 @@ namespace engine
                     if (gbl.SelectedPlayer.SkillLevel(SkillType.MagicUser) > 0 ||
                         gbl.SelectedPlayer.SkillLevel(SkillType.Cleric) > 0)
                     {
-                        ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                        ovr023.castSpell(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                     }
                     else if (gbl.SelectedPlayer.thief_lvl > 9 &&
                             ovr024.roll_dice(100, 1) <= 75)
                     {
-                        ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                        ovr023.castSpell(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                     }
                     else
                     {
@@ -1048,7 +1048,7 @@ namespace engine
                 }
                 else
                 {
-                    ovr023.sub_5D2E1(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
+                    ovr023.castSpell(ref arg_0, false, gbl.SelectedPlayer.quick_fight, spellId);
                 }
 
                 gbl.spell_from_item = false;

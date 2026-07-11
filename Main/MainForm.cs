@@ -35,14 +35,57 @@ namespace Main
 			}
 		}
 
-		private void MainForm_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+		private void MainForm_PreviewKeyDown(
+			object sender,
+			PreviewKeyDownEventArgs e)
 		{
-			if (e.KeyCode == Keys.F5)
+			Keys key = e.KeyCode & Keys.KeyCode;
+
+			// Linux/Mono can treat these as interface navigation.
+			// ProcessCmdKey below handles them instead.
+			if (Keyboard.IsWinFormsNavigationKey(key))
 			{
-				Classes.Display.ForceUpdate();
+				return;
 			}
 
-			engine.seg049.AddKey(Keyboard.KeyToIBMKey(e.KeyCode));
+			if (key == Keys.F5)
+			{
+				Classes.Display.ForceUpdate();
+				return;
+			}
+
+			ushort ibmKey;
+
+			if (Keyboard.TryKeyToIBMKey(key, out ibmKey))
+			{
+				engine.seg049.AddKey(ibmKey);
+			}
+		}
+
+		protected override bool ProcessCmdKey(
+			ref Message msg,
+			Keys keyData)
+		{
+			Keys key = keyData & Keys.KeyCode;
+
+			if (key == Keys.F5)
+			{
+				Classes.Display.ForceUpdate();
+				return true;
+			}
+
+			if (Keyboard.IsWinFormsNavigationKey(key))
+			{
+				ushort ibmKey;
+
+				if (Keyboard.TryKeyToIBMKey(key, out ibmKey))
+				{
+					engine.seg049.AddKey(ibmKey);
+					return true;
+				}
+			}
+
+			return base.ProcessCmdKey(ref msg, keyData);
 		}
 
 		private void commandDebugToolStripMenuItem_CheckedChanged(object sender, EventArgs e)

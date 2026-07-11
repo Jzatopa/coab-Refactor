@@ -288,17 +288,17 @@ namespace Classes
         public static bool stopVM = false; //byte_1AB08
         public static bool vmFlag01; // byte_1AB09 
         public static bool restore_player_ptr; // byte_1AB0A
-        public static bool byte_1AB0B;
-        public static bool byte_1AB0C;
+        public static bool isInCombat;
+        public static bool isInWilderness;
         public static bool filesLoaded; // byte_1AB0D
         public static byte numLoadedMonsters; // byte_1AB0E
-        public static bool byte_1AB14;
+        public static bool isInDungeon;
         public static bool shopRedrawMenuItems; // byte_1AB16
         public static int[] team_start_x = { 0, 0 }; /* byte_1AD2C */
         public static int[] team_start_y = { 0, 0 }; /* byte_1AD2E */
         public static int[] half_team_count = { 0, 0 }; /* unk_1AD30 */
         public static int[] team_direction = { 0, 0 }; /* byte_1AD32 */
-        public static sbyte byte_1AD34 = 0x1A;
+        public static sbyte teamDirection = 0x1A;
         public static sbyte byte_1AD35;
         public static int dir_0_flags; // byte_1AD36
         public static int dir_6_flags; // byte_1AD37
@@ -306,9 +306,9 @@ namespace Classes
         public static int dir_4_flags; // byte_1AD39
         public static sbyte currentTeam; // field_197
         public static byte current_city;
-        public static byte byte_1AD3D;
+        public static byte currentCityId;
         public static byte byte_1AD44;
-        public static byte byte_1ADFA;
+        public static byte currentAreaId;
         public static byte byte_1AE0A;
         public static byte byte_1AE1B;
         public static bool[] affects_timed_out = new bool[0x48]; /* unk_1AE24 */
@@ -322,7 +322,7 @@ namespace Classes
         public static bool silent_training; // byte_1B2F1
         public static bool DelayBetweenCharacters; // byte_1B2F2
 
-        public static byte byte_1BF12; // TODO remove or workout what it's was for?
+        public static byte isDemoMode; // TODO remove or workout what it's was for?
 
         public static SoundType soundType = SoundType.None; // byte_1BF14
 
@@ -340,7 +340,7 @@ namespace Classes
         public static int dice_count; // byte_1D2C2
         public static bool targetInvisible; // byte_1D2C5
         public static bool cureSpell; // byte_1D2C6
-        public static bool byte_1D2C7;
+        public static bool isSpellTargetInvisible;
         public static bool byte_1D2C8;
         public static int attack_roll; // byte_1D2C9
 
@@ -368,7 +368,7 @@ namespace Classes
 
         public static DaxArray byte_1D556;
         public static string lastDaxFile;
-        public static string byte_1D5AB;
+        public static string lastDaxFileName;
         public static byte lastDaxBlockId; // byte_1D5B4
         public static byte byte_1D5B5;
         public static byte bigpic_block_id; /* byte_1D5BA */
@@ -387,7 +387,7 @@ namespace Classes
         public static byte[] bytes_1D900 = new byte[3]; // byte_1D901 & byte_1D902
         public static int enemyHealthPercentage; /* byte_1D903 */
         public static bool AutoPCsCastMagic; /* byte_1D904 magicOn */
-        public static bool byte_1D90E; // byte_1D90E
+        public static bool isAutoSpellTargeting; // byte_1D90E
         public static bool display_hitpoints_ac; /* byte_1D90F */
         public static bool focusCombatAreaOnPlayer; // byte_1D910
         public static byte sprite_block_id; /* byte_1D92B */
@@ -405,17 +405,17 @@ namespace Classes
         public static byte EclBlockId;
         public static int search_flag_bkup; // byte_1EE89
         public static bool spriteChanged; // byte_1EE8C
-        public static bool byte_1EE8D;
+        public static bool playerSpriteDisplayed;
         public static bool displayPlayerSprite; /* byte_1EE8F */
         public static bool bottomTextHasBeenCleared; // byte_1EE90
-        public static bool byte_1EE91;
+        public static bool isPlayerPositionChanged;
         public static bool positionChanged; // byte_1EE92 
         public static bool monstersLoaded; // byte_1EE93 
         public static bool byte_1EE94;
         public static bool byte_1EE95;
         public static byte byte_1EE96;
         public static bool player_not_found; // byte_1EE97
-        public static bool byte_1EE98;
+        public static bool isPlayerNotFound;
         public static bool gameWon; // byte_1EE99
 
 
@@ -424,9 +424,9 @@ namespace Classes
 
         public readonly static short[] symbol_set_fix = { 0x0001, 0x002E, 0x0074, 0x00BA, 0x0100 };
 
-        public static ushort word_1AE0F;
-        public static ushort word_1AE11;
-        public static ushort word_1AE13;
+        public static ushort vmRunAddress;
+        public static ushort vmRunAddressHigh;
+        public static ushort vmRunAddressLow;
         public static short word_1AE15;
         public static ushort word_1AE17;
         public static short word_1AE19;
@@ -438,7 +438,7 @@ namespace Classes
         public static ushort CampInterruptedAddr; // word_1B2D9 vm_run_addr_4
         public static ushort ecl_initial_entryPoint; // word_1B2DB
         public static short rest_incounter_count;
-        public static DaxBlock dword_1C8FC; //TODO - overlay dax block, not currently used.
+        public static DaxBlock overlayDaxBlock; //TODO - overlay dax block, not currently used.
         public static DaxBlock bigpic_dax; /* word_1D5B6 */
         public static int menuScreenIndex;
         public static int displayInputSecondsToWait; // word_1D5C0 & word_1D5C2 - was centiseconds
@@ -451,11 +451,11 @@ namespace Classes
         public static RestTime timeToRest = new RestTime(); // unk_1D890
         public static int rest_10_seconds; // word_1D8A6 seg600:7596
         public static short word_1D914;
-        public static short word_1D916;
+        public static short combatantCount;
         public static short word_1D918;
 
         public static ushort word_1EE76;
-        public static ushort word_1EE78;
+        public static ushort encounterFlag;
         public static ushort word_1EE7A;
 
         public static short FIND_result; // word_1EFBC
@@ -467,7 +467,7 @@ namespace Classes
         public static byte[] memorize_spell_id = new byte[max_spells]; // unk_1AEC4 seg600:4BB4
         public static int[] memorize_count = new int[max_spells]; /* unk_1AE70 */
 
-        public static Struct_1ADF6[] dword_1ADF6;
+        public static Struct_1ADF6[] monsterStats;
         public static List<MenuItem> spell_string_list = new List<MenuItem>(); // dword_1AE6C
         public static DaxBlock cursor_bkup; // dword_1C8F4
         public static DaxBlock dax24x24Set; //dword_1C8F8;
@@ -559,7 +559,7 @@ namespace Classes
         public static DaxBlock sky_dax_251;
         public static DaxBlock sky_dax_252;
 
-        public static string[] unk_1D972 = new string[15] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
+        public static string[] gameMessageStrings = new string[15] { string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty, string.Empty };
 
         public const int cmdOppsLimit = 0x40;
         public static Opperation[] cmd_opps = new Opperation[cmdOppsLimit];
@@ -680,7 +680,7 @@ namespace Classes
 		public const int Tile_DownPlayer = 0x1F;
 	
         public readonly static byte[] /*seg600:27D9*/ SmallCloudDirections = { 8, 2, 3, 4 }; // unk_18AE9 used by NoxiousCloud
-        public readonly static byte[] /*seg600:27DA*/ unk_18AEA = { 2, 3, 4, 8 };
+        public readonly static byte[] /*seg600:27DA*/ cloudDirections = { 2, 3, 4, 8 };
 
         public readonly static byte[] /* seg600:27DD */ CloudDirections = { 8, 0, 1, 2, 3, 4, 5, 6, 7 }; // unk_18AED used by CloudKill
 
@@ -795,7 +795,7 @@ namespace Classes
 
         public static Struct_1A35E[] race_ages = new Struct_1A35E[] { monster_ages, dwarf_ages, elf_ages, gnome_ages, halfelf_ages, halfling_ages, halforc_ages, human_ages }; // unk_1A35E
 
-        public static byte[] unk_1AE0B = new byte[3];
+        public static byte[] monsterMovementDirections = new byte[3];
 
 
         public readonly static byte[,] class_alignments = { // unk_1A4EA

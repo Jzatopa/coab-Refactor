@@ -371,7 +371,7 @@ namespace engine
 
 			if (ovr024.roll_dice((affect.affect_data >> 4) + 1, 1) > 1 &&
 				gbl.spell_id > 0 &&
-				gbl.byte_1D2C7 == false)
+				gbl.isSpellTargetInvisible == false)
 			{
 				Protected();
 
@@ -1925,7 +1925,7 @@ namespace engine
 			affect_table.Add(Affects.entangle, ovr013.AffectEntangle);
 			affect_table.Add(Affects.affect_89, ovr013.sub_3C7E0);
 			affect_table.Add(Affects.affect_8a, ovr013.add_affect_19);
-			affect_table.Add(Affects.affect_8b, ovr014.sub_425C6);
+			affect_table.Add(Affects.affect_8b, ovr014.AffectDragonHugAttack);
 			affect_table.Add(Affects.paladinDailyHealCast, ovr013.empty);
 			affect_table.Add(Affects.paladinDailyCureRefresh, ovr013.PaladinCastCureRefresh);
 			affect_table.Add(Affects.fear, ovr013.AffectFear);

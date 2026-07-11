@@ -247,7 +247,7 @@ namespace engine
         }
 
 
-        static Set unk_58731 = new Set(0, 69, 82 );
+        static Set restMenuKeys = new Set(0, 69, 82 );
 
         static bool resting_time_menu() /* sub_58751 */
         {
@@ -349,7 +349,7 @@ namespace engine
                         clock_583C8();
                         break;
                 }
-            } while (unk_58731.MemberOf(input_key) == false);
+            } while (restMenuKeys.MemberOf(input_key) == false);
 
             return resting;
         }
@@ -480,7 +480,7 @@ namespace engine
         }
 
 
-        static void sub_58C03(ref int arg_0)
+        static void advanceSpellLearning(ref int arg_0)
         {
             arg_0 += 1;
 
@@ -581,7 +581,7 @@ namespace engine
                     step_game_time(1, 5);
                     rest_heal(interactive_resting);
                     CheckForSpellLearning();
-                    sub_58C03(ref var_C);
+                    advanceSpellLearning(ref var_C);
 
                     if (gbl.area2_ptr.rest_incounter_period > 0)
                     {

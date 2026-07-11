@@ -374,43 +374,43 @@ namespace engine
         {
             int tmpX = drawX;
             int tmpY = drawY;
-            int var_10 = 0;
+            int stepCount = 0;
             int Col = 0;
-            byte var_17 = 0;
+            byte doorFlag = 0;
 
-            while (var_10 < 4)
+            while (stepCount < 4)
             {
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
 
                 if (MapCoordIsValid(tmpY, tmpX) == false &&
                     getMap_wall_type(dir_right, tmpY, tmpX) == 0)
                 {
-                    var_17 = 0;
+                    doorFlag = 0;
                 }
 
-                if (var_14 != 0)
+                if (wallType != 0)
                 {
-                    if (var_17 > 0)
+                    if (doorFlag > 0)
                     {
-                        draw_3D_8x8_titles(9, var_17, Row_J, Column_J + Col + 1);
+                        draw_3D_8x8_titles(9, doorFlag, Row_J, Column_J + Col + 1);
                     }
 
-                    var_17 = var_14;
+                    doorFlag = wallType;
 
-                    draw_3D_8x8_titles(0, var_14, Row_A, Column_A + Col);
+                    draw_3D_8x8_titles(0, wallType, Row_A, Column_A + Col);
                 }
                 else
                 {
-                    if (var_17 > 0 &&
+                    if (doorFlag > 0 &&
                         getMap_wall_type(dir_left, tmpY - gbl.MapDirectionYDelta[dir_left], tmpX - gbl.MapDirectionXDelta[dir_left]) != 0)
                     {
-                        draw_3D_8x8_titles(9, var_17, Row_J, Column_J + Col + 1);
+                        draw_3D_8x8_titles(9, doorFlag, Row_J, Column_J + Col + 1);
                     }
 
-                    var_17 = 0;
+                    doorFlag = 0;
                 }
 
-                var_10++;
+                stepCount++;
                 Col -= 2;
 
                 tmpX += gbl.MapDirectionXDelta[dir_left];
@@ -419,42 +419,42 @@ namespace engine
 
             tmpX = drawX;
             tmpY = drawY;
-            var_10 = 0;
+            stepCount = 0;
             Col = 0;
-            var_17 = 0;
+            doorFlag = 0;
 
-            while (var_10 < 4)
+            while (stepCount < 4)
             {
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
 
                 if (MapCoordIsValid(tmpY, tmpX) == false &&
                     getMap_wall_type(dir_left, tmpY, tmpX) == 0)
                 {
-                    var_17 = 0;
+                    doorFlag = 0;
                 }
 
-                if (var_14 != 0)
+                if (wallType != 0)
                 {
-                    if (var_17 > 0)
+                    if (doorFlag > 0)
                     {
-                        draw_3D_8x8_titles(9, var_17, Row_J, Column_J + Col - 1);
+                        draw_3D_8x8_titles(9, doorFlag, Row_J, Column_J + Col - 1);
                     }
 
-                    var_17 = var_14;
-                    draw_3D_8x8_titles(0, var_14, Row_A, Column_A + Col);
+                    doorFlag = wallType;
+                    draw_3D_8x8_titles(0, wallType, Row_A, Column_A + Col);
                 }
                 else
                 {
-                    if (var_17 > 0 &&
+                    if (doorFlag > 0 &&
                         getMap_wall_type(dir_right, tmpY - gbl.MapDirectionYDelta[dir_right], tmpX - gbl.MapDirectionXDelta[dir_right]) != 0)
                     {
-                        draw_3D_8x8_titles(9, var_17, Row_J, Column_J + Col - 1);
+                        draw_3D_8x8_titles(9, doorFlag, Row_J, Column_J + Col - 1);
                     }
 
-                    var_17 = 0;
+                    doorFlag = 0;
                 }
 
-                var_10++;
+                stepCount++;
                 Col += 2;
 
                 tmpX += gbl.MapDirectionXDelta[dir_right];
@@ -463,27 +463,27 @@ namespace engine
 
             tmpX = drawX;
             tmpY = drawY;
-            var_10 = 0;
+            stepCount = 0;
             Col = 0;
 
-            while (var_10 < 3)
+            while (stepCount < 3)
             {
-                byte var_15 = getMap_wall_type(dir_left, tmpY, tmpX);
+                byte leftWallType = getMap_wall_type(dir_left, tmpY, tmpX);
 
-                if (var_15 != 0)
+                if (leftWallType != 0)
                 {
-                    if (var_10 == 0)
+                    if (stepCount == 0)
                     {
-                        draw_3D_8x8_titles(1, var_15, Row_B, Column_B + Col);
+                        draw_3D_8x8_titles(1, leftWallType, Row_B, Column_B + Col);
                     }
                     else
                     {
-                        draw_3D_8x8_titles(1, var_15, Row_B, Column_B + Col - 1);
+                        draw_3D_8x8_titles(1, leftWallType, Row_B, Column_B + Col - 1);
                     }
 
                 }
 
-                var_10++;
+                stepCount++;
                 Col -= 2;
 
                 tmpX += gbl.MapDirectionXDelta[dir_left];
@@ -492,26 +492,26 @@ namespace engine
 
             tmpX = drawX;
             tmpY = drawY;
-            var_10 = 0;
+            stepCount = 0;
             Col = 0;
 
-            while (var_10 < 3)
+            while (stepCount < 3)
             {
-                byte var_15 = getMap_wall_type(dir_right, tmpY, tmpX);
+                byte leftWallType = getMap_wall_type(dir_right, tmpY, tmpX);
 
-                if (var_15 != 0)
+                if (leftWallType != 0)
                 {
-                    if (var_10 == 0)
+                    if (stepCount == 0)
                     {
-                        draw_3D_8x8_titles(2, var_15, Row_C, Column_C + Col);
+                        draw_3D_8x8_titles(2, leftWallType, Row_C, Column_C + Col);
                     }
                     else
                     {
-                        draw_3D_8x8_titles(2, var_15, Row_C, Column_C + Col + 1);
+                        draw_3D_8x8_titles(2, leftWallType, Row_C, Column_C + Col + 1);
                     }
                 }
 
-                var_10++;
+                stepCount++;
                 Col += 2;
 
                 tmpX += gbl.MapDirectionXDelta[dir_right];
@@ -524,25 +524,25 @@ namespace engine
         {
             int tmpX = gbl.MapDirectionXDelta[dir_left] + var_5 + gbl.MapDirectionXDelta[dir_left];
             int tmpY = gbl.MapDirectionYDelta[dir_left] + var_7 + gbl.MapDirectionYDelta[dir_left];
-            int var_10 = 0;
-            int var_12 = -6;
+            int stepCount = 0;
+            int columnOffset = -6;
 
-            while (var_10 < 3)
+            while (stepCount < 3)
             {
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
-                if (var_14 != 0)
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
+                if (wallType != 0)
                 {
-                    draw_3D_8x8_titles(3, var_14, Row_D, Column_D + var_12);
+                    draw_3D_8x8_titles(3, wallType, Row_D, Column_D + columnOffset);
                 }
 
-                byte var_15 = getMap_wall_type(dir_left, tmpY, tmpX);
-                if (var_15 != 0)
+                byte leftWallType = getMap_wall_type(dir_left, tmpY, tmpX);
+                if (leftWallType != 0)
                 {
-                    draw_3D_8x8_titles(4, var_15, Row_E, Column_E + var_12);
+                    draw_3D_8x8_titles(4, leftWallType, Row_E, Column_E + columnOffset);
                 }
 
-                var_10++;
-                var_12 += 3;
+                stepCount++;
+                columnOffset += 3;
                 tmpX += gbl.MapDirectionXDelta[dir_right];
                 tmpY += gbl.MapDirectionYDelta[dir_right];
             }
@@ -550,26 +550,26 @@ namespace engine
 
             tmpX = gbl.MapDirectionXDelta[dir_right] + gbl.MapDirectionXDelta[dir_right] + var_5;
             tmpY = gbl.MapDirectionYDelta[dir_right] + gbl.MapDirectionYDelta[dir_right] + var_7;
-            var_10 = 0;
-            var_12 = 6;
-            while (var_10 < 3)
+            stepCount = 0;
+            columnOffset = 6;
+            while (stepCount < 3)
             {
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
 
-                if (var_14 != 0)
+                if (wallType != 0)
                 {
-                    draw_3D_8x8_titles(3, var_14, Row_D, Column_D + var_12);
+                    draw_3D_8x8_titles(3, wallType, Row_D, Column_D + columnOffset);
                 }
 
-                byte var_15 = getMap_wall_type(dir_right, tmpY, tmpX);
+                byte leftWallType = getMap_wall_type(dir_right, tmpY, tmpX);
 
-                if (var_15 != 0)
+                if (leftWallType != 0)
                 {
-                    draw_3D_8x8_titles(5, var_15, Row_F, Column_F + var_12);
+                    draw_3D_8x8_titles(5, leftWallType, Row_F, Column_F + columnOffset);
                 }
 
-                var_10++;
-                var_12 -= 3;
+                stepCount++;
+                columnOffset -= 3;
 
                 tmpX += gbl.MapDirectionXDelta[dir_left];
                 tmpY += gbl.MapDirectionYDelta[dir_left];
@@ -581,28 +581,28 @@ namespace engine
         {
             int tmpX = gbl.MapDirectionXDelta[dir_left] + var_5;
             int tmpY = gbl.MapDirectionYDelta[dir_left] + var_7;
-            int var_10 = 0;
-            int var_12 = -7;
+            int stepCount = 0;
+            int columnOffset = -7;
 
-            while (var_10 < 2)
+            while (stepCount < 2)
             {
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
 
-                if (var_14 != 0)
+                if (wallType != 0)
                 {
-                    draw_3D_8x8_titles(6, var_14, Row_G, Column_G + var_12);
+                    draw_3D_8x8_titles(6, wallType, Row_G, Column_G + columnOffset);
                 }
 
-                byte var_15 = getMap_wall_type(dir_left, tmpY, tmpX);
+                byte leftWallType = getMap_wall_type(dir_left, tmpY, tmpX);
 
-                if (var_15 != 0)
+                if (leftWallType != 0)
                 {
-                    draw_3D_8x8_titles(7, var_15, Row_H, Column_H + var_12);
+                    draw_3D_8x8_titles(7, leftWallType, Row_H, Column_H + columnOffset);
                 }
 
-                var_10++;
+                stepCount++;
 
-                var_12 += 7;
+                columnOffset += 7;
                 tmpX += gbl.MapDirectionXDelta[dir_right];
                 tmpY += gbl.MapDirectionYDelta[dir_right];
             }
@@ -610,29 +610,29 @@ namespace engine
 
             tmpX = var_5 + gbl.MapDirectionXDelta[dir_right];
             tmpY = var_7 + gbl.MapDirectionYDelta[dir_right];
-            var_10 = 0;
-            var_12 = 7;
+            stepCount = 0;
+            columnOffset = 7;
 
-            while (var_10 < 2)
+            while (stepCount < 2)
             {
 
-                byte var_14 = getMap_wall_type(partyDir, tmpY, tmpX);
+                byte wallType = getMap_wall_type(partyDir, tmpY, tmpX);
 
-                if (var_14 != 0)
+                if (wallType != 0)
                 {
 
-                    draw_3D_8x8_titles(6, var_14, Row_G, var_12 + Column_G);
+                    draw_3D_8x8_titles(6, wallType, Row_G, columnOffset + Column_G);
                 }
 
-                int var_15 = getMap_wall_type(dir_right, tmpY, tmpX);
+                int leftWallType = getMap_wall_type(dir_right, tmpY, tmpX);
 
-                if (var_15 != 0)
+                if (leftWallType != 0)
                 {
-                    draw_3D_8x8_titles(8, var_15, Row_I, var_12 + Column_I);
+                    draw_3D_8x8_titles(8, leftWallType, Row_I, columnOffset + Column_I);
                 }
 
-                var_10++;
-                var_12 -= 7;
+                stepCount++;
+                columnOffset -= 7;
 
                 tmpX += gbl.MapDirectionXDelta[dir_left];
                 tmpY += gbl.MapDirectionYDelta[dir_left];

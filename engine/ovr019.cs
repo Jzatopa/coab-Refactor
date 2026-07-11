@@ -68,7 +68,7 @@ namespace engine
 
         internal static void sub_520B8(byte[] arg_0, int arg_4, int arg_6, ushort arg_8, ushort arg_A)
         {
-            double var_12;
+            double angleY;
             double var_C;
             byte[] var_3;
 
@@ -76,7 +76,7 @@ namespace engine
 
             var_3 = arg_0; //byte[3];
 
-            gbl.byte_1ADFA = 0;
+            gbl.currentAreaId = 0;
 
 
             unk_1ADFB[1] = new Struct_1ADFB();
@@ -104,50 +104,50 @@ namespace engine
 
                 unk_1ADFB[var_5].field_4 = 1;
 
-                byte var_15 = (byte)(seg051.Random(20) + 25);
+                byte randomColor = (byte)(seg051.Random(20) + 25);
 
-                if (gbl.byte_1ADFA < var_15)
+                if (gbl.currentAreaId < randomColor)
                 {
-                    gbl.byte_1ADFA = var_15;
+                    gbl.currentAreaId = randomColor;
                 }
 
-                int var_16 = seg051.Random(5) + 5;
-                int var_18 = var_16 + 15;
+                int initialSpeed = seg051.Random(5) + 5;
+                int finalSpeed = initialSpeed + 15;
 
                 var_C = seg051.Random__Real() * (System.Math.PI * 2.0);
-                var_12 = seg051.Random__Real() * (System.Math.PI * 2.0);
+                angleY = seg051.Random__Real() * (System.Math.PI * 2.0);
 
-                d = (seg051.Random(10) + 24) * System.Math.Sin(var_C) * System.Math.Sin(var_12);
-                int var_1A = (int)d + arg_6;
+                d = (seg051.Random(10) + 24) * System.Math.Sin(var_C) * System.Math.Sin(angleY);
+                int horizontalOffset = (int)d + arg_6;
 
-                d = (seg051.Random(10) + 24) * System.Math.Cos(var_C) * System.Math.Sin(var_12);
+                d = (seg051.Random(10) + 24) * System.Math.Cos(var_C) * System.Math.Sin(angleY);
                 int var_1C = (int)d + arg_4;
 
                 for (int var_4 = 1; var_4 <= 0x28; var_4++)
                 {
-                    Struct_1ADF6 var_21 = gbl.dword_1ADF6[var_4 + ((var_5) * 40) - 1];
+                    Struct_1ADF6 var_21 = gbl.monsterStats[var_4 + ((var_5) * 40) - 1];
 
                     var_C = seg051.Random__Real() * (System.Math.PI * 2.0);
-                    var_12 = seg051.Random__Real() * (System.Math.PI * 2.0);
+                    angleY = seg051.Random__Real() * (System.Math.PI * 2.0);
 
                     var_21.field_00 = arg_A;
                     var_21.field_02 = arg_8;
                     var_21.field_08 = (short)(var_21.field_00 << 5);
                     var_21.field_0A = (short)(var_21.field_02 << 5);
 
-                    d = System.Math.Sin(var_C) * 16.0 * System.Math.Sin(var_12);
+                    d = System.Math.Sin(var_C) * 16.0 * System.Math.Sin(angleY);
 
-                    var_21.field_0C = (short)(var_1A + ((ushort)d));
+                    var_21.field_0C = (short)(horizontalOffset + ((ushort)d));
 
-                    d = System.Math.Cos(var_C) * 16.0 * System.Math.Sin(var_12);
+                    d = System.Math.Cos(var_C) * 16.0 * System.Math.Sin(angleY);
                     var_21.field_0E = (short)(var_1C + ((ushort)d));
 
                     var_21.field_10 = 1;
                     var_21.field_12 = 1;
 
-                    var_21.field_13 = (byte)(var_16 + seg051.Random(7) - 4);
-                    var_21.field_14 = (byte)(var_18 + seg051.Random(11) - 6);
-                    var_21.field_15 = (byte)(var_15 + seg051.Random(7));
+                    var_21.field_13 = (byte)(initialSpeed + seg051.Random(7) - 4);
+                    var_21.field_14 = (byte)(finalSpeed + seg051.Random(11) - 6);
+                    var_21.field_15 = (byte)(randomColor + seg051.Random(7));
 
                     /*HACK commented out this code as it does not make sense
                     var_21.field_16 = var_21.field_16;
@@ -251,23 +251,23 @@ namespace engine
         internal static void sub_5279B(byte[] arg_0)
         {
             byte[] var_3 = arg_0;
-            int var_17 = gbl.byte_1ADFA + 1;
+            int delayCount = gbl.currentAreaId + 1;
 
-            for (int var_6 = 1; var_6 <= var_17; var_6++)
+            for (int var_6 = 1; var_6 <= delayCount; var_6++)
             {
-                sub_524F7(gbl.dword_1ADF6, var_6);
+                sub_524F7(gbl.monsterStats, var_6);
             }
 
             for (int var_4 = 0; var_4 < 40; var_4++)
             {
                 for (int var_5 = 0; var_5 < 3; var_5++)
                 {
-                    Struct_1ADF6 var_20 = gbl.dword_1ADF6[var_4 + (var_5 * 40)];
+                    Struct_1ADF6 particle = gbl.monsterStats[var_4 + (var_5 * 40)];
 
-                    if (var_20.field_02 > 8 &&
-                        var_20.field_02 < 0x41)
+                    if (particle.field_02 > 8 &&
+                        particle.field_02 < 0x41)
                     {
-                        SetPixel(var_20.field_11, var_20.field_02, var_20.field_00);
+                        SetPixel(particle.field_11, particle.field_02, particle.field_00);
                     }
                 }
             }
@@ -355,10 +355,10 @@ namespace engine
 
         internal static void endgame_529F4() /* sub_529F4 */
         {
-            gbl.dword_1ADF6 = new Struct_1ADF6[120];
+            gbl.monsterStats = new Struct_1ADF6[120];
             for (int i = 0; i < 120; i++)
             {
-                gbl.dword_1ADF6[i] = new Struct_1ADF6();
+                gbl.monsterStats[i] = new Struct_1ADF6();
             }
             gbl.byte_1AE0A = 0;
 
@@ -367,35 +367,35 @@ namespace engine
                 if (gbl.byte_1AE0A == 0 &&
                     seg051.Random(10000) < 1)
                 {
-                    seg051.FillChar(1, 3, gbl.unk_1AE0B);
+                    seg051.FillChar(1, 3, gbl.monsterMovementDirections);
                     gbl.byte_1AE1B = seg051.Random((byte)2);
 
                     for (byte i = 0; i < gbl.byte_1AE1B; i++)
                     {
-                        gbl.unk_1AE0B[i] = (byte)(seg051.Random(5) + 2);
+                        gbl.monsterMovementDirections[i] = (byte)(seg051.Random(5) + 2);
                     }
 
-                    gbl.word_1AE0F = 65;
-                    gbl.word_1AE11 = 65;
-                    gbl.word_1AE13 = (ushort)(seg051.Random(20) + 35);
+                    gbl.vmRunAddress = 65;
+                    gbl.vmRunAddressHigh = 65;
+                    gbl.vmRunAddressLow = (ushort)(seg051.Random(20) + 35);
 
                     gbl.word_1AE15 = (short)(-(seg051.Random(5) + 50));
 
                     gbl.word_1AE19 = gbl.word_1AE15;
-                    gbl.word_1AE17 = gbl.word_1AE13;
+                    gbl.word_1AE17 = gbl.vmRunAddressLow;
 
-                    endgame_5285E(0, 0x3C, ref gbl.word_1AE15, ref gbl.word_1AE13, ref gbl.word_1AE11, ref gbl.word_1AE0F);
-                    sub_520B8(gbl.unk_1AE0B, gbl.word_1AE15, gbl.word_1AE13, gbl.word_1AE11, gbl.word_1AE0F);
+                    endgame_5285E(0, 0x3C, ref gbl.word_1AE15, ref gbl.vmRunAddressLow, ref gbl.vmRunAddressHigh, ref gbl.vmRunAddress);
+                    sub_520B8(gbl.monsterMovementDirections, gbl.word_1AE15, gbl.vmRunAddressLow, gbl.vmRunAddressHigh, gbl.vmRunAddress);
 
-                    gbl.word_1AE13 = gbl.word_1AE17;
+                    gbl.vmRunAddressLow = gbl.word_1AE17;
                     gbl.word_1AE15 = gbl.word_1AE19;
 
-                    gbl.word_1AE0F = 0x41;
-                    gbl.word_1AE11 = 0x41;
+                    gbl.vmRunAddress = 0x41;
+                    gbl.vmRunAddressHigh = 0x41;
 
-                    endgame_5285E(1, 0x3C, ref gbl.word_1AE15, ref gbl.word_1AE13, ref gbl.word_1AE11, ref gbl.word_1AE0F);
+                    endgame_5285E(1, 0x3C, ref gbl.word_1AE15, ref gbl.vmRunAddressLow, ref gbl.vmRunAddressHigh, ref gbl.vmRunAddress);
 
-                    sub_5279B(gbl.unk_1AE0B);/*TODO - extra params - gbl.word_1AE15, gbl.word_1AE13, gbl.word_1AE11, gbl.word_1AE0F );*/
+                    sub_5279B(gbl.monsterMovementDirections);/*TODO - extra params - gbl.word_1AE15, gbl.word_1AE13, gbl.word_1AE11, gbl.word_1AE0F );*/
 
                     if (seg049.KEYPRESSED() == true)
                     {
@@ -404,7 +404,7 @@ namespace engine
                 }
             } while (gbl.byte_1AE0A == 0);
 
-            gbl.dword_1ADF6 = null;
+            gbl.monsterStats = null;
         }
 
 

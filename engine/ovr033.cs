@@ -611,7 +611,7 @@ namespace engine
         }
 
 
-        internal static bool sub_7515A(bool arg_0, Point pos, Player player)
+        internal static bool canMoveToPosition(bool arg_0, Point pos, Player player)
         {
             bool ret_val;
 

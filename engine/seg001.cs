@@ -147,7 +147,7 @@ namespace engine
                     ovr018.startGameMenu();
                 }
 
-                ovr003.sub_29758();
+                ovr003.InitializeGameLoop();
 
                 InitAgain();
 
@@ -209,7 +209,7 @@ namespace engine
             gbl.symbol_8x8_set[4] = null;
 
             gbl.dax24x24Set = null;
-            gbl.dword_1C8FC = null;
+            gbl.overlayDaxBlock = null;
 
             gbl.dax24x24Set = new DaxBlock(0, 0x30, 3, 0x18);
 
@@ -283,10 +283,10 @@ namespace engine
             gbl.search_flag_bkup = 0;
             gbl.spriteChanged = false;
             gbl.party_killed = false;
-            gbl.byte_1BF12 = 1;
+            gbl.isDemoMode = 1;
             gbl.displayPlayerSprite = false;
             gbl.lastDaxFile = string.Empty;
-            gbl.byte_1D5AB = string.Empty;
+            gbl.lastDaxFileName = string.Empty;
             gbl.lastDaxBlockId = 0x0FF;
             gbl.byte_1D5B5 = 0x0FF;
             gbl.gameSaved = false;
@@ -376,10 +376,10 @@ namespace engine
             gbl.search_flag_bkup = 0;
             gbl.spriteChanged = false;
             gbl.party_killed = false;
-            gbl.byte_1BF12 = 1;
+            gbl.isDemoMode = 1;
             gbl.displayPlayerSprite = false;
             gbl.lastDaxFile = string.Empty;
-            gbl.byte_1D5AB = string.Empty;
+            gbl.lastDaxFileName = string.Empty;
             gbl.lastDaxBlockId = 0x0FF;
             gbl.byte_1D5B5 = 0x0FF;
             gbl.gameSaved = false;
