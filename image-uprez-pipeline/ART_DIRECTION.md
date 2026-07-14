@@ -42,6 +42,21 @@ The original extraction is the authoritative composition reference. Preserve:
 
 Small details may be clarified, but the image must remain immediately recognizable as the same scene.
 
+## Generation method — source-locked edit workflow
+
+Use an **image edit/reference workflow**, not text-to-image reconstruction from prose alone.
+
+1. Enlarge the original extraction with nearest-neighbor scaling so its shapes and object boundaries are plainly visible. Use this as the first and primary input image.
+2. Use `HDAssets/PIC1_block_080_village.png` only as the second input/style-quality reference. Never let it replace the first image's composition.
+3. Prefer a short, direct first-pass instruction: **“Transform input image 1 into grounded photoreal live-action fantasy. Preserve every object, silhouette, overlap, crop, position, orientation, color role, empty area, and exact aspect ratio. Input image 2 defines finish only. Change only rendering style and material detail.”** Append only the asset-specific object checklist and prohibited changes.
+4. Do not bury the composition instruction inside a long cinematic prompt. Put the invariant instruction first and repeat the highest-risk details at the end.
+5. If the first result is close, make the second attempt as an **edit of the first result**, supplying the original reference again and requesting only the named corrections. Do not regenerate the entire scene from scratch.
+6. Use high input fidelity when the provider/model exposes that control. For multi-image input, explicitly identify which image controls composition and which controls finish.
+7. For tiny or ambiguous originals, create a temporary annotated composition reference with numbered objects, boundary boxes, arrows, or flat-color masks. Use it as an additional reference; annotations must not appear in the final output.
+8. Stop after two failed attempts and escalate for human QC rather than repeatedly spending generations on an unchanged strategy.
+
+The first attempt should establish fidelity. The second attempt should be a narrow correction pass, not another broad reinterpretation.
+
 ## Resolution
 
 Generate square panels at 1024×1024 minimum. Generate non-square images at the closest supported resolution that preserves the source ratio, then crop only if required to restore the exact source ratio. Never stretch.
