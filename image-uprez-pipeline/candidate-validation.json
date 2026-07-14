@@ -1,7 +1,7 @@
 {
   "ledger_entries": 231,
   "candidate_entries": 10,
-  "stageable_entries": 5,
+  "stageable_entries": 9,
   "invalid_candidate_entries": 0,
   "results": [
     {
@@ -2284,7 +2284,7 @@
       "candidate_sha256": "5eac3adf67dbba77023c296091a85b50b13de8f6d3997030c53894617110fdd4",
       "errors": [],
       "warnings": [],
-      "stageable": false
+      "stageable": true
     },
     {
       "identity": "TITLE.DAX:002:000",
@@ -2294,31 +2294,27 @@
       "candidate_sha256": "e4ed39fc465509dc1479fb077ca74151b187807aba8a94e66cef6e85687c40ff",
       "errors": [],
       "warnings": [],
-      "stageable": false
+      "stageable": true
     },
     {
       "identity": "TITLE.DAX:003:000",
       "candidate": "approved/TITLE/TITLE_block_003_frame_000.png",
-      "candidate_width": 1920,
-      "candidate_height": 1200,
-      "candidate_sha256": "9a236515a9b56b2d854a1d6b46659bd8144bbcc0bd1fe13888ca74fc55641d04",
+      "candidate_width": 1440,
+      "candidate_height": 672,
+      "candidate_sha256": "e8f2f73293779324e5ad097a9c8d7f51c8ae4009cf660de8bc643bf8e217c7ab",
       "errors": [],
-      "warnings": [
-        "candidate retained for review history but is not stageable"
-      ],
-      "stageable": false
+      "warnings": [],
+      "stageable": true
     },
     {
       "identity": "TITLE.DAX:004:000",
       "candidate": "approved/TITLE/TITLE_block_004_frame_000.png",
       "candidate_width": 1920,
-      "candidate_height": 1200,
-      "candidate_sha256": "8cdf3d9dc65fcc4a7ce58e27cd156a232d470693fed1d5da0a0b33233cfa36e1",
+      "candidate_height": 672,
+      "candidate_sha256": "93bc108fae8533284fb22bc83446820212221f88d4820e4ba92b3a45f1222002",
       "errors": [],
-      "warnings": [
-        "candidate retained for review history but is not stageable"
-      ],
-      "stageable": false
+      "warnings": [],
+      "stageable": true
     }
   ]
 }

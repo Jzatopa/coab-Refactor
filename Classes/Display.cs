@@ -268,6 +268,9 @@ namespace Classes
 
         static int ExternalImageOrder(string key)
         {
+            if (key == "title-base") return 0;
+            if (key == "title-overlay-3") return 1;
+            if (key == "title-overlay-4") return 2;
             if (key == "bigpic") return 10;
             if (key == "game-picture") return 20;
             if (key == "portrait-head") return 30;

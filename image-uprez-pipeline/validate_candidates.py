@@ -33,17 +33,13 @@ def validate(rows: list[dict]) -> dict:
                 except Exception as exc:
                     errors.append(f"invalid image: {exc}")
                 if candidate_width and candidate_height:
-                    # TITLE blocks 3 and 4 are partial DAX updates, but every
-                    # retained HD title is an accumulated full-screen plate.
-                    # The title lifecycle therefore validates the 320x200
-                    # presentation canvas rather than the partial block crop.
-                    source_ratio = 8 / 5 if row["lifecycle"] == "title_sequence" else row["width"] / row["height"]
+                    source_ratio = row["width"] / row["height"]
                     candidate_ratio = candidate_width / candidate_height
                     ratio_error = abs(candidate_ratio - source_ratio) / source_ratio
                     tolerance = max(0.001, 1.0 / max(candidate_width, candidate_height))
                     if ratio_error > tolerance:
                         errors.append(
-                            f"aspect ratio mismatch: source {'8:5 full-screen title' if row['lifecycle'] == 'title_sequence' else row['aspect_ratio']}, "
+                            f"aspect ratio mismatch: source {row['aspect_ratio']}, "
                             f"candidate {candidate_width}x{candidate_height}"
                         )
                     if max(candidate_width, candidate_height) < 1024:

@@ -33,7 +33,7 @@ Title blocks 1–4 are treated as one complete set. If any HD title file is unav
 
 The final title overlay is cleared with `Display.ClearExternalImage(false)` immediately before `ClearScreen()` publishes the credits transition.
 
-In the full-auto fork, title blocks 3 and 4 remain partial DAX updates but their HD counterparts are accumulated complete title screens. They are fitted without stretching to an exact 8:5 presentation canvas, staged as four archive/block identities, and still activate only when the complete four-file set is available.
+In the full-auto fork, blocks 1–2 are exact 8:5 full-screen base layers. Blocks 3–4 preserve their exact partial-DAX ratios and logical rectangles: block 3 is 15:7 at `(48,88,240,112)` and block 4 is 20:7 at `(0,88,320,112)`. These overlays are cropped from the approved accumulated HD compositions without stretching, ordered above the title base, and still activate only when the complete four-file set is available.
 
 ## Normal PIC replacements
 

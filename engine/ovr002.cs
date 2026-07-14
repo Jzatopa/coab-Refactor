@@ -20,12 +20,12 @@ namespace engine
             seg043.clear_keyboard();
         }
 
-        static bool show_hd_title(int block)
+        static bool show_hd_title(int block, string layer, System.Drawing.Rectangle logicalRect)
         {
             HdAssetEntry entry;
             if (HdAssetCatalog.TryGet("TITLE.DAX", block, 0, out entry))
             {
-                Display.SetExternalImage(entry.Path);
+                Display.SetExternalImage(layer, entry.Path, logicalRect, true);
                 return true;
             }
 
@@ -97,7 +97,9 @@ namespace engine
             DaxBlock dax_ptr;
             bool useHdTitles = hd_title_set_available();
 
-            if (useHdTitles == false || show_hd_title(1) == false)
+            Display.ClearAllExternalImages(false);
+
+            if (useHdTitles == false || show_hd_title(1, "title-base", System.Drawing.Rectangle.Empty) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 1, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
@@ -105,13 +107,20 @@ namespace engine
 
             delay_or_key(5);
 
-            if (useHdTitles == false || show_hd_title(2) == false)
+            if (useHdTitles)
+            {
+                Display.ClearExternalImage("title-base", false);
+                Display.ClearExternalImage("title-overlay-3", false);
+                Display.ClearExternalImage("title-overlay-4", false);
+            }
+
+            if (useHdTitles == false || show_hd_title(2, "title-base", System.Drawing.Rectangle.Empty) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 2, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
             }
 
-            if (useHdTitles == false || show_hd_title(3) == false)
+            if (useHdTitles == false || show_hd_title(3, "title-overlay-3", new System.Drawing.Rectangle(48, 88, 240, 112)) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 3, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 6, 0);
@@ -120,7 +129,12 @@ namespace engine
 
             seg044.PlaySound(Sound.sound_d);
 
-            if (useHdTitles == false || show_hd_title(4) == false)
+            if (useHdTitles)
+            {
+                Display.ClearExternalImage("title-overlay-3", false);
+            }
+
+            if (useHdTitles == false || show_hd_title(4, "title-overlay-4", new System.Drawing.Rectangle(0, 88, 320, 112)) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 4, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 0, 0);
