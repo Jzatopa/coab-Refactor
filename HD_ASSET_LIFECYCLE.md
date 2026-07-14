@@ -35,7 +35,7 @@ The final title overlay is cleared with `Display.ClearExternalImage(false)` imme
 
 ## HD font
 
-The HD font uses the original 8×8 logical cell geometry. Original glyph pixels remain in the framebuffer as a fallback, while the HD glyph is drawn over the same cell.
+The HD font uses the original 8×8 logical cell geometry. While the HD atlas is active, its low-resolution foreground pixels are suppressed in the framebuffer so non-integer presentation scaling cannot reveal a second pixel font underneath the HD glyph.
 
 Opaque picture and symbol pixels written through `Display.SetPixel3()` invalidate any retained HD glyph in the affected cell. This prevents stale HD text from remaining above replacement artwork. Transparent pixels do not invalidate cells because they do not replace framebuffer content.
 

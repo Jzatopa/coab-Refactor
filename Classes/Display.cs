@@ -79,7 +79,7 @@ namespace Classes
         public static void DisplayMono8x8(int xCol, int yCol, byte[] monoData8x8, int bgColor, int fgColor)
         {
             int pX = xCol * 8;
-            HighResFontAvailable.ToString();
+            bool highResFont = HighResFontAvailable;
 
             for (int yStep = 0; yStep < 8; yStep++)
             {
@@ -88,12 +88,13 @@ namespace Classes
 
                 for (int i = 0; i < 8; i++)
                 {
-                    // Keep the original glyph in the framebuffer as the
-                    // faithful fallback. The HD glyph is a presentation layer
-                    // drawn over the same 8x8 cell; if later artwork replaces
-                    // that cell, invalidating the HD glyph reveals the correct
-                    // original pixels instead of an empty background.
-                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 ? fgColor : bgColor;
+                    // The HD glyph is drawn as a presentation layer. Suppress
+                    // its low-resolution foreground pixels in the framebuffer
+                    // so rounding at non-integer display scales cannot expose a
+                    // second pixel font underneath it.
+                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 && highResFont
+                        ? bgColor
+                        : ((value & MonoBitMask[i]) != 0 ? fgColor : bgColor);
                     SetVidPixel(pX + i, pY, ram[pY, pX + i]);
                 }
             }
