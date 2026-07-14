@@ -18,7 +18,7 @@ Metadata gaps: `{}`.
 
 ## Candidate review
 
-Review directories currently contain **8** candidate PNG files. Per-entry approval and rejection decisions are recorded in `REVIEW.md` files and `asset-decisions.json`; the audit does not infer approval from file presence.
+Review directories currently contain **13** candidate PNG files. Per-entry approval and rejection decisions are recorded in `REVIEW.md` files and `asset-decisions.json`; the audit does not infer approval from file presence.
 
 ## Status by frame
 

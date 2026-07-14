@@ -11,7 +11,7 @@
     "missing-generation": 221,
     "candidates-rejected": 1
   },
-  "reviewed_candidate_files": 8,
+  "reviewed_candidate_files": 13,
   "results": [
     {
       "index": 0,
@@ -106,7 +106,12 @@
       "prompt_audit": "pass",
       "status": "missing-generation",
       "integrated_path": null,
-      "candidates": []
+      "candidates": [
+        "review-candidates/BODY2_block_000/candidate-A-exact-ratio.png",
+        "review-candidates/BODY2_block_000/candidate-A.png",
+        "review-candidates/BODY2_block_000/candidate-B-exact-ratio.png",
+        "review-candidates/BODY2_block_000/candidate-B.png"
+      ]
     },
     {
       "index": 5,
@@ -1388,7 +1393,8 @@
         "review-candidates/PIC1_block_001/candidate-A.png",
         "review-candidates/PIC1_block_001/candidate-B.png",
         "review-candidates/PIC1_block_001/candidate-C.png",
-        "review-candidates/PIC1_block_001/candidate-D.png"
+        "review-candidates/PIC1_block_001/candidate-D.png",
+        "review-candidates/PIC1_block_001/candidate-E.png"
       ]
     },
     {

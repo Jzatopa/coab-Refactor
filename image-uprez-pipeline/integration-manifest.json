@@ -119,10 +119,10 @@
     "runtime_name": "BODY2_block_000_frame_000.png",
     "runtime_lookup": "BODY2.DAX:000:000",
     "lifecycle": "portrait_body_until_portrait_or_panel_replace",
-    "candidate": null,
-    "review_status": "missing",
+    "candidate": "review-candidates/BODY2_block_000/candidate-D-exact-ratio.png",
+    "review_status": "rejected",
     "lifecycle_status": "pending",
-    "notes": ""
+    "notes": "Four source-conditioned attempts rejected. Candidate D still has rimmed/overwide pauldrons, a dominant diagonal buckle plus three gold fixtures, strap holes, a wide baldric, and extra leather detail. Explicitly handled as rejected; do not stage."
   },
   {
     "identity": "BODY2.DAX:001:000",

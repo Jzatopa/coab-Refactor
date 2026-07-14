@@ -26,5 +26,9 @@ PIC1 block 001 candidate D remains the strongest first batch candidate, but it i
 - Python integration test: pass; 231 unique lookups, complete-animation/title-set enforcement, 9 staged, rejected candidate excluded.
 - Release build: pass with no errors.
 - Isolated prepare/stage: pass.
-- Xvfb smoke launch: remained alive until the 10-second timeout; only the known XIM warning appeared.
+- Xvfb smoke launch: remained alive with all 9 approved assets staged; only the known XIM warning appeared.
+- Automated 240-second demo capture: pass. Two complete cycles returned to TITLE block 1, approximately **83 seconds** and **104 seconds** after gameplay became visible.
+- Reached: TITLE 1, accumulated TITLE 2+3, TITLE 4, credits, demo menu, village/story panel, overland maps, night camp, tactical combat, fireball/spell state, black dragon combat, demon/skull BIGPIC narration, and title return.
+- Lifecycle review found no stale picture/BIGPIC/title layer, transparent gap, partial-frame flash, missing title layer, or final TITLE block 4 seam.
+- Representative evidence: `test-evidence/full-demo-final/steps/05-demo-start.png`, `test-evidence/full-demo-final/contact-sheets/demo-scenes-01.jpg`, `demo-scenes-02.jpg`, `demo-scenes-03.jpg`, and `SCENE_REVIEW.md`.
 - Stable `coab-refactor` and Downloads runtime were not written by the full-auto launcher.
