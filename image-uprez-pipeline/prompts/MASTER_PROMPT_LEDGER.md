@@ -1,7 +1,7 @@
 # Master Prompt Ledger
 
-**Entries:** 231
-**Composition authority:** the extracted source PNG listed for each entry
+**Entries:** 231  
+**Composition authority:** the extracted source PNG listed for each entry  
 **Quality floor:** `HDAssets/PIC1_block_080_village.png`
 
 Metadata below is normalized from `manifest.json`; prompt prose is preserved from the authored component ledgers.
