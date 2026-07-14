@@ -33,11 +33,23 @@ Title blocks 1–4 are treated as one complete set. If any HD title file is unav
 
 The final title overlay is cleared with `Display.ClearExternalImage(false)` immediately before `ClearScreen()` publishes the credits transition.
 
+## Normal PIC replacements
+
+PIC1 block 80 replaces the demo village panel at logical rectangle `(24,24,88,88)`. `DrawMaybeOverlayed()` activates it only when drawing the exact first frame loaded from `PIC1.DAX` block 80. It is retired without an intermediate publish before a different normal picture, portrait, animation, BIGPIC, or outer frame replaces that panel.
+
+Normal-PIC mappings must include both game area and block ID because DAX block numbers are reused.
+
 ## HD font
 
 The HD font uses the original 8×8 logical cell geometry. While the HD atlas is active, its low-resolution foreground pixels are suppressed in the framebuffer so non-integer presentation scaling cannot reveal a second pixel font underneath the HD glyph.
 
 Opaque picture and symbol pixels written through `Display.SetPixel3()` invalidate any retained HD glyph in the affected cell. This prevents stale HD text from remaining above replacement artwork. Transparent pixels do not invalidate cells because they do not replace framebuffer content.
+
+## Visual quality standard
+
+`HDAssets/PIC1_block_080_village.png` is the baseline reference for replacement-art realism. New manually created or automated image generations should match or exceed its grounded detail, material realism, natural lighting, coherent perspective, and scene fidelity. Do not accept visibly painterly, plastic, generic, low-detail, or loosely interpreted generations when the reference supports a more realistic result.
+
+Generated replacements must still preserve the original composition, important objects, gameplay readability, panel aspect ratio, and transition lifecycle.
 
 ## Verification requirement
 

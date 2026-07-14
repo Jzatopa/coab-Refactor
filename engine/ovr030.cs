@@ -8,6 +8,8 @@ namespace engine
     {
         static bool hdBigpicOverlayActive;
         static byte hdBigpicOverlayBlock = 0xff;
+        static bool hdPicOverlayActive;
+        static byte hdPicOverlayBlock = 0xff;
         static byte[] fadeOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         static byte[] fadeNewColors = { 12, 12, 12, 12, 4, 5, 6, 7, 12, 12, 10, 12, 12, 12, 14, 12 };
         static byte[] transparentOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -17,6 +19,22 @@ namespace engine
         {
             if (dax_block != null)
             {
+                bool isHdVillagePicture =
+                    gbl.game_area == 1 &&
+                    gbl.lastDaxFile == "PIC" &&
+                    gbl.lastDaxBlockId == 0x50 &&
+                    gbl.byte_1D556.numFrames > 0 &&
+                    System.Object.ReferenceEquals(dax_block, gbl.byte_1D556.frames[0].picture);
+
+                // A retained normal-PIC replacement must disappear before a
+                // different picture, portrait, or animation draws into the
+                // same panel. Do not publish the clear independently; the
+                // replacement draw below will publish the completed scene.
+                if (hdPicOverlayActive && isHdVillagePicture == false)
+                {
+                    ClearPicOverlay(false);
+                }
+
                 if (gbl.area_ptr.picture_fade > 0 || useOverlay == true)
                 {
                     if (gbl.area_ptr.picture_fade > 0)
@@ -30,6 +48,20 @@ namespace engine
                 else
                 {
                     seg040.draw_picture(dax_block, rowY, colX, 0);
+                }
+
+                if (isHdVillagePicture)
+                {
+                    string path = Path.Combine(gbl.exe_path, "HDAssets", "PIC1_block_080_village.png");
+                    if (System.IO.File.Exists(path) &&
+                        (hdPicOverlayActive == false || hdPicOverlayBlock != 0x50))
+                    {
+                        Display.SetExternalImage(
+                            path,
+                            new System.Drawing.Rectangle(24, 24, 88, 88));
+                        hdPicOverlayActive = true;
+                        hdPicOverlayBlock = 0x50;
+                    }
                 }
             }
         }
@@ -308,6 +340,30 @@ namespace engine
                 Display.ClearExternalImage(publishImmediately);
                 hdBigpicOverlayActive = false;
                 hdBigpicOverlayBlock = 0xff;
+            }
+        }
+
+        internal static void ClearPicOverlay(bool publishImmediately)
+        {
+            if (hdPicOverlayActive)
+            {
+                Display.ClearExternalImage(publishImmediately);
+                hdPicOverlayActive = false;
+                hdPicOverlayBlock = 0xff;
+            }
+        }
+
+        internal static void ClearHdPictureOverlays(bool publishImmediately)
+        {
+            // Title images use the same presentation slot but manage their
+            // own lifecycle in ovr002. These flags cover gameplay pictures.
+            if (hdBigpicOverlayActive)
+            {
+                ClearBigpicOverlay(publishImmediately);
+            }
+            else if (hdPicOverlayActive)
+            {
+                ClearPicOverlay(publishImmediately);
             }
         }
     }

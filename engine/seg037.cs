@@ -34,7 +34,7 @@ namespace engine
             // outer frame replaces it naturally. The HD BIGPIC is a retained
             // presentation overlay and must be retired at the same boundary.
             // Do not publish here; the completed replacement frame will do so.
-            ovr030.ClearBigpicOverlay(false);
+            ovr030.ClearHdPictureOverlays(false);
 
             Display.UpdateStop();
 
