@@ -1,10 +1,13 @@
 using Classes;
 using Logging;
+using System.IO;
 
 namespace engine
 {
     class ovr030
     {
+        static bool hdBigpicOverlayActive;
+        static byte hdBigpicOverlayBlock = 0xff;
         static byte[] fadeOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         static byte[] fadeNewColors = { 12, 12, 12, 12, 4, 5, 6, 7, 12, 12, 10, 12, 12, 12, 14, 12 };
         static byte[] transparentOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -244,6 +247,60 @@ namespace engine
         {
             seg037.DrawFrame_WildernessMap();
             seg040.draw_picture(gbl.bigpic_dax, 1, 1, 0);
+
+            // HD replacements remain limited to selected BIGPIC blocks. Keep
+            // the original DAX image as the fallback and place replacements
+            // in the original 304x120 logical panel.
+            string fileName = null;
+
+            if (gbl.bigpic_block_id == 0x78)
+            {
+                fileName = "BIGPIC1_block_120.png";
+            }
+            else if (gbl.bigpic_block_id == 0x79)
+            {
+                fileName = "BIGPIC1_block_121.png";
+            }
+            else if (gbl.bigpic_block_id == 0x7a)
+            {
+                fileName = "BIGPIC1_block_122.png";
+            }
+            else if (gbl.bigpic_block_id == 0x7b)
+            {
+                fileName = "BIGPIC1_block_123.png";
+            }
+
+            if (fileName != null)
+            {
+                string path = Path.Combine(gbl.exe_path, "HDAssets", fileName);
+
+                if (System.IO.File.Exists(path))
+                {
+                    if (hdBigpicOverlayActive == false ||
+                        hdBigpicOverlayBlock != gbl.bigpic_block_id)
+                    {
+                        Display.SetExternalImage(
+                            path,
+                            new System.Drawing.Rectangle(8, 8, 304, 120));
+                        hdBigpicOverlayActive = true;
+                        hdBigpicOverlayBlock = gbl.bigpic_block_id;
+                    }
+
+                    return;
+                }
+            }
+
+            ClearBigpicOverlay();
+        }
+
+        internal static void ClearBigpicOverlay()
+        {
+            if (hdBigpicOverlayActive)
+            {
+                Display.ClearExternalImage();
+                hdBigpicOverlayActive = false;
+                hdBigpicOverlayBlock = 0xff;
+            }
         }
     }
 }

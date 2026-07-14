@@ -34,7 +34,8 @@ namespace engine
 
             bool file_found;
 
-            file_found = System.IO.File.Exists(System.IO.Path.Combine(dir_path, file_name));
+            string resolved_path = ResolveCaseInsensitivePath(System.IO.Path.Combine(dir_path, file_name));
+            file_found = resolved_path != null;
 
             if (file_found == false && noError == false)
             {
@@ -44,7 +45,7 @@ namespace engine
             if (file_found == true)
             {
                 file_ptr = new File();
-                file_ptr.Assign(System.IO.Path.Combine(dir_path, file_name));
+                file_ptr.Assign(resolved_path);
 
                 seg051.Reset(file_ptr);
             }
@@ -59,7 +60,39 @@ namespace engine
 
         internal static bool file_find(string filePath)
         {
-            return System.IO.File.Exists(filePath);
+            return ResolveCaseInsensitivePath(filePath) != null;
+        }
+
+        // DOS save/data filenames are case-insensitive; Linux paths are not.
+        // Resolve the requested basename without changing the on-disk files.
+        static string ResolveCaseInsensitivePath(string filePath)
+        {
+            if (System.IO.File.Exists(filePath))
+            {
+                return filePath;
+            }
+
+            string directory = System.IO.Path.GetDirectoryName(filePath);
+            string basename = System.IO.Path.GetFileName(filePath);
+
+            if (string.IsNullOrEmpty(directory) ||
+                System.IO.Directory.Exists(directory) == false)
+            {
+                return null;
+            }
+
+            foreach (string candidate in System.IO.Directory.GetFiles(directory))
+            {
+                if (string.Equals(
+                    System.IO.Path.GetFileName(candidate),
+                    basename,
+                    System.StringComparison.OrdinalIgnoreCase))
+                {
+                    return candidate;
+                }
+            }
+
+            return null;
         }
 
 

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
 
@@ -33,7 +34,19 @@ namespace Classes
         static int outputHeight;
         
         static public Bitmap bm;
+        static public Bitmap ExternalImage;
+        static public Rectangle ExternalImageLogicalRect;
         static Rectangle rect = new Rectangle(0, 0, 320, 200);
+
+        public struct HighResGlyph
+        {
+            public int GlyphIndex;
+            public int ForegroundColor;
+        }
+
+        static readonly object highResFontLock = new object();
+        static readonly Dictionary<int, HighResGlyph> highResGlyphs = new Dictionary<int, HighResGlyph>();
+        static Bitmap highResFontAtlas;
 
         public delegate void VoidDeledate();
 
@@ -65,6 +78,7 @@ namespace Classes
         public static void DisplayMono8x8(int xCol, int yCol, byte[] monoData8x8, int bgColor, int fgColor)
         {
             int pX = xCol * 8;
+            bool highResFont = HighResFontAvailable;
 
             for (int yStep = 0; yStep < 8; yStep++)
             {
@@ -73,10 +87,87 @@ namespace Classes
 
                 for (int i = 0; i < 8; i++)
                 {
-                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 ? fgColor : bgColor;
+                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 && highResFont ? bgColor :
+                        ((value & MonoBitMask[i]) != 0 ? fgColor : bgColor);
                     SetVidPixel(pX + i, pY, ram[pY, pX + i]);
                 }
             }
+        }
+
+        public static bool HighResFontAvailable
+        {
+            get
+            {
+                lock (highResFontLock)
+                {
+                    if (highResFontAtlas == null)
+                    {
+                        string root = String.IsNullOrEmpty(gbl.exe_path) ? Directory.GetCurrentDirectory() : gbl.exe_path;
+                        string path = Path.Combine(root, "HDAssets", "coab-font-atlas.png");
+
+                        if (System.IO.File.Exists(path))
+                        {
+                            highResFontAtlas = new Bitmap(path);
+                        }
+                    }
+
+                    return highResFontAtlas != null;
+                }
+            }
+        }
+
+        public static Bitmap HighResFontAtlas
+        {
+            get
+            {
+                bool available = HighResFontAvailable;
+                return highResFontAtlas;
+            }
+        }
+
+        public static Dictionary<int, HighResGlyph> GetHighResGlyphSnapshot()
+        {
+            lock (highResFontLock)
+            {
+                return new Dictionary<int, HighResGlyph>(highResGlyphs);
+            }
+        }
+
+        public static void QueueHighResGlyph(int glyphIndex, int xCol, int yCol, int bgColor, int fgColor)
+        {
+            if (HighResFontAvailable == false || xCol < 0 || xCol >= 40 || yCol < 0 || yCol >= 25)
+            {
+                return;
+            }
+
+            lock (highResFontLock)
+            {
+                highResGlyphs[yCol * 40 + xCol] = new HighResGlyph
+                {
+                    GlyphIndex = glyphIndex,
+                    ForegroundColor = fgColor
+                };
+            }
+        }
+
+        public static void ClearHighResText(int yStart, int yEnd, int xStart, int xEnd)
+        {
+            lock (highResFontLock)
+            {
+                for (int y = Math.Max(0, yStart); y <= Math.Min(24, yEnd); y++)
+                {
+                    for (int x = Math.Max(0, xStart); x <= Math.Min(39, xEnd); x++)
+                    {
+                        highResGlyphs.Remove(y * 40 + x);
+                    }
+                }
+            }
+        }
+
+        public static Color GetEgaColor(int index)
+        {
+            index = Math.Max(0, Math.Min(15, index));
+            return Color.FromArgb(egaColors[index, 0], egaColors[index, 1], egaColors[index, 2]);
         }
 
         public static void SetEgaPalette(int index, int colour)
@@ -143,6 +234,43 @@ namespace Classes
             {
                 updateCallback.Invoke();
             }
+        }
+
+        public static void SetExternalImage(string path)
+        {
+            SetExternalImage(path, Rectangle.Empty);
+        }
+
+        public static void SetExternalImage(string path, Rectangle logicalRect)
+        {
+            Bitmap replacement = new Bitmap(path);
+            Bitmap previous = ExternalImage;
+            ExternalImage = replacement;
+            ExternalImageLogicalRect = logicalRect;
+
+            if (previous != null)
+            {
+                previous.Dispose();
+            }
+
+            if (updateCallback != null)
+            {
+                updateCallback.Invoke();
+            }
+        }
+
+        public static void ClearExternalImage()
+        {
+            Bitmap previous = ExternalImage;
+            ExternalImage = null;
+            ExternalImageLogicalRect = Rectangle.Empty;
+
+            if (previous != null)
+            {
+                previous.Dispose();
+            }
+
+            ForceUpdate();
         }
 
         public static void SaveVidRam()

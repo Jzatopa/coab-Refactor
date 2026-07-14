@@ -1168,6 +1168,7 @@ namespace engine
 
         internal static void BattleSetup() // battle_begins
         {
+            ovr030.ClearBigpicOverlay();
             gbl.DelayBetweenCharacters = false;
 
             ovr030.DaxArrayFreeDaxBlocks(gbl.byte_1D556);

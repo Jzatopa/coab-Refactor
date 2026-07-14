@@ -1,5 +1,6 @@
 using Classes;
 using System;
+using System.IO;
 
 namespace engine
 {
@@ -18,6 +19,19 @@ namespace engine
             }
 
             seg043.clear_keyboard();
+        }
+
+        static bool show_hd_title(string fileName)
+        {
+            string path = Path.Combine(gbl.exe_path, "HDAssets", fileName);
+
+            if (System.IO.File.Exists(path))
+            {
+                Display.SetExternalImage(path);
+                return true;
+            }
+
+            return false;
         }
 
 
@@ -70,25 +84,37 @@ namespace engine
         {
             DaxBlock dax_ptr;
 
-            dax_ptr = seg040.LoadDax(0, 0, 1, "Title");
-            seg040.draw_picture(dax_ptr, 0, 0, 0);
+            if (show_hd_title("Title Block 1.png") == false)
+            {
+                dax_ptr = seg040.LoadDax(0, 0, 1, "Title");
+                seg040.draw_picture(dax_ptr, 0, 0, 0);
+            }
 
             delay_or_key(5);
 
-            dax_ptr = seg040.LoadDax(0, 0, 2, "Title");
-            seg040.draw_picture(dax_ptr, 0, 0, 0);
+            if (show_hd_title("Title Block 2.png") == false)
+            {
+                dax_ptr = seg040.LoadDax(0, 0, 2, "Title");
+                seg040.draw_picture(dax_ptr, 0, 0, 0);
+            }
 
-            dax_ptr = seg040.LoadDax(0, 0, 3, "Title");
-            seg040.draw_picture(dax_ptr, 0x0b, 6, 0);
+            if (show_hd_title("Title Block 3.png") == false)
+            {
+                dax_ptr = seg040.LoadDax(0, 0, 3, "Title");
+                seg040.draw_picture(dax_ptr, 0x0b, 6, 0);
+            }
             delay_or_key(10);
-
-            dax_ptr = seg040.LoadDax(0, 0, 4, "Title");
 
             seg044.PlaySound(Sound.sound_d);
 
-            seg040.draw_picture(dax_ptr, 0x0b, 0, 0);
+            if (show_hd_title("Title Block 4.png") == false)
+            {
+                dax_ptr = seg040.LoadDax(0, 0, 4, "Title");
+                seg040.draw_picture(dax_ptr, 0x0b, 0, 0);
+            }
             delay_or_key(10);
 
+            Display.ClearExternalImage();
             seg041.ClearScreen();
             credits();
             delay_or_key(10);

@@ -29,7 +29,7 @@ namespace Main
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.displayArea = new System.Windows.Forms.PictureBox();
+            this.displayArea = new Main.PixelDisplay();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ddfsdToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.commandDebuggingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -73,8 +73,7 @@ namespace Main
             this.displayArea.Dock = System.Windows.Forms.DockStyle.Fill;
             this.displayArea.Location = new System.Drawing.Point(0, 0);
             this.displayArea.Name = "displayArea";
-            this.displayArea.Size = new System.Drawing.Size(640, 400);
-            this.displayArea.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.displayArea.Size = new System.Drawing.Size(2560, 1440);
             this.displayArea.TabIndex = 0;
             this.displayArea.TabStop = false;
             // 
@@ -377,7 +376,7 @@ namespace Main
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(640, 400);
+            this.ClientSize = new System.Drawing.Size(2560, 1440);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.displayArea);
             this.DoubleBuffered = true;
@@ -396,7 +395,7 @@ namespace Main
 
         #endregion
 
-        private System.Windows.Forms.PictureBox displayArea;
+        private Main.PixelDisplay displayArea;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ddfsdToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem commandDebuggingToolStripMenuItem;

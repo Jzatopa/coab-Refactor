@@ -6,6 +6,7 @@ namespace engine
     {
         internal static void DrawRectangle(byte color, int yEnd, int xEnd, int yStart, int xStart)
         {
+            Display.ClearHighResText(yStart, yEnd, xStart, xEnd);
             xStart *= 8;
             xEnd = (xEnd + 1) * 8;
             yStart *= 8;
@@ -56,6 +57,7 @@ namespace engine
                 for (int i = 0; i < repeatCount; i++)
                 {
                     Display.DisplayMono8x8(XCol + i, YCol, gbl.monoCharData, bgColor, fgColor);
+                    Display.QueueHighResGlyph((int)index, XCol + i, YCol, bgColor, fgColor);
                 }
             }
         }

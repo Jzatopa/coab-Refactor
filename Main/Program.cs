@@ -37,7 +37,9 @@ namespace Main
                         tw.WriteLine("Unhandled exception: " + exception);
                     }
 
-                    MessageBox.Show(string.Format("Unexpected Error, please send '{0}' to simeon.pilgrim@gmail.com", logFile), "Unexpected Error");
+                    // Do not open a WinForms MessageBox from the engine thread.
+                    // Mono's X11 font-set dialog path can abort under Xwayland.
+                    Console.Error.WriteLine("Unexpected Error; see: " + logFile);
                     Environment.Exit(1);
                 };
 
@@ -48,8 +50,11 @@ namespace Main
             Logger.SetExitFunc(engine.seg043.print_and_exit);
 
             main = new MainForm();
+			main.Show();
+			main.WindowState = FormWindowState.Normal;
+			main.BringToFront();
 
-            ThreadStart threadDelegate = new ThreadStart(EngineThread);
+			ThreadStart threadDelegate = new ThreadStart(EngineThread);
             engineThread = new Thread(threadDelegate);
             engineThread.Name = "Engine";
             engineThread.Start();

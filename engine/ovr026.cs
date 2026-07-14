@@ -529,14 +529,16 @@ namespace engine
                     }
                 }
 
-                if (unk_1A230[(int)player.race, skill] < 0 &&
-                    base_chance[thiefLvl, skill] < (System.Math.Abs(unk_1A230[(int)player.race, skill]) + var_2))
+                int raceSkillModifier = unk_1A230[(int)player.race, skill];
+                int baseChance = base_chance[thiefLvl, skill];
+                if (raceSkillModifier < 0 &&
+                    baseChance < (System.Math.Abs(raceSkillModifier) + var_2))
                 {
                     player.thief_skills[skill - 1] = 0;
                 }
                 else
                 {
-                    player.thief_skills[skill - 1] = (byte)(var_2 + base_chance[thiefLvl, skill] + unk_1A230[(int)player.race, skill]);
+                    player.thief_skills[skill - 1] = (byte)(var_2 + baseChance + raceSkillModifier);
 
                     if (skill < 6)
                     {

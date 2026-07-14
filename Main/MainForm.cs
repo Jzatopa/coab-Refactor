@@ -18,6 +18,18 @@ namespace Main
 
 			InitializeComponent();
 
+			// Mono/WinForms can create the form without mapping it under
+			// Xwayland.  Explicitly normalize and activate it when shown.
+			WindowState = FormWindowState.Normal;
+			ShowInTaskbar = true;
+			TopMost = true;
+			Shown += delegate
+			{
+				WindowState = FormWindowState.Normal;
+				BringToFront();
+				Activate();
+			};
+
 			Classes.Display.UpdateCallback = UpdateDisplayCallback;
 		}
 
@@ -31,7 +43,13 @@ namespace Main
 			}
 			else
 			{
-                displayArea.Image = (Image)Classes.Display.bm.Clone();
+				Image oldImage = displayArea.Image;
+				displayArea.Image = (Image)Classes.Display.bm.Clone();
+				if (oldImage != null)
+				{
+					oldImage.Dispose();
+				}
+				displayArea.Invalidate();
 			}
 		}
 
