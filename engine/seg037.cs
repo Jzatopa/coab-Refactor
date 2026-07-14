@@ -30,6 +30,12 @@ namespace engine
 
         internal static void DrawFrame_Outer() /* draw8x8_01 */
         {
+            // The original BIGPIC is framebuffer content, so drawing a new
+            // outer frame replaces it naturally. The HD BIGPIC is a retained
+            // presentation overlay and must be retired at the same boundary.
+            // Do not publish here; the completed replacement frame will do so.
+            ovr030.ClearBigpicOverlay(false);
+
             Display.UpdateStop();
 
             draw8x8_clear_area(0x16, 0x26, 1, 1);

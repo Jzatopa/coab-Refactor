@@ -26,6 +26,7 @@ namespace Main
 			Shown += delegate
 			{
 				WindowState = FormWindowState.Normal;
+				Bounds = Screen.PrimaryScreen.WorkingArea;
 				BringToFront();
 				Activate();
 			};

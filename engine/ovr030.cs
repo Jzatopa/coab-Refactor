@@ -253,19 +253,22 @@ namespace engine
             // in the original 304x120 logical panel.
             string fileName = null;
 
-            if (gbl.bigpic_block_id == 0x78)
+            // These replacement files were generated from BIGPIC1.DAX. Block
+            // numbers can be reused by other game areas, so never place area-1
+            // artwork over another area's original picture.
+            if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x78)
             {
                 fileName = "BIGPIC1_block_120.png";
             }
-            else if (gbl.bigpic_block_id == 0x79)
+            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x79)
             {
                 fileName = "BIGPIC1_block_121.png";
             }
-            else if (gbl.bigpic_block_id == 0x7a)
+            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x7a)
             {
                 fileName = "BIGPIC1_block_122.png";
             }
-            else if (gbl.bigpic_block_id == 0x7b)
+            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x7b)
             {
                 fileName = "BIGPIC1_block_123.png";
             }
@@ -295,9 +298,14 @@ namespace engine
 
         internal static void ClearBigpicOverlay()
         {
+            ClearBigpicOverlay(true);
+        }
+
+        internal static void ClearBigpicOverlay(bool publishImmediately)
+        {
             if (hdBigpicOverlayActive)
             {
-                Display.ClearExternalImage();
+                Display.ClearExternalImage(publishImmediately);
                 hdBigpicOverlayActive = false;
                 hdBigpicOverlayBlock = 0xff;
             }

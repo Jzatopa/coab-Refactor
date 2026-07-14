@@ -36,6 +36,7 @@ namespace Classes
         static public Bitmap bm;
         static public Bitmap ExternalImage;
         static public Rectangle ExternalImageLogicalRect;
+        public static readonly object ExternalImageLock = new object();
         static Rectangle rect = new Rectangle(0, 0, 320, 200);
 
         public struct HighResGlyph
@@ -78,7 +79,7 @@ namespace Classes
         public static void DisplayMono8x8(int xCol, int yCol, byte[] monoData8x8, int bgColor, int fgColor)
         {
             int pX = xCol * 8;
-            bool highResFont = HighResFontAvailable;
+            HighResFontAvailable.ToString();
 
             for (int yStep = 0; yStep < 8; yStep++)
             {
@@ -87,8 +88,12 @@ namespace Classes
 
                 for (int i = 0; i < 8; i++)
                 {
-                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 && highResFont ? bgColor :
-                        ((value & MonoBitMask[i]) != 0 ? fgColor : bgColor);
+                    // Keep the original glyph in the framebuffer as the
+                    // faithful fallback. The HD glyph is a presentation layer
+                    // drawn over the same 8x8 cell; if later artwork replaces
+                    // that cell, invalidating the HD glyph reveals the correct
+                    // original pixels instead of an empty background.
+                    ram[pY, pX + i] = (value & MonoBitMask[i]) != 0 ? fgColor : bgColor;
                     SetVidPixel(pX + i, pY, ram[pY, pX + i]);
                 }
             }
@@ -104,13 +109,11 @@ namespace Classes
                     {
                         string root = String.IsNullOrEmpty(gbl.exe_path) ? Directory.GetCurrentDirectory() : gbl.exe_path;
                         string path = Path.Combine(root, "HDAssets", "coab-font-atlas.png");
-
                         if (System.IO.File.Exists(path))
                         {
                             highResFontAtlas = new Bitmap(path);
                         }
                     }
-
                     return highResFontAtlas != null;
                 }
             }
@@ -120,7 +123,7 @@ namespace Classes
         {
             get
             {
-                bool available = HighResFontAvailable;
+                HighResFontAvailable.ToString();
                 return highResFontAtlas;
             }
         }
@@ -135,11 +138,10 @@ namespace Classes
 
         public static void QueueHighResGlyph(int glyphIndex, int xCol, int yCol, int bgColor, int fgColor)
         {
-            if (HighResFontAvailable == false || xCol < 0 || xCol >= 40 || yCol < 0 || yCol >= 25)
+            if (!HighResFontAvailable || xCol < 0 || xCol >= 40 || yCol < 0 || yCol >= 25)
             {
                 return;
             }
-
             lock (highResFontLock)
             {
                 highResGlyphs[yCol * 40 + xCol] = new HighResGlyph
@@ -238,22 +240,35 @@ namespace Classes
 
         public static void SetExternalImage(string path)
         {
-            SetExternalImage(path, Rectangle.Empty);
+            SetExternalImage(path, Rectangle.Empty, true);
         }
 
         public static void SetExternalImage(string path, Rectangle logicalRect)
         {
+            SetExternalImage(path, logicalRect, true);
+        }
+
+        public static void SetExternalImage(string path, Rectangle logicalRect, bool publishImmediately)
+        {
             Bitmap replacement = new Bitmap(path);
-            Bitmap previous = ExternalImage;
-            ExternalImage = replacement;
-            ExternalImageLogicalRect = logicalRect;
+            Bitmap previous;
+            lock (ExternalImageLock)
+            {
+                previous = ExternalImage;
+                ExternalImage = replacement;
+                ExternalImageLogicalRect = logicalRect;
+                lock (highResFontLock)
+                {
+                    highResGlyphs.Clear();
+                }
+            }
 
             if (previous != null)
             {
                 previous.Dispose();
             }
 
-            if (updateCallback != null)
+            if (publishImmediately && updateCallback != null)
             {
                 updateCallback.Invoke();
             }
@@ -261,16 +276,32 @@ namespace Classes
 
         public static void ClearExternalImage()
         {
-            Bitmap previous = ExternalImage;
-            ExternalImage = null;
-            ExternalImageLogicalRect = Rectangle.Empty;
+            ClearExternalImage(true);
+        }
+
+        public static void ClearExternalImage(bool publishImmediately)
+        {
+            Bitmap previous;
+            lock (ExternalImageLock)
+            {
+                previous = ExternalImage;
+                ExternalImage = null;
+                ExternalImageLogicalRect = Rectangle.Empty;
+                lock (highResFontLock)
+                {
+                    highResGlyphs.Clear();
+                }
+            }
 
             if (previous != null)
             {
                 previous.Dispose();
             }
 
-            ForceUpdate();
+            if (publishImmediately)
+            {
+                ForceUpdate();
+            }
         }
 
         public static void SaveVidRam()
@@ -292,6 +323,14 @@ namespace Classes
         {
             if (value < 16)
             {
+                // Opaque picture/symbol pixels replace whatever occupied this
+                // logical cell in the original framebuffer. Retire any cached
+                // HD glyph for that cell at the same replacement boundary.
+                lock (highResFontLock)
+                {
+                    highResGlyphs.Remove((y / 8) * 40 + (x / 8));
+                }
+
                 ram[y, x] = value;
 
                 SetVidPixel(x, y, ram[y, x]);

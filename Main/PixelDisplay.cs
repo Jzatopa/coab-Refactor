@@ -2,6 +2,7 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace Main
@@ -10,6 +11,12 @@ namespace Main
     // without changing the game's coordinate system or artwork.
     public class PixelDisplay : PictureBox
     {
+        // The same atlas glyph/color combinations are painted repeatedly.
+        // Cache the tinted cells so repainting the 2K presentation does not
+        // perform thousands of GetPixel/SetPixel calls every frame.
+        static readonly object tintedGlyphLock = new object();
+        static readonly Dictionary<long, Bitmap> tintedGlyphs = new Dictionary<long, Bitmap>();
+
         public PixelDisplay()
         {
             BackColor = Color.Black;
@@ -17,6 +24,69 @@ namespace Main
             SetStyle(ControlStyles.UserPaint |
                      ControlStyles.AllPaintingInWmPaint |
                      ControlStyles.OptimizedDoubleBuffer, true);
+
+        }
+
+        static Bitmap GetTintedGlyph(Bitmap atlas, int glyphIndex, Color color)
+        {
+            long key = ((long)glyphIndex << 32) | (uint)color.ToArgb();
+
+            lock (tintedGlyphLock)
+            {
+                Bitmap cached;
+                if (tintedGlyphs.TryGetValue(key, out cached))
+                {
+                    return cached;
+                }
+
+                Bitmap tinted = new Bitmap(128, 128, PixelFormat.Format32bppArgb);
+                Rectangle source = new Rectangle((glyphIndex % 8) * 128, (glyphIndex / 8) * 128, 128, 128);
+                for (int gy = 0; gy < 128; gy++)
+                {
+                    for (int gx = 0; gx < 128; gx++)
+                    {
+                        Color sourcePixel = atlas.GetPixel(source.X + gx, source.Y + gy);
+                        tinted.SetPixel(gx, gy, Color.FromArgb(sourcePixel.A, color.R, color.G, color.B));
+                    }
+                }
+
+                tintedGlyphs.Add(key, tinted);
+                return tinted;
+            }
+        }
+
+        static void DrawHighResolutionText(Graphics graphics, int left, int top, float scale)
+        {
+            Bitmap atlas = Classes.Display.HighResFontAtlas;
+            if (atlas == null)
+            {
+                return;
+            }
+
+            var glyphs = Classes.Display.GetHighResGlyphSnapshot();
+            graphics.CompositingMode = CompositingMode.SourceOver;
+            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
+            graphics.PixelOffsetMode = PixelOffsetMode.Half;
+
+            foreach (var entry in glyphs)
+            {
+                int yCol = entry.Key / 40;
+                int xCol = entry.Key % 40;
+                int glyphIndex = entry.Value.GlyphIndex;
+                if (glyphIndex < 0 || glyphIndex >= 64) continue;
+
+                Color color = Classes.Display.GetEgaColor(entry.Value.ForegroundColor);
+                Bitmap tintedGlyph = GetTintedGlyph(atlas, glyphIndex, color);
+                int destinationLeft = left + (int)Math.Round(xCol * 8 * scale);
+                int destinationTop = top + (int)Math.Round(yCol * 8 * scale);
+                int destinationRight = left + (int)Math.Round((xCol + 1) * 8 * scale);
+                int destinationBottom = top + (int)Math.Round((yCol + 1) * 8 * scale);
+                Rectangle destination = new Rectangle(
+                    destinationLeft, destinationTop,
+                    destinationRight - destinationLeft,
+                    destinationBottom - destinationTop);
+                graphics.DrawImage(tintedGlyph, destination, 0, 0, tintedGlyph.Width, tintedGlyph.Height, GraphicsUnit.Pixel);
+            }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -49,102 +119,42 @@ namespace Main
                 Image.Height,
                 GraphicsUnit.Pixel);
 
-            if (Classes.Display.ExternalImage != null)
+            lock (Classes.Display.ExternalImageLock)
             {
-                Rectangle logicalRect = Classes.Display.ExternalImageLogicalRect;
-                e.Graphics.CompositingMode = CompositingMode.SourceOver;
-
-                if (logicalRect.IsEmpty)
+                if (Classes.Display.ExternalImage != null)
                 {
-                    e.Graphics.DrawImage(
-                        Classes.Display.ExternalImage,
-                        new Rectangle(left, top, width, height),
-                        0,
-                        0,
-                        Classes.Display.ExternalImage.Width,
-                        Classes.Display.ExternalImage.Height,
-                        GraphicsUnit.Pixel);
-                }
-                else
-                {
-                    Rectangle destination = new Rectangle(
-                        left + (int)System.Math.Round(logicalRect.X * scale),
-                        top + (int)System.Math.Round(logicalRect.Y * scale),
-                        (int)System.Math.Round(logicalRect.Width * scale),
-                        (int)System.Math.Round(logicalRect.Height * scale));
+                    Rectangle logicalRect = Classes.Display.ExternalImageLogicalRect;
+                    e.Graphics.CompositingMode = CompositingMode.SourceOver;
+                    // HD art is photographic/re-rendered artwork; keep the
+                    // low-resolution game framebuffer pixel-perfect, but
+                    // avoid nearest-neighbor stair-stepping on replacements.
+                    e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                    e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                    e.Graphics.DrawImage(
-                        Classes.Display.ExternalImage,
-                        destination,
-                        0,
-                        0,
-                        Classes.Display.ExternalImage.Width,
-                        Classes.Display.ExternalImage.Height,
-                        GraphicsUnit.Pixel);
-                }
-            }
-
-            DrawHighResolutionText(e.Graphics, left, top, scale);
-        }
-
-        static void DrawHighResolutionText(Graphics graphics, int left, int top, float scale)
-        {
-            Bitmap atlas = Classes.Display.HighResFontAtlas;
-            if (atlas == null)
-            {
-                return;
-            }
-
-            var glyphs = Classes.Display.GetHighResGlyphSnapshot();
-            graphics.CompositingMode = CompositingMode.SourceOver;
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-            foreach (var entry in glyphs)
-            {
-                int yCol = entry.Key / 40;
-                int xCol = entry.Key % 40;
-                int glyphIndex = entry.Value.GlyphIndex;
-                if (glyphIndex < 0 || glyphIndex >= 64)
-                {
-                    continue;
-                }
-
-                Color color = Classes.Display.GetEgaColor(entry.Value.ForegroundColor);
-                using (ImageAttributes attributes = new ImageAttributes())
-                {
-                    ColorMatrix tint = new ColorMatrix(new float[][]
+                    if (logicalRect.IsEmpty)
                     {
-                        new float[] { 0, 0, 0, 0, color.R / 255f },
-                        new float[] { 0, 0, 0, 0, color.G / 255f },
-                        new float[] { 0, 0, 0, 0, color.B / 255f },
-                        new float[] { 0, 0, 0, 1, 0 },
-                        new float[] { 0, 0, 0, 0, 1 }
-                    });
-                    attributes.SetColorMatrix(tint, ColorMatrixFlag.Default, ColorAdjustType.Bitmap);
+                        e.Graphics.DrawImage(
+                            Classes.Display.ExternalImage,
+                            new Rectangle(left, top, width, height),
+                            0, 0, Classes.Display.ExternalImage.Width,
+                            Classes.Display.ExternalImage.Height, GraphicsUnit.Pixel);
+                    }
+                    else
+                    {
+                        Rectangle destination = new Rectangle(
+                            left + (int)System.Math.Round(logicalRect.X * scale),
+                            top + (int)System.Math.Round(logicalRect.Y * scale),
+                            (int)System.Math.Round(logicalRect.Width * scale),
+                            (int)System.Math.Round(logicalRect.Height * scale));
 
-                    Rectangle source = new Rectangle(
-                        (glyphIndex % 8) * 128,
-                        (glyphIndex / 8) * 128,
-                        128,
-                        128);
-                    Rectangle destination = new Rectangle(
-                        left + (int)Math.Round(xCol * 8 * scale),
-                        top + (int)Math.Round(yCol * 8 * scale),
-                        (int)Math.Round(8 * scale),
-                        (int)Math.Round(8 * scale));
-
-                    graphics.DrawImage(
-                        atlas,
-                        destination,
-                        source.X,
-                        source.Y,
-                        source.Width,
-                        source.Height,
-                        GraphicsUnit.Pixel,
-                        attributes);
+                        e.Graphics.DrawImage(
+                            Classes.Display.ExternalImage, destination, 0, 0,
+                            Classes.Display.ExternalImage.Width,
+                            Classes.Display.ExternalImage.Height, GraphicsUnit.Pixel);
+                    }
                 }
             }
+            DrawHighResolutionText(e.Graphics, left, top, scale);
         }
     }
 }

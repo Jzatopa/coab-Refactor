@@ -12,7 +12,7 @@ namespace engine
             new Point[] { new Point( 0, 0 ) },
             new Point[] { new Point( 0, 0 ), new Point(  0,  1 ) },
             new Point[] { new Point( 0, 0 ), new Point(  1,  0 ) },
-            new Point[] { new Point( 0, 0 ), new Point(  1,  0 ), new Point( 0,  1 ), new Point(  1,  1 ) }   
+            new Point[] { new Point( 0, 0 ), new Point(  1,  0 ), new Point( 0,  1 ), new Point(  1,  1 ) }
         };
 
         internal static Point[] GetSizeBasedMapDeltas(int size) /*sub_7400F*/
@@ -88,7 +88,7 @@ namespace engine
                 PlayerOnScreen(false, player_index) == true)
             {
                 // draws the player icon over focus box
-                ovr034.draw_combat_icon(gbl.player_array[player_index].icon_id, 
+                ovr034.draw_combat_icon(gbl.player_array[player_index].icon_id,
                     Icon.Normal,
                     gbl.player_array[player_index].actions.direction,
                     gbl.CombatMap[player_index].screenPos.y,
@@ -343,33 +343,45 @@ namespace engine
 
         internal static void redrawCombatArea(int dir, int radius, Point map) /*sub_749DD*/
         {
-            var newPos = map + gbl.MapDirectionDelta[dir];
-
-            if (ScreenMapCheck(radius, newPos) == true)
+            // A combat-area redraw is one visual operation even though the
+            // legacy renderer issues many tile, icon and overlay updates.
+            // Preserve those drawing routines but publish only the completed
+            // result, preventing mixed old/new combat frames at 2K scale.
+            Display.UpdateStop();
+            try
             {
-                for (int index = 1; index <= gbl.CombatantCount; index++)
-                {
-                    Player player = gbl.player_array[index];
+                var newPos = map + gbl.MapDirectionDelta[dir];
 
-                    if (player.in_combat == true &&
-                        gbl.CombatMap[index].size > 0 &&
-                        PlayerOnScreen(false, player) == true)
+                if (ScreenMapCheck(radius, newPos) == true)
+                {
+                    for (int index = 1; index <= gbl.CombatantCount; index++)
                     {
-                        var pos = gbl.CombatMap[index].screenPos;
-                        ovr034.draw_combat_icon(player.icon_id, 0, player.actions.direction, pos.y, pos.x);
+                        Player player = gbl.player_array[index];
+
+                        if (player.in_combat == true &&
+                            gbl.CombatMap[index].size > 0 &&
+                            PlayerOnScreen(false, player) == true)
+                        {
+                            var pos = gbl.CombatMap[index].screenPos;
+                            ovr034.draw_combat_icon(player.icon_id, 0, player.actions.direction, pos.y, pos.x);
+                        }
                     }
                 }
+
+                RedrawPosition(map);
+
+                if (CoordOnScreen(newPos - gbl.mapToBackGroundTile.mapScreenTopLeft) == false)
+                {
+                    newPos.MapBoundaryTrunc();
+                }
+
+                sub_7416E(newPos);
+                seg040.DrawOverlay();
             }
-
-            RedrawPosition(map);
-
-            if (CoordOnScreen(newPos - gbl.mapToBackGroundTile.mapScreenTopLeft) == false)
+            finally
             {
-                newPos.MapBoundaryTrunc();
+                Display.UpdateStart();
             }
-
-            sub_7416E(newPos);
-            seg040.DrawOverlay();
         }
 
 

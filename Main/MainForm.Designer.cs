@@ -380,9 +380,9 @@ namespace Main
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.displayArea);
             this.DoubleBuffered = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
             this.KeyPreview = true;
-            this.MaximizeBox = false;
+            this.MaximizeBox = true;
             this.Name = "MainForm";
             this.Text = "Curse Of The Azure Bonds";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);

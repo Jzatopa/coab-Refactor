@@ -34,6 +34,20 @@ namespace engine
             return false;
         }
 
+        static bool hd_title_set_available()
+        {
+            string root = Path.Combine(gbl.exe_path, "HDAssets");
+            for (int block = 1; block <= 4; block++)
+            {
+                if (System.IO.File.Exists(Path.Combine(root, "Title Block " + block + ".png")) == false)
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
 
         static void credits()
         {
@@ -83,8 +97,9 @@ namespace engine
         internal static void title_screen()
         {
             DaxBlock dax_ptr;
+            bool useHdTitles = hd_title_set_available();
 
-            if (show_hd_title("Title Block 1.png") == false)
+            if (useHdTitles == false || show_hd_title("Title Block 1.png") == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 1, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
@@ -92,13 +107,13 @@ namespace engine
 
             delay_or_key(5);
 
-            if (show_hd_title("Title Block 2.png") == false)
+            if (useHdTitles == false || show_hd_title("Title Block 2.png") == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 2, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
             }
 
-            if (show_hd_title("Title Block 3.png") == false)
+            if (useHdTitles == false || show_hd_title("Title Block 3.png") == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 3, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 6, 0);
@@ -107,14 +122,16 @@ namespace engine
 
             seg044.PlaySound(Sound.sound_d);
 
-            if (show_hd_title("Title Block 4.png") == false)
+            if (useHdTitles == false || show_hd_title("Title Block 4.png") == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 4, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 0, 0);
             }
             delay_or_key(10);
 
-            Display.ClearExternalImage();
+            // Retire the title at the same boundary as the original clear,
+            // but let ClearScreen publish the completed replacement frame.
+            Display.ClearExternalImage(false);
             seg041.ClearScreen();
             credits();
             delay_or_key(10);

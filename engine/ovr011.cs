@@ -407,7 +407,7 @@ namespace engine
                         var_4 = 1;
                     }
                 }
-                else // var_7 == 1 
+                else // var_7 == 1
                 {
                     if (gbl.dir_2_flags == 0)
                     {
@@ -882,7 +882,7 @@ namespace engine
         static byte[] /*seg600:0300*/ unk_16610 = { 5, 4, 5, 6, 3, 8, 7, 2 };
         static byte[] /*seg600:0308*/ unk_16618 = { 3, 2, 2, 3, 0, 2, 5, 3 };
 
-        static byte[, ,] unk_16620 = new byte[5, 6, 2] { // unk_16620 seg600:0310 
+        static byte[, ,] unk_16620 = new byte[5, 6, 2] { // unk_16620 seg600:0310
                 {{1,0},{1,0},{1,0},{2,9},{3,10},{4,10}}, // 310 - 31B
                 {{0,2},{0,3},{1,4},{2,5},{3,6},{4,7}}, // 31C - 327
                 {{0,6},{0,7},{1,8},{1,0},{1,0},{1,0}}, // 328 - 333
@@ -1184,32 +1184,47 @@ namespace engine
 
             seg041.displayString("A battle begins...", 0, 0x0a, 0x18, 0);
 
-            gbl.AutoPCsCastMagic = false; // TODO review this...
-            gbl.combat_round = 0;
-            gbl.combat_round_no_action_limit = gbl.combat_round_no_action_value;
-            gbl.attack_roll = 0;
+            // Combat setup assembles the ground, combatants and interface via
+            // many legacy drawing calls. Keep the already-published battle
+            // announcement visible, then publish the completed combat screen
+            // once instead of exposing hundreds of milliseconds of partial
+            // tiles, names and statistics.
+            Display.UpdateStop();
+            try
+            {
 
-            gbl.StinkingCloud = new List<GasCloud>();
-            gbl.CloudKillCloud = new List<GasCloud>();
-            gbl.item_ptr = null;
+                gbl.AutoPCsCastMagic = false; // TODO review this...
+                gbl.combat_round = 0;
+                gbl.combat_round_no_action_limit = gbl.combat_round_no_action_value;
+                gbl.attack_roll = 0;
 
-            gbl.downedPlayers = new List<DownedPlayerTile>();
+                gbl.StinkingCloud = new List<GasCloud>();
+                gbl.CloudKillCloud = new List<GasCloud>();
+                gbl.item_ptr = null;
 
-            gbl.area2_ptr.field_666 = 0;
+                gbl.downedPlayers = new List<DownedPlayerTile>();
 
-            SetupGroundTiles();
+                gbl.area2_ptr.field_666 = 0;
 
-            SetupCombatActions();
-            PlaceCombatants();
+                SetupGroundTiles();
 
-            seg043.clear_one_keypress();
+                SetupCombatActions();
+                PlaceCombatants();
 
-            gbl.missile_dax = new DaxBlock(1, 4, 3, 0x18);
+                seg043.clear_one_keypress();
 
-            Point pos = ovr033.PlayerMapPos(gbl.TeamList[0]);
-            gbl.mapToBackGroundTile.mapScreenTopLeft = pos - Point.ScreenCenter;
+                gbl.missile_dax = new DaxBlock(1, 4, 3, 0x18);
 
-            ovr025.RedrawCombatScreen();
+                Point pos = ovr033.PlayerMapPos(gbl.TeamList[0]);
+                gbl.mapToBackGroundTile.mapScreenTopLeft = pos - Point.ScreenCenter;
+
+                ovr025.RedrawCombatScreen();
+            }
+            finally
+            {
+                Display.UpdateStart();
+            }
+
             foreach (Player player in gbl.TeamList)
             {
                 ovr024.CheckAffectsEffect(player, CheckType.Type_8);

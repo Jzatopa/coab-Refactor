@@ -4,3 +4,13 @@ bin
 
 *.user
 *.suo
+*.resources
+
+# Local HD source, comparison, audition, and backup material. Runtime-ready
+# assets live in HDAssets/ and Main/sounds/.
+HDAssets-disabled/
+Main/sounds-modern/
+audio-backups/
+character-source-png/
+font-design/
+hd-source-png/
