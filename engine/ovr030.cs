@@ -1,15 +1,28 @@
 using Classes;
 using Logging;
-using System.IO;
+using System.Collections.Generic;
 
 namespace engine
 {
     class ovr030
     {
+        const string PictureLayer = "game-picture";
+        const string PortraitHeadLayer = "portrait-head";
+        const string PortraitBodyLayer = "portrait-body";
+        const string BigpicLayer = "bigpic";
+
+        sealed class HdAssetIdentity
+        {
+            public string Archive;
+            public int Block;
+            public int Frame;
+        }
+
+        static readonly Dictionary<DaxBlock, HdAssetIdentity> hdAssetIdentities =
+            new Dictionary<DaxBlock, HdAssetIdentity>();
+        static readonly HashSet<string> activeGameplayLayers = new HashSet<string>();
         static bool hdBigpicOverlayActive;
         static byte hdBigpicOverlayBlock = 0xff;
-        static bool hdPicOverlayActive;
-        static byte hdPicOverlayBlock = 0xff;
         static byte[] fadeOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
         static byte[] fadeNewColors = { 12, 12, 12, 12, 4, 5, 6, 7, 12, 12, 10, 12, 12, 12, 14, 12 };
         static byte[] transparentOldColors = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15 };
@@ -19,20 +32,21 @@ namespace engine
         {
             if (dax_block != null)
             {
-                bool isHdVillagePicture =
-                    gbl.game_area == 1 &&
-                    gbl.lastDaxFile == "PIC" &&
-                    gbl.lastDaxBlockId == 0x50 &&
-                    gbl.byte_1D556.numFrames > 0 &&
-                    System.Object.ReferenceEquals(dax_block, gbl.byte_1D556.frames[0].picture);
+                HdAssetIdentity identity;
+                hdAssetIdentities.TryGetValue(dax_block, out identity);
 
-                // A retained normal-PIC replacement must disappear before a
-                // different picture, portrait, or animation draws into the
-                // same panel. Do not publish the clear independently; the
-                // replacement draw below will publish the completed scene.
-                if (hdPicOverlayActive && isHdVillagePicture == false)
+                if (identity == null)
                 {
-                    ClearPicOverlay(false);
+                    ClearLayer(PictureLayer, false);
+                    ClearPortraitOverlays(false);
+                }
+                else if (identity.Archive.StartsWith("PIC"))
+                {
+                    ClearPortraitOverlays(false);
+                }
+                else
+                {
+                    ClearLayer(PictureLayer, false);
                 }
 
                 if (gbl.area_ptr.picture_fade > 0 || useOverlay == true)
@@ -50,20 +64,69 @@ namespace engine
                     seg040.draw_picture(dax_block, rowY, colX, 0);
                 }
 
-                if (isHdVillagePicture)
+                if (identity != null)
                 {
-                    string path = Path.Combine(gbl.exe_path, "HDAssets", "PIC1_block_080_village.png");
-                    if (System.IO.File.Exists(path) &&
-                        (hdPicOverlayActive == false || hdPicOverlayBlock != 0x50))
+                    string layer = null;
+                    if (identity.Archive.StartsWith("PIC"))
                     {
-                        Display.SetExternalImage(
-                            path,
-                            new System.Drawing.Rectangle(24, 24, 88, 88));
-                        hdPicOverlayActive = true;
-                        hdPicOverlayBlock = 0x50;
+                        layer = PictureLayer;
+                    }
+                    else if (identity.Archive.StartsWith("HEAD"))
+                    {
+                        layer = PortraitHeadLayer;
+                    }
+                    else if (identity.Archive.StartsWith("BODY"))
+                    {
+                        layer = PortraitBodyLayer;
+                    }
+
+                    if (layer != null)
+                    {
+                        HdAssetEntry hdEntry;
+                        if (FindHdFrame(identity, out hdEntry))
+                        {
+                            Display.SetExternalImage(
+                                layer,
+                                hdEntry.Path,
+                                new System.Drawing.Rectangle(
+                                    colX * 8,
+                                    rowY * 8,
+                                    hdEntry.Width,
+                                    hdEntry.Height),
+                                true);
+                            activeGameplayLayers.Add(layer);
+                        }
+                        else
+                        {
+                            ClearLayer(layer, false);
+                        }
                     }
                 }
             }
+        }
+
+        static bool FindHdFrame(HdAssetIdentity identity, out HdAssetEntry entry)
+        {
+            return HdAssetCatalog.TryGet(
+                identity.Archive + ".DAX",
+                identity.Block,
+                identity.Frame,
+                out entry);
+        }
+
+        static void RegisterHdFrame(DaxBlock block, string archive, int blockId, int frame)
+        {
+            if (block == null)
+            {
+                return;
+            }
+
+            hdAssetIdentities[block] = new HdAssetIdentity
+            {
+                Archive = archive,
+                Block = blockId,
+                Frame = frame
+            };
         }
 
 
@@ -161,6 +224,15 @@ namespace engine
 
                             daxArray.frames[frame].picture.DaxToPicture(0, masked, src_offset, uncompressed_data);
 
+                            if (file_name == "PIC")
+                            {
+                                RegisterHdFrame(
+                                    daxArray.frames[frame].picture,
+                                    "PIC" + gbl.game_area.ToString(),
+                                    block_id,
+                                    frame);
+                            }
+
                             if ((masked & 1) > 0)
                             {
                                 daxArray.frames[frame].picture.Recolor(false, transparentNewColors, transparentOldColors);
@@ -188,6 +260,10 @@ namespace engine
         {
             for (int index = 0; index < animation.numFrames; index++)
             {
+                if (animation.frames[index].picture != null)
+                {
+                    hdAssetIdentities.Remove(animation.frames[index].picture);
+                }
                 animation.frames[index].picture = null;
                 animation.frames[index].delay = 0;
             }
@@ -207,6 +283,10 @@ namespace engine
             if (head_id != 0xff &&
                 (gbl.current_head_id == 0xff || gbl.current_head_id != head_id))
             {
+                if (gbl.headX_dax != null)
+                {
+                    hdAssetIdentities.Remove(gbl.headX_dax);
+                }
                 gbl.headX_dax = seg040.LoadDax(0, 0, head_id, "HEAD" + text);
 
                 if (gbl.headX_dax == null)
@@ -215,11 +295,16 @@ namespace engine
                 }
 
                 gbl.current_head_id = head_id;
+                RegisterHdFrame(gbl.headX_dax, "HEAD" + text, head_id, 0);
             }
 
             if (body_id != 0xff &&
                 (gbl.current_body_id == 0xff || gbl.current_body_id != body_id))
             {
+                if (gbl.bodyX_dax != null)
+                {
+                    hdAssetIdentities.Remove(gbl.bodyX_dax);
+                }
                 gbl.bodyX_dax = seg040.LoadDax(0, 0, body_id, "BODY" + text);
                 if (gbl.bodyX_dax == null)
                 {
@@ -227,6 +312,7 @@ namespace engine
                 }
 
                 gbl.current_body_id = body_id;
+                RegisterHdFrame(gbl.bodyX_dax, "BODY" + text, body_id, 0);
             }
 
             seg043.clear_keyboard();
@@ -235,6 +321,9 @@ namespace engine
 
         internal static void draw_head_and_body(bool draw_body, byte rowY, byte colX) /* sub_706DC */
         {
+            ClearLayer(PictureLayer, false);
+            ClearPortraitOverlays(false);
+
             if (draw_body == true)
             {
                 DrawMaybeOverlayed(gbl.headX_dax, false, rowY, colX);
@@ -280,49 +369,24 @@ namespace engine
             seg037.DrawFrame_WildernessMap();
             seg040.draw_picture(gbl.bigpic_dax, 1, 1, 0);
 
-            // HD replacements remain limited to selected BIGPIC blocks. Keep
-            // the original DAX image as the fallback and place replacements
-            // in the original 304x120 logical panel.
-            string fileName = null;
-
-            // These replacement files were generated from BIGPIC1.DAX. Block
-            // numbers can be reused by other game areas, so never place area-1
-            // artwork over another area's original picture.
-            if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x78)
+            string archive = "BIGPIC" + gbl.game_area.ToString() + ".DAX";
+            HdAssetEntry hdEntry;
+            if (HdAssetCatalog.TryGet(archive, gbl.bigpic_block_id, 0, out hdEntry))
             {
-                fileName = "BIGPIC1_block_120.png";
-            }
-            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x79)
-            {
-                fileName = "BIGPIC1_block_121.png";
-            }
-            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x7a)
-            {
-                fileName = "BIGPIC1_block_122.png";
-            }
-            else if (gbl.game_area == 1 && gbl.bigpic_block_id == 0x7b)
-            {
-                fileName = "BIGPIC1_block_123.png";
-            }
-
-            if (fileName != null)
-            {
-                string path = Path.Combine(gbl.exe_path, "HDAssets", fileName);
-
-                if (System.IO.File.Exists(path))
+                if (hdBigpicOverlayActive == false ||
+                    hdBigpicOverlayBlock != gbl.bigpic_block_id)
                 {
-                    if (hdBigpicOverlayActive == false ||
-                        hdBigpicOverlayBlock != gbl.bigpic_block_id)
-                    {
-                        Display.SetExternalImage(
-                            path,
-                            new System.Drawing.Rectangle(8, 8, 304, 120));
-                        hdBigpicOverlayActive = true;
-                        hdBigpicOverlayBlock = gbl.bigpic_block_id;
-                    }
-
-                    return;
+                    Display.SetExternalImage(
+                        BigpicLayer,
+                        hdEntry.Path,
+                        new System.Drawing.Rectangle(8, 8, hdEntry.Width, hdEntry.Height),
+                        true);
+                    activeGameplayLayers.Add(BigpicLayer);
+                    hdBigpicOverlayActive = true;
+                    hdBigpicOverlayBlock = gbl.bigpic_block_id;
                 }
+
+                return;
             }
 
             ClearBigpicOverlay();
@@ -337,33 +401,39 @@ namespace engine
         {
             if (hdBigpicOverlayActive)
             {
-                Display.ClearExternalImage(publishImmediately);
+                ClearLayer(BigpicLayer, publishImmediately);
                 hdBigpicOverlayActive = false;
                 hdBigpicOverlayBlock = 0xff;
             }
         }
 
-        internal static void ClearPicOverlay(bool publishImmediately)
+        static void ClearLayer(string layer, bool publishImmediately)
         {
-            if (hdPicOverlayActive)
+            if (activeGameplayLayers.Contains(layer))
             {
-                Display.ClearExternalImage(publishImmediately);
-                hdPicOverlayActive = false;
-                hdPicOverlayBlock = 0xff;
+                Display.ClearExternalImage(layer, publishImmediately);
+                activeGameplayLayers.Remove(layer);
             }
+        }
+
+        static void ClearPortraitOverlays(bool publishImmediately)
+        {
+            ClearLayer(PortraitHeadLayer, publishImmediately);
+            ClearLayer(PortraitBodyLayer, publishImmediately);
         }
 
         internal static void ClearHdPictureOverlays(bool publishImmediately)
         {
-            // Title images use the same presentation slot but manage their
-            // own lifecycle in ovr002. These flags cover gameplay pictures.
-            if (hdBigpicOverlayActive)
+            // Title images use the default presentation slot and manage their
+            // own lifecycle in ovr002. Clear every gameplay layer first, then
+            // publish at most once so no partial portrait/panel state leaks.
+            bool hadActiveLayers = hdBigpicOverlayActive || activeGameplayLayers.Count > 0;
+            ClearBigpicOverlay(false);
+            ClearLayer(PictureLayer, false);
+            ClearPortraitOverlays(false);
+            if (publishImmediately && hadActiveLayers)
             {
-                ClearBigpicOverlay(publishImmediately);
-            }
-            else if (hdPicOverlayActive)
-            {
-                ClearPicOverlay(publishImmediately);
+                Display.ForceUpdate();
             }
         }
     }

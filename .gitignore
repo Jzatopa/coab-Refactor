@@ -14,3 +14,7 @@ audio-backups/
 character-source-png/
 font-design/
 hd-source-png/
+runtime-data/
+runtime/
+__pycache__/
+*.pyc

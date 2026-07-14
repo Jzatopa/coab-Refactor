@@ -121,36 +121,40 @@ namespace Main
 
             lock (Classes.Display.ExternalImageLock)
             {
-                if (Classes.Display.ExternalImage != null)
+                var externalImages = Classes.Display.GetExternalImageSnapshot();
+                foreach (Classes.Display.ExternalImageLayer layer in externalImages)
                 {
-                    Rectangle logicalRect = Classes.Display.ExternalImageLogicalRect;
-                    e.Graphics.CompositingMode = CompositingMode.SourceOver;
-                    // HD art is photographic/re-rendered artwork; keep the
-                    // low-resolution game framebuffer pixel-perfect, but
-                    // avoid nearest-neighbor stair-stepping on replacements.
-                    e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-                    e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
-
-                    if (logicalRect.IsEmpty)
+                    if (layer.Image != null)
                     {
-                        e.Graphics.DrawImage(
-                            Classes.Display.ExternalImage,
-                            new Rectangle(left, top, width, height),
-                            0, 0, Classes.Display.ExternalImage.Width,
-                            Classes.Display.ExternalImage.Height, GraphicsUnit.Pixel);
-                    }
-                    else
-                    {
-                        Rectangle destination = new Rectangle(
-                            left + (int)System.Math.Round(logicalRect.X * scale),
-                            top + (int)System.Math.Round(logicalRect.Y * scale),
-                            (int)System.Math.Round(logicalRect.Width * scale),
-                            (int)System.Math.Round(logicalRect.Height * scale));
+                        Rectangle logicalRect = layer.LogicalRect;
+                        e.Graphics.CompositingMode = CompositingMode.SourceOver;
+                        // HD art is photographic/re-rendered artwork; keep the
+                        // low-resolution game framebuffer pixel-perfect, but
+                        // avoid nearest-neighbor stair-stepping on replacements.
+                        e.Graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+                        e.Graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
-                        e.Graphics.DrawImage(
-                            Classes.Display.ExternalImage, destination, 0, 0,
-                            Classes.Display.ExternalImage.Width,
-                            Classes.Display.ExternalImage.Height, GraphicsUnit.Pixel);
+                        if (logicalRect.IsEmpty)
+                        {
+                            e.Graphics.DrawImage(
+                                layer.Image,
+                                new Rectangle(left, top, width, height),
+                                0, 0, layer.Image.Width,
+                                layer.Image.Height, GraphicsUnit.Pixel);
+                        }
+                        else
+                        {
+                            Rectangle destination = new Rectangle(
+                                left + (int)System.Math.Round(logicalRect.X * scale),
+                                top + (int)System.Math.Round(logicalRect.Y * scale),
+                                (int)System.Math.Round(logicalRect.Width * scale),
+                                (int)System.Math.Round(logicalRect.Height * scale));
+
+                            e.Graphics.DrawImage(
+                                layer.Image, destination, 0, 0,
+                                layer.Image.Width,
+                                layer.Image.Height, GraphicsUnit.Pixel);
+                        }
                     }
                 }
             }

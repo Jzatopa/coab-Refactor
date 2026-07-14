@@ -1,0 +1,172 @@
+{
+  "source": "/home/jzatopa/Downloads/curseoftheazurebonds",
+  "eligible_archives": [
+    "TITLE.DAX",
+    "PIC1.DAX",
+    "PIC2.DAX",
+    "PIC3.DAX",
+    "PIC4.DAX",
+    "PIC5.DAX",
+    "PIC6.DAX",
+    "BIGPIC1.DAX",
+    "BIGPIC2.DAX",
+    "BIGPIC6.DAX",
+    "HEAD2.DAX",
+    "HEAD3.DAX",
+    "HEAD4.DAX",
+    "HEAD5.DAX",
+    "HEAD6.DAX",
+    "BODY2.DAX",
+    "BODY3.DAX",
+    "BODY4.DAX",
+    "BODY5.DAX",
+    "BODY6.DAX"
+  ],
+  "archive_count": 20,
+  "block_count": 135,
+  "frame_count": 231,
+  "png_count": 231,
+  "archives": [
+    {
+      "archive": "TITLE.DAX",
+      "area": null,
+      "blocks": 4,
+      "frames": 4,
+      "bytes": 65512
+    },
+    {
+      "archive": "PIC1.DAX",
+      "area": 1,
+      "blocks": 3,
+      "frames": 6,
+      "bytes": 8675
+    },
+    {
+      "archive": "PIC2.DAX",
+      "area": 2,
+      "blocks": 9,
+      "frames": 25,
+      "bytes": 35128
+    },
+    {
+      "archive": "PIC3.DAX",
+      "area": 3,
+      "blocks": 9,
+      "frames": 15,
+      "bytes": 30669
+    },
+    {
+      "archive": "PIC4.DAX",
+      "area": 4,
+      "blocks": 12,
+      "frames": 37,
+      "bytes": 54167
+    },
+    {
+      "archive": "PIC5.DAX",
+      "area": 5,
+      "blocks": 9,
+      "frames": 21,
+      "bytes": 37658
+    },
+    {
+      "archive": "PIC6.DAX",
+      "area": 6,
+      "blocks": 14,
+      "frames": 48,
+      "bytes": 74989
+    },
+    {
+      "archive": "BIGPIC1.DAX",
+      "area": 1,
+      "blocks": 2,
+      "frames": 2,
+      "bytes": 34691
+    },
+    {
+      "archive": "BIGPIC2.DAX",
+      "area": 2,
+      "blocks": 1,
+      "frames": 1,
+      "bytes": 9516
+    },
+    {
+      "archive": "BIGPIC6.DAX",
+      "area": 6,
+      "blocks": 1,
+      "frames": 1,
+      "bytes": 9161
+    },
+    {
+      "archive": "HEAD2.DAX",
+      "area": 2,
+      "blocks": 10,
+      "frames": 10,
+      "bytes": 6390
+    },
+    {
+      "archive": "HEAD3.DAX",
+      "area": 3,
+      "blocks": 9,
+      "frames": 9,
+      "bytes": 6321
+    },
+    {
+      "archive": "HEAD4.DAX",
+      "area": 4,
+      "blocks": 10,
+      "frames": 10,
+      "bytes": 6198
+    },
+    {
+      "archive": "HEAD5.DAX",
+      "area": 5,
+      "blocks": 6,
+      "frames": 6,
+      "bytes": 5244
+    },
+    {
+      "archive": "HEAD6.DAX",
+      "area": 6,
+      "blocks": 5,
+      "frames": 5,
+      "bytes": 3313
+    },
+    {
+      "archive": "BODY2.DAX",
+      "area": 2,
+      "blocks": 8,
+      "frames": 8,
+      "bytes": 10878
+    },
+    {
+      "archive": "BODY3.DAX",
+      "area": 3,
+      "blocks": 6,
+      "frames": 6,
+      "bytes": 9776
+    },
+    {
+      "archive": "BODY4.DAX",
+      "area": 4,
+      "blocks": 7,
+      "frames": 7,
+      "bytes": 9552
+    },
+    {
+      "archive": "BODY5.DAX",
+      "area": 5,
+      "blocks": 6,
+      "frames": 6,
+      "bytes": 8575
+    },
+    {
+      "archive": "BODY6.DAX",
+      "area": 6,
+      "blocks": 4,
+      "frames": 4,
+      "bytes": 6424
+    }
+  ],
+  "errors": []
+}

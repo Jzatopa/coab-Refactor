@@ -11,7 +11,10 @@ namespace Logging
 
         static public void Setup()
         {
-            basePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Curse of the Azure Bonds");
+            string configuredBasePath = Environment.GetEnvironmentVariable("COAB_USER_DATA_DIR");
+            basePath = String.IsNullOrEmpty(configuredBasePath)
+                ? Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Personal), "Curse of the Azure Bonds")
+                : Path.GetFullPath(configuredBasePath);
 
             if (Directory.Exists(basePath) == false)
             {

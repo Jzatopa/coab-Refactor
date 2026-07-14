@@ -1,6 +1,5 @@
 using Classes;
 using System;
-using System.IO;
 
 namespace engine
 {
@@ -21,13 +20,12 @@ namespace engine
             seg043.clear_keyboard();
         }
 
-        static bool show_hd_title(string fileName)
+        static bool show_hd_title(int block)
         {
-            string path = Path.Combine(gbl.exe_path, "HDAssets", fileName);
-
-            if (System.IO.File.Exists(path))
+            HdAssetEntry entry;
+            if (HdAssetCatalog.TryGet("TITLE.DAX", block, 0, out entry))
             {
-                Display.SetExternalImage(path);
+                Display.SetExternalImage(entry.Path);
                 return true;
             }
 
@@ -36,10 +34,10 @@ namespace engine
 
         static bool hd_title_set_available()
         {
-            string root = Path.Combine(gbl.exe_path, "HDAssets");
             for (int block = 1; block <= 4; block++)
             {
-                if (System.IO.File.Exists(Path.Combine(root, "Title Block " + block + ".png")) == false)
+                HdAssetEntry entry;
+                if (HdAssetCatalog.TryGet("TITLE.DAX", block, 0, out entry) == false)
                 {
                     return false;
                 }
@@ -99,7 +97,7 @@ namespace engine
             DaxBlock dax_ptr;
             bool useHdTitles = hd_title_set_available();
 
-            if (useHdTitles == false || show_hd_title("Title Block 1.png") == false)
+            if (useHdTitles == false || show_hd_title(1) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 1, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
@@ -107,13 +105,13 @@ namespace engine
 
             delay_or_key(5);
 
-            if (useHdTitles == false || show_hd_title("Title Block 2.png") == false)
+            if (useHdTitles == false || show_hd_title(2) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 2, "Title");
                 seg040.draw_picture(dax_ptr, 0, 0, 0);
             }
 
-            if (useHdTitles == false || show_hd_title("Title Block 3.png") == false)
+            if (useHdTitles == false || show_hd_title(3) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 3, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 6, 0);
@@ -122,7 +120,7 @@ namespace engine
 
             seg044.PlaySound(Sound.sound_d);
 
-            if (useHdTitles == false || show_hd_title("Title Block 4.png") == false)
+            if (useHdTitles == false || show_hd_title(4) == false)
             {
                 dax_ptr = seg040.LoadDax(0, 0, 4, "Title");
                 seg040.draw_picture(dax_ptr, 0x0b, 0, 0);

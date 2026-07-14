@@ -1,0 +1,2324 @@
+{
+  "ledger_entries": 231,
+  "candidate_entries": 10,
+  "stageable_entries": 5,
+  "invalid_candidate_entries": 0,
+  "results": [
+    {
+      "identity": "BIGPIC1.DAX:121:000",
+      "candidate": "../HDAssets/BIGPIC1_block_121.png",
+      "candidate_width": 1996,
+      "candidate_height": 788,
+      "candidate_sha256": "f5dc6f1fd1469d871f933052b208743beb69b994e3cb260d0748ac1bb6a32b38",
+      "errors": [],
+      "warnings": [],
+      "stageable": true
+    },
+    {
+      "identity": "BIGPIC1.DAX:123:000",
+      "candidate": "../HDAssets/BIGPIC1_block_123.png",
+      "candidate_width": 1996,
+      "candidate_height": 788,
+      "candidate_sha256": "2ccbbe07c3d54d9599aab1e1f307893ecd375443f5ba72bb597b0e132b22f85d",
+      "errors": [],
+      "warnings": [],
+      "stageable": true
+    },
+    {
+      "identity": "BIGPIC2.DAX:120:000",
+      "candidate": "../HDAssets/BIGPIC2/BIGPIC2_block_120_frame_000.png",
+      "candidate_width": 1976,
+      "candidate_height": 780,
+      "candidate_sha256": "25afa5a90a3c17d8023c1d30b73bd526971539dcfde6b1f3f73d27aa721c6fb6",
+      "errors": [],
+      "warnings": [],
+      "stageable": true
+    },
+    {
+      "identity": "BIGPIC6.DAX:122:000",
+      "candidate": "../HDAssets/BIGPIC1_block_122.png",
+      "candidate_width": 1996,
+      "candidate_height": 788,
+      "candidate_sha256": "3ba9b3d324ae7cf5e478b9f1ac1fec0ecf63f9aa16eb0a78335f2d1fccb89008",
+      "errors": [],
+      "warnings": [],
+      "stageable": true
+    },
+    {
+      "identity": "BODY2.DAX:000:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:002:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:004:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:005:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:006:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY2.DAX:065:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:016:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:017:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:018:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:019:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY3.DAX:022:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:032:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:033:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:034:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:035:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:042:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:049:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY4.DAX:070:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:049:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:050:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:051:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:058:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY5.DAX:059:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY6.DAX:016:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY6.DAX:064:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY6.DAX:065:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "BODY6.DAX:070:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:000:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:002:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:004:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:005:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:006:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:008:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:009:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD2.DAX:065:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:016:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:017:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:018:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:019:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:020:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:021:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:022:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD3.DAX:024:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:032:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:033:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:034:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:035:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:036:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:037:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:038:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:042:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:049:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD4.DAX:070:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:003:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:049:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:050:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:051:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:058:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD5.DAX:059:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD6.DAX:020:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD6.DAX:064:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD6.DAX:065:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD6.DAX:067:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "HEAD6.DAX:070:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:001:000",
+      "candidate": "review-candidates/PIC1_block_001/candidate-D.png",
+      "candidate_width": 1254,
+      "candidate_height": 1254,
+      "candidate_sha256": "24574f5a610f60bdc48f40739edbdf2bbeef2723dff726ac3d3e3d04ac006eb5",
+      "errors": [],
+      "warnings": [
+        "candidate retained for review history but is not stageable"
+      ],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC1.DAX:080:000",
+      "candidate": "../HDAssets/PIC1_block_080_village.png",
+      "candidate_width": 1254,
+      "candidate_height": 1254,
+      "candidate_sha256": "08f0f0e80f80bbb643ff94394bda0d7fbad30dfb6a14a39b105d527c8fba31d0",
+      "errors": [],
+      "warnings": [],
+      "stageable": true
+    },
+    {
+      "identity": "PIC2.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:005",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:006",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:007:007",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:009:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:009:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:009:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:009:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:009:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:010:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:010:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:010:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:011:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:012:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:013:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:014:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC2.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:016:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:017:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:018:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:019:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:025:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:027:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:027:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:027:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:027:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC3.DAX:030:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:009:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:009:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:009:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:009:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:009:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:033:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:035:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:035:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:035:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:037:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:038:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:039:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:039:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:039:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:039:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:040:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:040:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:040:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:040:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:041:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:041:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:005",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:006",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:049:007",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:067:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:067:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC4.DAX:067:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:051:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:052:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:052:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:052:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:053:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:054:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:054:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:054:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:054:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:054:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:055:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:057:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:057:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:057:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:057:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC5.DAX:060:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:001:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:029:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:029:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:029:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:029:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:005",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:006",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:064:007",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:065:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:065:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:065:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:065:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:065:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:067:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:067:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:067:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:068:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:069:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:069:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:069:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:069:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:071:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:071:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:071:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:071:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:072:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:073:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:005",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:074:006",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:075:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:075:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:075:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:075:003",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:075:004",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:076:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:076:001",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:076:002",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "PIC6.DAX:077:000",
+      "candidate": null,
+      "candidate_width": null,
+      "candidate_height": null,
+      "candidate_sha256": null,
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "TITLE.DAX:001:000",
+      "candidate": "approved/TITLE/TITLE_block_001_frame_000.png",
+      "candidate_width": 1920,
+      "candidate_height": 1200,
+      "candidate_sha256": "5eac3adf67dbba77023c296091a85b50b13de8f6d3997030c53894617110fdd4",
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "TITLE.DAX:002:000",
+      "candidate": "approved/TITLE/TITLE_block_002_frame_000.png",
+      "candidate_width": 1920,
+      "candidate_height": 1200,
+      "candidate_sha256": "e4ed39fc465509dc1479fb077ca74151b187807aba8a94e66cef6e85687c40ff",
+      "errors": [],
+      "warnings": [],
+      "stageable": false
+    },
+    {
+      "identity": "TITLE.DAX:003:000",
+      "candidate": "approved/TITLE/TITLE_block_003_frame_000.png",
+      "candidate_width": 1920,
+      "candidate_height": 1200,
+      "candidate_sha256": "9a236515a9b56b2d854a1d6b46659bd8144bbcc0bd1fe13888ca74fc55641d04",
+      "errors": [],
+      "warnings": [
+        "candidate retained for review history but is not stageable"
+      ],
+      "stageable": false
+    },
+    {
+      "identity": "TITLE.DAX:004:000",
+      "candidate": "approved/TITLE/TITLE_block_004_frame_000.png",
+      "candidate_width": 1920,
+      "candidate_height": 1200,
+      "candidate_sha256": "8cdf3d9dc65fcc4a7ce58e27cd156a232d470693fed1d5da0a0b33233cfa36e1",
+      "errors": [],
+      "warnings": [
+        "candidate retained for review history but is not stageable"
+      ],
+      "stageable": false
+    }
+  ]
+}

@@ -34,9 +34,21 @@ namespace Classes
         static int outputHeight;
         
         static public Bitmap bm;
+        public sealed class ExternalImageLayer
+        {
+            public string Key;
+            public string Path;
+            public Bitmap Image;
+            public Rectangle LogicalRect;
+            public int Order;
+        }
+
+        const string DefaultExternalImageKey = "default";
         static public Bitmap ExternalImage;
         static public Rectangle ExternalImageLogicalRect;
         public static readonly object ExternalImageLock = new object();
+        static readonly Dictionary<string, ExternalImageLayer> externalImages =
+            new Dictionary<string, ExternalImageLayer>();
         static Rectangle rect = new Rectangle(0, 0, 320, 200);
 
         public struct HighResGlyph
@@ -251,22 +263,64 @@ namespace Classes
 
         public static void SetExternalImage(string path, Rectangle logicalRect, bool publishImmediately)
         {
-            Bitmap replacement = new Bitmap(path);
-            Bitmap previous;
+            SetExternalImage(DefaultExternalImageKey, path, logicalRect, publishImmediately);
+        }
+
+        static int ExternalImageOrder(string key)
+        {
+            if (key == "bigpic") return 10;
+            if (key == "game-picture") return 20;
+            if (key == "portrait-head") return 30;
+            if (key == "portrait-body") return 31;
+            return 100;
+        }
+
+        public static void SetExternalImage(string key, string path, Rectangle logicalRect, bool publishImmediately)
+        {
+            if (String.IsNullOrEmpty(key))
+            {
+                key = DefaultExternalImageKey;
+            }
+
             lock (ExternalImageLock)
             {
-                previous = ExternalImage;
-                ExternalImage = replacement;
-                ExternalImageLogicalRect = logicalRect;
+                ExternalImageLayer current;
+                if (externalImages.TryGetValue(key, out current) &&
+                    String.Equals(current.Path, path, StringComparison.OrdinalIgnoreCase) &&
+                    current.LogicalRect == logicalRect)
+                {
+                    return;
+                }
+            }
+
+            Bitmap replacement = new Bitmap(path);
+            ExternalImageLayer previous = null;
+            lock (ExternalImageLock)
+            {
+                externalImages.TryGetValue(key, out previous);
+                externalImages[key] = new ExternalImageLayer
+                {
+                    Key = key,
+                    Path = path,
+                    Image = replacement,
+                    LogicalRect = logicalRect,
+                    Order = ExternalImageOrder(key)
+                };
+
+                if (key == DefaultExternalImageKey)
+                {
+                    ExternalImage = replacement;
+                    ExternalImageLogicalRect = logicalRect;
+                }
                 lock (highResFontLock)
                 {
                     highResGlyphs.Clear();
                 }
             }
 
-            if (previous != null)
+            if (previous != null && previous.Image != null)
             {
-                previous.Dispose();
+                previous.Image.Dispose();
             }
 
             if (publishImmediately && updateCallback != null)
@@ -282,10 +336,48 @@ namespace Classes
 
         public static void ClearExternalImage(bool publishImmediately)
         {
-            Bitmap previous;
+            ClearAllExternalImages(publishImmediately);
+        }
+
+        public static void ClearExternalImage(string key, bool publishImmediately)
+        {
+            ExternalImageLayer previous = null;
             lock (ExternalImageLock)
             {
-                previous = ExternalImage;
+                if (externalImages.TryGetValue(key, out previous))
+                {
+                    externalImages.Remove(key);
+                }
+
+                if (key == DefaultExternalImageKey)
+                {
+                    ExternalImage = null;
+                    ExternalImageLogicalRect = Rectangle.Empty;
+                }
+                lock (highResFontLock)
+                {
+                    highResGlyphs.Clear();
+                }
+            }
+
+            if (previous != null && previous.Image != null)
+            {
+                previous.Image.Dispose();
+            }
+
+            if (publishImmediately && previous != null)
+            {
+                ForceUpdate();
+            }
+        }
+
+        public static void ClearAllExternalImages(bool publishImmediately)
+        {
+            List<ExternalImageLayer> previous;
+            lock (ExternalImageLock)
+            {
+                previous = new List<ExternalImageLayer>(externalImages.Values);
+                externalImages.Clear();
                 ExternalImage = null;
                 ExternalImageLogicalRect = Rectangle.Empty;
                 lock (highResFontLock)
@@ -294,14 +386,30 @@ namespace Classes
                 }
             }
 
-            if (previous != null)
+            foreach (ExternalImageLayer layer in previous)
             {
-                previous.Dispose();
+                if (layer.Image != null)
+                {
+                    layer.Image.Dispose();
+                }
             }
 
-            if (publishImmediately)
+            if (publishImmediately && previous.Count > 0)
             {
                 ForceUpdate();
+            }
+        }
+
+        public static List<ExternalImageLayer> GetExternalImageSnapshot()
+        {
+            lock (ExternalImageLock)
+            {
+                List<ExternalImageLayer> snapshot = new List<ExternalImageLayer>(externalImages.Values);
+                snapshot.Sort(delegate(ExternalImageLayer left, ExternalImageLayer right)
+                {
+                    return left.Order.CompareTo(right.Order);
+                });
+                return snapshot;
             }
         }
 

@@ -1,0 +1,62 @@
+{
+  "BIGPIC1.DAX:121:000": {
+    "candidate": "../HDAssets/BIGPIC1_block_121.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Existing retained-HD replacement; clears at the outer-frame boundary."
+  },
+  "BIGPIC1.DAX:123:000": {
+    "candidate": "../HDAssets/BIGPIC1_block_123.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Existing retained-HD replacement; clears at the outer-frame boundary."
+  },
+  "BIGPIC2.DAX:120:000": {
+    "candidate": "../HDAssets/BIGPIC2/BIGPIC2_block_120_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Candidate B exact-ratio crop preserves the three-head composition; the older flat BIGPIC1_block_120.png remains rejected legacy material."
+  },
+  "BIGPIC6.DAX:122:000": {
+    "candidate": "../HDAssets/BIGPIC1_block_122.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Legacy filename retained as source only; runtime identity follows BIGPIC6.DAX."
+  },
+  "PIC1.DAX:001:000": {
+    "candidate": "review-candidates/PIC1_block_001/candidate-D.png",
+    "review_status": "rejected",
+    "lifecycle_status": "pending",
+    "notes": "Strongest first batch candidate, but it omits or weakens the curved golden horn and open parchment scroll required by composition lock."
+  },
+  "PIC1.DAX:080:000": {
+    "candidate": "../HDAssets/PIC1_block_080_village.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Project realism baseline; verified through wilderness, camp, and combat transitions."
+  },
+  "TITLE.DAX:001:000": {
+    "candidate": "approved/TITLE/TITLE_block_001_frame_000.png",
+    "review_status": "pending",
+    "lifecycle_status": "pending",
+    "notes": "Exact 8:5 ratio, but held until all four title blocks have exact per-block ratios and can stage as one lifecycle set."
+  },
+  "TITLE.DAX:002:000": {
+    "candidate": "approved/TITLE/TITLE_block_002_frame_000.png",
+    "review_status": "pending",
+    "lifecycle_status": "pending",
+    "notes": "Exact 8:5 ratio, but held until all four title blocks have exact per-block ratios and can stage as one lifecycle set."
+  },
+  "TITLE.DAX:003:000": {
+    "candidate": "approved/TITLE/TITLE_block_003_frame_000.png",
+    "review_status": "rejected",
+    "lifecycle_status": "pending",
+    "notes": "1920x1200 full-screen composite does not preserve this block's 15:7 archive-frame ratio."
+  },
+  "TITLE.DAX:004:000": {
+    "candidate": "approved/TITLE/TITLE_block_004_frame_000.png",
+    "review_status": "rejected",
+    "lifecycle_status": "pending",
+    "notes": "1920x1200 full-screen composite does not preserve this block's 20:7 archive-frame ratio."
+  }
+}

@@ -33,6 +33,8 @@ Title blocks 1–4 are treated as one complete set. If any HD title file is unav
 
 The final title overlay is cleared with `Display.ClearExternalImage(false)` immediately before `ClearScreen()` publishes the credits transition.
 
+In the full-auto fork, title blocks 3 and 4 remain partial DAX updates but their HD counterparts are accumulated complete title screens. They are fitted without stretching to an exact 8:5 presentation canvas, staged as four archive/block identities, and still activate only when the complete four-file set is available.
+
 ## Normal PIC replacements
 
 PIC1 block 80 replaces the demo village panel at logical rectangle `(24,24,88,88)`. `DrawMaybeOverlayed()` activates it only when drawing the exact first frame loaded from `PIC1.DAX` block 80. It is retired without an intermediate publish before a different normal picture, portrait, animation, BIGPIC, or outer frame replaces that panel.
@@ -50,6 +52,12 @@ Opaque picture and symbol pixels written through `Display.SetPixel3()` invalidat
 `HDAssets/PIC1_block_080_village.png` is the baseline reference for replacement-art realism. New manually created or automated image generations should match or exceed its grounded detail, material realism, natural lighting, coherent perspective, and scene fidelity. Do not accept visibly painterly, plastic, generic, low-detail, or loosely interpreted generations when the reference supports a more realistic result.
 
 Generated replacements must still preserve the original composition, important objects, gameplay readability, panel aspect ratio, and transition lifecycle.
+
+## Manifest-driven full-auto branch
+
+The isolated `full-auto-upgrade` branch uses `image-uprez-pipeline/integration-manifest.json` as the authoritative archive/block/frame ledger. Every one of the 231 entries has a unique runtime lookup name, animation-group membership, exact source dimensions/aspect ratio, and lifecycle class.
+
+Only `review_status=approved` plus `lifecycle_status=verified` assets may be staged. Animated archive/block groups are staged all-or-nothing. The runtime reads `HDAssets/runtime-lookup.tsv`; it does not infer identity from a legacy filename or reuse a block number across archives. Staging is atomic and occurs only in the isolated full-auto runtime.
 
 ## Verification requirement
 
