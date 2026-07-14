@@ -52,3 +52,7 @@ Candidate C was generated from the corrected normalized prompt with both BODY2 a
 ## Candidate D — rejected; identity explicitly handled as rejected
 
 Candidate D used the corrected exact prompt with BODY2, matched HEAD2 and candidate-C refinement conditioning. It still preserves too-wide/rimmed pauldrons, a dominant diagonal buckle, a third prominent gold clasp/buckle, strap holes, a wide baldric and extra leather detail. The provider repeatedly converged on the same costume redesign across four attempts. This identity remains explicitly rejected rather than approving a weak match. A future retry must begin from the current corrected normalized prompt and the original BODY2/HEAD2 references.
+
+## Source-locked attempt 2 localized edit — rejected
+
+The final localized edit is retained as `candidate-attempt2-local-edit.png` and its exact 11:6 crop. It still broadens the silhouette, keeps oversized textured pauldrons and leather, uses a wide diagonal strap and heavy lower belt, presents more than two prominent gold fixtures, enlarges the clasp/emblem, and does not preserve hard pure-black negative space at the top-center join. Under `SOURCE_LOCKED_WORKFLOW.md`, attempt 2 therefore fails human/visual QC and must not be installed. BODY2.DAX:000:000 remains explicitly handled as rejected pending a future human-directed redraw or masked edit.

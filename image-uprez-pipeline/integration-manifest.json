@@ -119,10 +119,10 @@
     "runtime_name": "BODY2_block_000_frame_000.png",
     "runtime_lookup": "BODY2.DAX:000:000",
     "lifecycle": "portrait_body_until_portrait_or_panel_replace",
-    "candidate": "review-candidates/BODY2_block_000/candidate-D-exact-ratio.png",
+    "candidate": "review-candidates/BODY2_block_000/candidate-attempt2-local-edit-exact-ratio.png",
     "review_status": "rejected",
     "lifecycle_status": "pending",
-    "notes": "Four source-conditioned attempts rejected. Candidate D still has rimmed/overwide pauldrons, a dominant diagonal buckle plus three gold fixtures, strap holes, a wide baldric, and extra leather detail. Explicitly handled as rejected; do not stage."
+    "notes": "Source-locked two-pass workflow exhausted. Localized attempt 2 still changes silhouette/negative space, uses oversized pauldrons and straps, more than two prominent gold fixtures, and enlarged clasp/emblem. Explicitly rejected; not stageable."
   },
   {
     "identity": "BODY2.DAX:001:000",

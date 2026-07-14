@@ -46,10 +46,10 @@
     },
     {
       "identity": "BODY2.DAX:000:000",
-      "candidate": "review-candidates/BODY2_block_000/candidate-D-exact-ratio.png",
+      "candidate": "review-candidates/BODY2_block_000/candidate-attempt2-local-edit-exact-ratio.png",
       "candidate_width": 1694,
       "candidate_height": 924,
-      "candidate_sha256": "01e95090b14119d2deed8c001a2bf45326d5fb7d90079d64fcd2ad12e0e09f2d",
+      "candidate_sha256": "8f5440214f67d87b459e699dc20f92e5e340e0f733534faec74c40a20f16b88a",
       "errors": [],
       "warnings": [
         "candidate retained for review history but is not stageable"
