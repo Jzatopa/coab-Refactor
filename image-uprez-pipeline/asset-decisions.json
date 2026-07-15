@@ -64,5 +64,11 @@
     "review_status": "rejected",
     "lifecycle_status": "pending",
     "notes": "Source-locked attempt 2 local edit remains too broad; gold fixtures, purple emblem, pauldrons, magenta cloth and turquoise clasp are materially oversized. Two-attempt gate reached; preserved and escalated for human QC."
+  },
+  "BODY2.DAX:001:000": {
+    "candidate": "review-candidates/BODY2_block_001/candidate-attempt2-local-edit-exact-ratio.png",
+    "review_status": "rejected",
+    "lifecycle_status": "pending",
+    "notes": "Correct person-reference attempt and localized edit both failed source lock: altered hands/arm crop, central plate and diagonal object geometry, purple cloth distribution, and hard black cutouts. Two-attempt gate reached; human QC and shared HEAD/BODY lighting contract required."
   }
 }

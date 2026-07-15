@@ -1,6 +1,6 @@
 {
   "ledger_entries": 231,
-  "candidate_entries": 11,
+  "candidate_entries": 12,
   "stageable_entries": 9,
   "invalid_candidate_entries": 0,
   "results": [
@@ -58,12 +58,14 @@
     },
     {
       "identity": "BODY2.DAX:001:000",
-      "candidate": null,
-      "candidate_width": null,
-      "candidate_height": null,
-      "candidate_sha256": null,
+      "candidate": "review-candidates/BODY2_block_001/candidate-attempt2-local-edit-exact-ratio.png",
+      "candidate_width": 1694,
+      "candidate_height": 924,
+      "candidate_sha256": "e9eccf13bb13040500af1392948bdddb486909b738f4260afdb7f899aefb4488",
       "errors": [],
-      "warnings": [],
+      "warnings": [
+        "candidate retained for review history but is not stageable"
+      ],
       "stageable": false
     },
     {
