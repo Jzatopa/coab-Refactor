@@ -39,6 +39,33 @@ Do not repeat a full scene-generation prompt for attempt 2.
 
 Do not reuse one generic lighting description across all assets. Record the target's key direction, softness, temperature, fill, contrast, rim/magical light and background spill before generating. For matched HEAD/BODY components, use the same lighting sentence in both prompts and review the combined 88×88 game-layout composite before either component is approved.
 
+## HEAD/BODY combined-first workflow
+
+The engine stacks HEAD at y=0 and BODY at y=40 logical pixels with no overlap. Create the first high-resolution version as one coherent 88×88-equivalent portrait, then split it at 45.4545% height. This establishes a seamless matched pair and the neck/collar connector template used by later interchangeable parts.
+
+Acceptance requires:
+
+- no black gap or floating head;
+- continuous neck anatomy into the collar;
+- identical key, fill and rim lighting across both panels;
+- consistent scale, skin tone and texture density;
+- exact 11:5 HEAD and 11:6 BODY ratios after splitting;
+- clean recombination at the engine's no-overlap seam;
+- a cross-pair test using another generated head on the same body.
+
+Iterate the combined portrait rather than independently regenerating the cropped pieces. Keep a numbered iteration log. If six combined-layout iterations fail to produce both a seamless matched pair and a credible reusable connector, stop and review the evidence with James before proceeding.
+
+### Fast in-game test loop
+
+Use the woman figure shown shortly after character creation in a new game as the primary live HEAD/BODY validation scene. It is quick to reach and exercises the engine's real two-asset rendering path. For every interchangeability iteration:
+
+1. stage the separate HEAD and BODY files in the isolated Full Auto runtime;
+2. start a new game and complete/advance past character creation;
+3. capture the first woman HEAD/BODY figure at full presentation resolution;
+4. inspect the live render for floating, seams, scale, connector position, lighting, skin-tone continuity and stale overlays;
+5. compare the live capture with the offline exact-stack composite;
+6. reject any pair whose offline composite looks correct but whose actual game render does not.
+
 ## Review gate
 
 Compare original and candidate side by side. Review in this order:

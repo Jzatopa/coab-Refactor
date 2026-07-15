@@ -73,6 +73,22 @@ Write one concise lighting sentence into the asset prompt. Example: **“Soft ne
 
 Connected HEAD/BODY components must share one lighting contract so skin, armor, cloth, shadow direction and seam brightness match when the game stacks them. The realism reference defines quality only; it does not override the target asset's authored lighting.
 
+## Interchangeable HEAD/BODY portrait contract
+
+Do not generate a matched head and body independently. The game places the 88×40 HEAD panel at y=0 and the 88×48 BODY panel at y=40 with no overlap, producing an 88×88 portrait. Independent generations create floating heads, incompatible necks and mismatched lighting.
+
+For each initial matched pair:
+
+1. assemble the original HEAD and BODY into the exact 88×88 game layout;
+2. generate one coherent square photoreal portrait from that combined original;
+3. require anatomy, costume and lighting to remain continuous across the horizontal split at y=40/88 (45.4545% of height);
+4. split the accepted HD composite at that exact percentage into an 11:5 HEAD and 11:6 BODY;
+5. recombine the two split outputs without overlap and verify that the result is pixel-identical to the accepted combined image;
+6. define a canonical neck connector for the character set: centered neck width/position, skin value at the bottom HEAD edge, collar/socket geometry at the top BODY edge, lighting direction and seam shadow;
+7. test at least two different generated heads against the same body before declaring the parts interchangeable.
+
+All later heads and bodies in that set must be generated against the canonical connector template. A head that only works with its originally generated body is a matched pair, not yet an interchangeable game component.
+
 The first attempt should establish fidelity. The second attempt should be a narrow correction pass, not another broad reinterpretation.
 
 ## Resolution
