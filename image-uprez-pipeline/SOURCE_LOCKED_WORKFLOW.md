@@ -8,7 +8,11 @@ Inputs, in order:
 
 1. nearest-neighbor enlarged original extraction — authoritative composition;
 2. optional annotated/masked original — authoritative object boundaries;
-3. `HDAssets/PIC1_block_080_village.png` — finish and realism reference only.
+3. subject-appropriate finish reference only:
+   - `HDAssets/Title Block 2.png` for people, heads, bodies, portraits and humanoid creatures;
+   - `HDAssets/PIC1_block_080_village.png` for environments, architecture, objects and non-character scenes.
+
+`Title Block 2.png` is the opening image with a clearly rendered person and no visible title logo/text. When used, it controls only human realism, anatomy quality, skin, practical costume materials and lighting. It must not transfer the woman's identity, pose, armor design or composition into the target asset.
 
 Prompt structure:
 
