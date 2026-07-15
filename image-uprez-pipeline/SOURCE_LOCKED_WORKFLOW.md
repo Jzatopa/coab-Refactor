@@ -21,6 +21,7 @@ Prompt structure:
 3. exact spatial relationships and crop;
 4. forbidden omissions, merges, additions, or redesigns;
 5. desired realistic materials and finish.
+6. one explicit asset-specific lighting sentence derived from the source.
 
 Lead instruction:
 
@@ -33,6 +34,10 @@ Use candidate A as the editable input, with the enlarged original supplied again
 > Keep the current image unchanged except for these corrections: restore the separate curved horn at upper left; change the lower-left parchment into one fully open scroll; reduce the helmet to the original bounding box. Match input image 2 for those positions and silhouettes. Do not alter lighting, coins, sword, bottle, gemstones, camera, or crop.
 
 Do not repeat a full scene-generation prompt for attempt 2.
+
+## Lighting
+
+Do not reuse one generic lighting description across all assets. Record the target's key direction, softness, temperature, fill, contrast, rim/magical light and background spill before generating. For matched HEAD/BODY components, use the same lighting sentence in both prompts and review the combined 88×88 game-layout composite before either component is approved.
 
 ## Review gate
 

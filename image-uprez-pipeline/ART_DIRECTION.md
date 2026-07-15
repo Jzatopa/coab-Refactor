@@ -57,6 +57,22 @@ Use an **image edit/reference workflow**, not text-to-image reconstruction from 
 7. For tiny or ambiguous originals, create a temporary annotated composition reference with numbered objects, boundary boxes, arrows, or flat-color masks. Use it as an additional reference; annotations must not appear in the final output.
 8. Stop after two failed attempts and escalate for human QC rather than repeatedly spending generations on an unchanged strategy.
 
+## Asset-specific lighting contract
+
+Every uprez prompt must define lighting for that exact asset rather than relying on a generic cinematic-style phrase. Before generation, inspect the original and record:
+
+- key-light direction and height;
+- key softness or hardness;
+- brightness/contrast level;
+- warm, neutral or cool color temperature;
+- fill-light strength and shadow depth;
+- rim, magical or environmental light if visibly present;
+- background illumination and whether empty black areas must remain unlit.
+
+Write one concise lighting sentence into the asset prompt. Example: **“Soft neutral key light from upper screen-left, weak frontal fill, restrained cool rim on screen-right, medium contrast, and no spill into the pure-black background.”**
+
+Connected HEAD/BODY components must share one lighting contract so skin, armor, cloth, shadow direction and seam brightness match when the game stacks them. The realism reference defines quality only; it does not override the target asset's authored lighting.
+
 The first attempt should establish fidelity. The second attempt should be a narrow correction pass, not another broad reinterpretation.
 
 ## Resolution
