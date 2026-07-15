@@ -11,14 +11,24 @@
 ## Current strict-stage counts
 
 - Ledger entries: **231**
-- Replacement-bearing entries: **10**
-- Missing entries: **221**
+- Replacement-bearing entries: **12**
+- Missing ledger entries: **219**
+- Unique original images: **175**
+- Unique originals handled: **12** (**9 approved**, **3 explicitly rejected**)
+- Unique originals still missing: **163**
 - Approved and integrated in the isolated runtime: **9**
-- Rejected and retained for review history: **1**
+- Rejected and retained for review history: **3**
 
 Integrated identities: TITLE blocks 1–4 as one exact-ratio lifecycle set; BIGPIC1 blocks 121/123; BIGPIC2 block 120 at exact 38:15; BIGPIC6 block 122; and PIC1 block 80.
 
-PIC1 block 001 candidate D remains the strongest first batch candidate, but it is not integrated because the curved golden horn and open parchment scroll are omitted or weakened. Its rejected review status is preserved.
+Explicitly rejected identities are PIC1 block 001, BODY2 block 000, and BODY2 block 001. Each exhausted the current review workflow without meeting composition lock; their candidates, exact-ratio derivatives, comparisons, and review notes are retained and excluded from staging.
+
+## Resume point
+
+- Next missing unique ledger identity: **`BODY2.DAX:002:000`** (`png/BODY2/BODY2_block_002_frame_000.png`).
+- Nearest-neighbor source prep is retained as `review-evidence/BODY2_block_002_source_22x.png` and matching `HEAD2_block_002_source_22x.png`.
+- Before generating, add one shared asset-specific lighting sentence to both BODY2 block 002 and HEAD2 block 002 prompt records, normalize the master ledger, then use the enlarged BODY source as composition input and `HDAssets/Title Block 2.png` only as the human realism/lighting-quality reference.
+- The requested **231/231 final acceptance and final all-assets demo replay have not passed**; the replay evidence below is the verified deterministic-foundation baseline with the current nine staged replacements.
 
 ## Verification
 
