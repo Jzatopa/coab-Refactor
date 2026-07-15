@@ -122,7 +122,7 @@
     "candidate": "review-candidates/BODY2_block_000/candidate-attempt2-local-edit-exact-ratio.png",
     "review_status": "rejected",
     "lifecycle_status": "pending",
-    "notes": "Source-locked two-pass workflow exhausted. Localized attempt 2 still changes silhouette/negative space, uses oversized pauldrons and straps, more than two prominent gold fixtures, and enlarged clasp/emblem. Explicitly rejected; not stageable."
+    "notes": "Source-locked attempt 2 local edit remains too broad; gold fixtures, purple emblem, pauldrons, magenta cloth and turquoise clasp are materially oversized. Two-attempt gate reached; preserved and escalated for human QC."
   },
   {
     "identity": "BODY2.DAX:001:000",

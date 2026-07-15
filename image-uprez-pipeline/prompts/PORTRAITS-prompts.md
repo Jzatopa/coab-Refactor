@@ -7,29 +7,15 @@ Generated for **71** extracted portrait components. Each prompt preserves the or
 - **Aspect ratio:** 11:6 (88x48)
 - **Matching component:** `HEAD2_block_000_frame_000.png`
 
-Create a high-resolution photorealistic live-action fantasy reconstruction of the attached original Curse of the Azure Bonds image.
+Transform input image 1 into grounded photoreal live-action Forgotten Realms fantasy. Preserve every object, silhouette, overlap, crop, position, orientation, color role, empty area, and exact 11:6 aspect ratio. Input image 2 defines human realism, anatomy, practical costume materials and lighting only; do not transfer its identity, pose, clothing design or composition. Change only input image 1's rendering style and material detail.
 
-COMPOSITION LOCK — preserve exactly:
-- source aspect ratio: 11:6 (88×48);
-- original camera angle, crop and horizon;
-- major subject bounding boxes and their relative proportions;
-- foreground/middle-ground/background allocation;
-- count, placement, facing direction and scale of important people, creatures and objects;
-- architecture, pathways, openings and major environmental shapes;
-- negative space and panel readability.
+Exactly one chest-only armored torso; no head, neck or skin. Keep the small pure-black top-center cutout continuous with the outer background. Preserve the white central cuirass, simple rounded silver pauldrons, clipped brown upper arms, narrow magenta accents and tiny turquoise clasp.
 
-SCENE CONTENT:
-Chest-only frontal crop of the heroic young armored man matched to HEAD2 block 000, with the head and neck completely absent. The white plate cuirass fills the central panel; simple rounded silver pauldrons are clipped by the top and side edges, and brown upper arms are clipped at both lower side edges. At top center, the missing neck/head area is a small pure-black void continuous with the featureless background, bordered below by narrow magenta shoulder/neckline fabric and a tiny turquoise clasp; it is not skin or a shaded throat. One slim brown leather baldric begins at the upper screen-left shoulder and runs diagonally down toward the lower screen-right. A separate brown waist belt enters from the lower screen-left and crosses the lower torso almost horizontally, intersecting the baldric near the lower center-right. Retain two small square gold fixtures at the same relative source positions, one on the diagonal strap and one near the lower crossing. A compact purple rearing heraldic animal remains on the upper screen-right breastplate.
+Preserve exactly one slim brown baldric from upper screen-left to lower screen-right and one separate low, almost-horizontal waist belt entering from lower screen-left. Keep exactly two small square gold fixtures at the source-relative positions. Keep one compact purple rearing heraldic animal at the source-relative size and upper screen-right chest position.
 
-COHESIVE GAME ART DIRECTION:
-Grounded prestige live-action Forgotten Realms fantasy; realistic late-medieval materials and construction; natural skin, cloth, leather, wood, stone and metal; practical costumes and armor; physically coherent natural or motivated magical lighting; restrained cinematic color grading; subtle atmospheric depth; rich fine detail; serious dramatic tone. Match or exceed the realism and production quality of PIC1_block_080_village.png.
+Do not broaden the torso or change any edge crop. Do not enlarge the pauldrons, arms, belts, fixtures, clasp, magenta cloth or emblem. Do not add text or borders. Do not add a physical neck opening, skin, rivets, leather rims, decorative edging, extra straps, extra armor segments, scenery, gray falloff or halo.
 
-Do not add text, borders, logos, interface elements, modern objects, extra characters, extra limbs or unrelated fantasy decoration. Do not make it cartoon, anime, painterly, plastic, glossy, oversaturated, generic concept art or an obvious 3D render. Do not redesign the composition. The result must be immediately recognizable as the same scene at photographic realism.
-
-IMAGE-SPECIFIC CONSTRAINTS:
-Prompt correction after rejected candidates A–E: reproduce the source silhouette, negative space and strap map literally. The top-center black shape must be the same featureless #000 background as the outer corners and must read as an empty cutout where the separate HEAD panel will join—not as visible skin, a neck, throat, collar opening or shaded anatomy. No human skin may appear anywhere. Keep the top-center void small; do not lower it into the chest or broaden the torso opening. Keep both simple rounded pauldrons, brown upper arms and lower torso cut off at the source edges; do not reveal extra abdomen, gauntlets or sleeves. Use exactly two separate brown leather strips: (1) one narrow baldric from upper screen-left to lower screen-right and (2) one narrow lower waist belt entering from lower screen-left and running almost horizontally across the bottom third, visibly intersecting the baldric near lower center-right. Do not replace them with one strap, two parallel diagonal straps, an X harness or an ornate leather yoke. Use exactly two small square gold fixtures at the source-relative positions; neither may become a large centered buckle. Keep the turquoise clasp tiny, the magenta accents narrow, and the purple rearing animal compact on the upper screen-right chest. Do not enlarge, center, elaborate or relocate the emblem; do not add rivets, leather rims, decorative edging, sculpted abdominal plates or extra armor segments. Maintain a youthful athletic build and neutral frontal lighting compatible with the young dark-skinned man in HEAD2_block_000_frame_000.png, while showing none of his skin in this body panel. All empty areas must be hard featureless pure black: no gray falloff, vignette, halo, smoke, scenery or edge glow.
-
-Output one clean scene image with no frame or caption.
+Use practical late-medieval white plate, worn silver metal, brown leather and woven magenta cloth with restrained neutral frontal lighting. Highest-risk locks: exact source silhouette; pure-black cutout; one diagonal baldric plus one low belt; two small gold fixtures; small purple emblem.
 
 ## `png/BODY2/BODY2_block_001_frame_000.png`
 
