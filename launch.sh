@@ -1,15 +1,11 @@
-#!/bin/bash
-# Launches COAB (Curse of the Azure Bonds C# reconstruction) against the
-# original Curse data.
-#
-# COAB loads every .dax/.geo asset by bare filename (e.g. "8x8d1.dax",
-# "GEO1.dax") with no path prefix -- Classes/Gbl.cs's `data_path` field is
-# declared but never assigned or used anywhere, so nothing wires in a data
-# directory automatically. Running Main.exe from the repo root fails with
-# "Unable to load <n> from <file>" because those files only exist under
-# Data/. Running with Data/ as the working directory fixes it.
+#!/usr/bin/env bash
+# Launches COAB through the isolated full-auto runtime so the normal demo and
+# game both receive the validated HD asset catalog. The tracked Data/ tree is
+# used as the default original-data source but is never modified: run-full-auto
+# copies it into runtime/full-auto/data, validates the identity ledger, and
+# stages only approved lifecycle-verified HD replacements there.
 set -euo pipefail
 
 COAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-cd "$COAB_DIR/Data"
-exec mono "$COAB_DIR/Main/bin/Release/Main.exe" "$@"
+export COAB_GAME_DIR="${COAB_GAME_DIR:-$COAB_DIR/Data}"
+exec "$COAB_DIR/run-full-auto.sh" "$@"

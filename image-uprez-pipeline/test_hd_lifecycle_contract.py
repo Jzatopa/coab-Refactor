@@ -12,6 +12,7 @@ ovr011 = (ROOT / "engine/ovr011.cs").read_text()
 ovr031 = (ROOT / "engine/ovr031.cs").read_text()
 seg037 = (ROOT / "engine/seg037.cs").read_text()
 seg041 = (ROOT / "engine/seg041.cs").read_text()
+launch = (ROOT / "launch.sh").read_text()
 
 # Every newly approved gameplay picture uses the one retained game-picture
 # owner. Replacing an image updates that same layer; missing/non-PIC draws
@@ -41,6 +42,13 @@ assert cmd_combat.rfind("ovr025.LoadPic();") > cmd_combat.rfind(
     "gbl.game_state = GameState.WildernessMap;"
 )
 
+# The standard demo launcher must prepare the same isolated, validated runtime
+# as run-full-auto. Launching Main.exe directly from tracked Data/ bypasses the
+# runtime lookup and silently falls back to the original low-resolution art.
+assert 'export COAB_GAME_DIR="${COAB_GAME_DIR:-$COAB_DIR/Data}"' in launch
+assert 'exec "$COAB_DIR/run-full-auto.sh" "$@"' in launch
+assert 'exec mono "$COAB_DIR/Main/bin/Release/Main.exe"' not in launch
+
 # Complete scene replacement boundaries retire all retained gameplay artwork
 # inside stopped update batches, so no stale overlay or fallback frame can be
 # published over combat, 3D/area-map, or rebuilt framed screens.
@@ -55,5 +63,17 @@ approved_pic = [
 assert approved_pic
 assert all(row["lifecycle"] == "normal_picture_until_panel_replace" for row in approved_pic)
 assert all(row["lifecycle_status"] == "verified" for row in approved_pic)
+
+# Treasure is PIC block 001 in every game area. All six identities must be
+# approved, use the same exact artwork, and inherit the verified panel-replace
+# retirement boundary used by the after-combat screen transition above.
+treasure = [row for row in approved_pic if row["block"] == 1 and row["frame"] == 0]
+assert [row["identity"] for row in treasure] == [
+    f"PIC{area}.DAX:001:000" for area in range(1, 7)
+]
+assert len({row["candidate"] for row in treasure}) == 1
+assert len({row["source_sha256"] for row in treasure}) == 1
+assert all(row["lifecycle"] == "normal_picture_until_panel_replace" for row in treasure)
+assert all(row["lifecycle_status"] == "verified" for row in treasure)
 
 print(f"HD lifecycle contract passed for {len(approved_pic)} approved PIC identities")
