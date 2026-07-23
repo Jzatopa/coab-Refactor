@@ -18,3 +18,7 @@ runtime-data/
 runtime/
 __pycache__/
 *.pyc
+
+# Local preservation archive used during HD tree migration; canonical source
+# candidates and generated verified assets are tracked elsewhere in the repo.
+HD-ASSET-ARCHIVE/

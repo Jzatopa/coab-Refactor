@@ -9,6 +9,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from PIL import Image
 
+from integration_common import resolve_candidate
+
 PIPELINE = Path(__file__).resolve().parent.parent
 WORKSPACE = PIPELINE.parents[1]
 MANIFEST = PIPELINE / "integration-manifest.json"
@@ -49,9 +51,9 @@ def collect() -> dict:
     for row in rows:
         if row["review_status"] != "approved" or row["lifecycle_status"] != "verified":
             continue
-        candidate = PIPELINE / row["candidate"]
-        if not candidate.is_file():
-            raise SystemExit(f"approved candidate is missing: {candidate}")
+        candidate = resolve_candidate(row["candidate"])
+        if candidate is None or not candidate.is_file():
+            raise SystemExit(f"approved candidate is missing: {row['candidate']}")
         protected_entries.append({
             "identity": row["identity"],
             "runtime_name": row["runtime_name"],

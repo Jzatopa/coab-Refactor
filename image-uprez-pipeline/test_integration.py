@@ -6,7 +6,7 @@ import hashlib
 import tempfile
 from pathlib import Path
 
-from integration_common import build_rows
+from integration_common import build_rows, resolve_candidate
 from stage_approved_assets import stage
 from validate_candidates import validate
 
@@ -17,7 +17,7 @@ assert len({row["identity"] for row in rows}) == 231
 assert len({row["runtime_name"] for row in rows}) == 231
 assert all(row["animation_frame_count"] >= 1 for row in rows)
 validation = validate(rows)
-assert validation["stageable_entries"] == 87
+assert validation["stageable_entries"] == 118
 treasure = [row for row in rows if row["block"] == 1 and row["archive"].startswith("PIC")]
 assert len(treasure) == 6
 assert all(row["review_status"] == "approved" for row in treasure)
@@ -63,17 +63,32 @@ for left, right in [
     ("PIC4.DAX:049:005", "PIC4.DAX:049:002"),
     ("PIC4.DAX:049:006", "PIC4.DAX:049:001"),
 ]:
-    left_path = Path(__file__).resolve().parent / pic4_by_identity[left]["candidate"]
-    right_path = Path(__file__).resolve().parent / pic4_by_identity[right]["candidate"]
+    left_path = resolve_candidate(pic4_by_identity[left]["candidate"])
+    right_path = resolve_candidate(pic4_by_identity[right]["candidate"])
+    assert left_path is not None and right_path is not None
     assert hashlib.sha256(left_path.read_bytes()).hexdigest() == hashlib.sha256(right_path.read_bytes()).hexdigest()
+
+recovered_groups = {
+    "PIC3.DAX:027": 4,
+    "PIC4.DAX:035": 3,
+    "PIC5.DAX:052": 3,
+    "PIC5.DAX:057": 4,
+}
+for group, expected_count in recovered_groups.items():
+    frames = [row for row in rows if row["animation_group"] == group]
+    assert len(frames) == expected_count
+    assert [row["frame"] for row in frames] == list(range(expected_count))
+    assert all(row["review_status"] == "approved" for row in frames)
+    assert all(row["lifecycle_status"] == "verified" for row in frames)
+    assert all(row["lifecycle"] == "normal_picture_until_panel_replace" for row in frames)
 with tempfile.TemporaryDirectory() as temp:
     destination = Path(temp) / "HDAssets"
     report = stage(destination)
-    assert report["integrated_entries"] == 87
+    assert report["integrated_entries"] == 118
     with (destination / "runtime-lookup.tsv").open(newline="") as handle:
         staged = list(csv.DictReader(handle, dialect="excel-tab"))
     assert len(staged) == 231
-    assert sum(row["stage_status"] == "integrated" for row in staged) == 87
+    assert sum(row["stage_status"] == "integrated" for row in staged) == 118
     staged_treasure = [row for row in staged if row["block"] == "1" and row["archive"].startswith("PIC")]
     assert len(staged_treasure) == 6
     assert all(row["stage_status"] == "integrated" for row in staged_treasure)
@@ -104,6 +119,9 @@ with tempfile.TemporaryDirectory() as temp:
     staged_pic4_new = [row for row in staged if row["animation_group"] in pic4_groups]
     assert len(staged_pic4_new) == 21
     assert all(row["stage_status"] == "integrated" for row in staged_pic4_new)
+    staged_recovered = [row for row in staged if row["animation_group"] in recovered_groups]
+    assert len(staged_recovered) == sum(recovered_groups.values())
+    assert all(row["stage_status"] == "integrated" for row in staged_recovered)
     for row in staged:
         if row["stage_status"] == "integrated":
             runtime_file = destination / row["runtime_path"]
@@ -124,4 +142,4 @@ battle_draw = ovr011.index("SetupGroundTiles();", battle)
 assert battle < battle_clear < battle_draw
 assert "externalImages[key] = new ExternalImageLayer" in display
 assert "externalImages.Remove(key);" in display
-print("integration tests passed: 231 lookups, 87 staged with byte-matched runtime files, shared six-area treasure/camp mappings, complete PIC2/PIC4 animations with duplicate-frame contracts, verified retained-layer replacement boundaries, and exact-ratio innkeeper/title assets")
+print("integration tests passed: 231 lookups, 118 staged with byte-matched runtime files, shared six-area treasure/camp mappings, complete approved PIC2-PIC5 animations with duplicate-frame contracts, verified retained-layer replacement boundaries, and exact-ratio innkeeper/title assets")

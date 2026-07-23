@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-07-23",
+  "scope": "Documents production assets tree; PNG files with either dimension at least 1024 pixels",
+  "production_hd_file_count": 71,
+  "production_hd_unique_sha256_count": 67,
+  "covered_by_repository_file_count": 70,
+  "excluded": [
+    {
+      "relative_path": "PIC2/ChatGPT Image Jul 21, 2026, 11_15_57 AM (6).png",
+      "sha256": "a014a902aa5c84a0266b87f9c295b0e941483adc82bf24c68258bfff58e3ddcd",
+      "reason": "Unused sixth generated alternate for PIC2 block 009; the source animation contains only five frames."
+    }
+  ],
+  "external_completed_sources": [
+    {
+      "identity": "PIC6.DAX:068:000",
+      "sha256": "cdaafd21594ef77a523aa86d3c4d645b19ebe9ccf140a2789133c015dd543884"
+    },
+    {
+      "identity": "PIC6.DAX:077:000",
+      "sha256": "02b7c92da900da318eec7aa27d4c4cbec8e81e8f52f7932428d4c09adf520ad1"
+    }
+  ]
+}

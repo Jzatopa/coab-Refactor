@@ -1,0 +1,256 @@
+{
+  "schema_version": 1,
+  "import_date": "2026-07-23",
+  "policy": "Only completed >=1024px PNG candidates with exact ledger identity mappings were imported. Original 88x88 PNGs, previews, and incomplete groups were excluded.",
+  "imported_entries": 31,
+  "entries": [
+    {
+      "identity": "PIC3.DAX:016:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_016_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 21, 2026, 04_29_27 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f2316a00616afe57e8b5c610a12ede5c3349f1028aa03c10e971784881ecbbf4"
+    },
+    {
+      "identity": "PIC3.DAX:017:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_017_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 21, 2026, 06_10_51 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e4a10a20aa0d82e3ef08474ddcee6439768b949787db6b8739ef81a259d2d3ad"
+    },
+    {
+      "identity": "PIC3.DAX:018:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_018_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 21, 2026, 06_00_13 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "64a30dcc6250a98d531fa6fdd7b10d53fc41f4615dbea08a1ed073779795bc64"
+    },
+    {
+      "identity": "PIC3.DAX:019:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_019_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 21, 2026, 04_33_44 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "f6f79006b26a4a5facba4fb61af3e2b89058f2b83ce9e8b466f9b792364cb889"
+    },
+    {
+      "identity": "PIC3.DAX:025:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_025_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 21, 2026, 06_06_36 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d2a351e90785cebe09ce5ff1c6f6186d9fae5d714e2c7370127741cb9c313906"
+    },
+    {
+      "identity": "PIC3.DAX:027:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 22, 2026, 10_56_34 AM (1).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ea2ac056debc9e68efb3ed7587516869fa9194433da475209cdc3af8dcab182f"
+    },
+    {
+      "identity": "PIC3.DAX:027:001",
+      "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_001.png",
+      "source_label": "PIC3/ChatGPT Image Jul 22, 2026, 10_56_34 AM (2).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "e8dff7a7a0c91d40ab77b9000af11c6338d1adfc09cd7b060e1c2c72fca759f0"
+    },
+    {
+      "identity": "PIC3.DAX:027:002",
+      "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_002.png",
+      "source_label": "PIC3/ChatGPT Image Jul 22, 2026, 10_56_35 AM (3).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "38b21625242faa87a2788bc8d220ca8964286f58edb55f897adad4f658bb07d0"
+    },
+    {
+      "identity": "PIC3.DAX:027:003",
+      "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_003.png",
+      "source_label": "PIC3/ChatGPT Image Jul 22, 2026, 10_56_35 AM (4).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d3f80b4d7e7931f8361c0f07607d83bdba9788a6f3ab6e792d72d409b41344f5"
+    },
+    {
+      "identity": "PIC3.DAX:030:000",
+      "candidate": "approved/recovered/PIC3/PIC3_block_030_frame_000.png",
+      "source_label": "PIC3/ChatGPT Image Jul 22, 2026, 10_23_06 AM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "ddb0b11f8f8764ee9df2843113ccb962985f068a651b202451d4ab37ad4bbc3f"
+    },
+    {
+      "identity": "PIC4.DAX:033:000",
+      "candidate": "approved/recovered/PIC4/PIC4_block_033_frame_000.png",
+      "source_label": "PIC4/ChatGPT Image Jul 22, 2026, 11_03_45 AM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0b6c00dec44606eb483c9fd061cfe9f85bf8787e2a08e715c1678dc25893a1ec"
+    },
+    {
+      "identity": "PIC4.DAX:035:000",
+      "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_000.png",
+      "source_label": "PIC4/ChatGPT Image Jul 22, 2026, 12_16_52 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "985963863b4019f21b44f9998130ad7f5da67fae120ea6cc0b24f00c2d3ae126"
+    },
+    {
+      "identity": "PIC4.DAX:035:001",
+      "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_001.png",
+      "source_label": "PIC4/ChatGPT Image Jul 22, 2026, 12_23_45 PM (1).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "14491c116aa6089d0246b5ef784b6dd7e0ea4b90e209bdfd4157b6de44c2fbdc"
+    },
+    {
+      "identity": "PIC4.DAX:035:002",
+      "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_002.png",
+      "source_label": "PIC4/ChatGPT Image Jul 22, 2026, 12_23_46 PM (2).png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "fc245dcd7fef267a84afbf06bcb47786a9492183ce40a6e43726f6afaf0ce0df"
+    },
+    {
+      "identity": "PIC4.DAX:037:000",
+      "candidate": "approved/recovered/PIC4/PIC4_block_037_frame_000.png",
+      "source_label": "PIC4/PIC4_block_037_frame_000_HD.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "0c822cff02d747fac3a4e9299ed591422240f1064f6332b59d5b44d6078611aa"
+    },
+    {
+      "identity": "PIC4.DAX:038:000",
+      "candidate": "approved/recovered/PIC4/PIC4_block_038_frame_000.png",
+      "source_label": "PIC4/ChatGPT Image Jul 22, 2026, 02_11_46 PM.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d3fc367c3731f9a5a4073ab69e3fa5c44749aebca0e39f84268612b03a81dba1"
+    },
+    {
+      "identity": "PIC5.DAX:051:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_051_frame_000.png",
+      "source_label": "PIC5/PIC5_block_051_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "13909ba0e4ea4c8d17c8b21247a8b0ac2588431e1c7e6341bbd815b178e64c74"
+    },
+    {
+      "identity": "PIC5.DAX:052:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_000.png",
+      "source_label": "PIC5/PIC5_block_052_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "5e85f7a763867ed3be4101bb300fb104c0675d877d2bc5859c39deede380a4e8"
+    },
+    {
+      "identity": "PIC5.DAX:052:001",
+      "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_001.png",
+      "source_label": "PIC5/PIC5_block_052_frame_001.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cf22c810ae5e876f8863efca30e931fbc608b975076f2cc84a4bb85822a87e9a"
+    },
+    {
+      "identity": "PIC5.DAX:052:002",
+      "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_002.png",
+      "source_label": "PIC5/PIC5_block_052_frame_002.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "af7d67e50e6b45ca4d2f7ee58ad747246d6ef7f3af8885b4917a92a908b27dd4"
+    },
+    {
+      "identity": "PIC5.DAX:053:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_053_frame_000.png",
+      "source_label": "PIC5/PIC5_block_053_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "62522dcbe77440eb75e00cbc0cdebfd8827d9664c54896535f989e6d4374c2b7"
+    },
+    {
+      "identity": "PIC5.DAX:055:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_055_frame_000.png",
+      "source_label": "PIC5/PIC5_block_055_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "41b20d4af522d979e461e11d8aa605f17c025ea7cf0be0f9e057954adf5aa61d"
+    },
+    {
+      "identity": "PIC5.DAX:057:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_000.png",
+      "source_label": "PIC5/frame_000_anchor.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "6b8dfb0041b613ed076d3a09a6a23a4dbeffa80261b557d2910dcb4118c59e91"
+    },
+    {
+      "identity": "PIC5.DAX:057:001",
+      "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_001.png",
+      "source_label": "PIC5/frame_001_raised_closed.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "9ca5594dba0a921f3933161a522b09b7756990ca5b16c817f0e70ca5ce1b9072"
+    },
+    {
+      "identity": "PIC5.DAX:057:002",
+      "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_002.png",
+      "source_label": "PIC5/frame_002_raised_open.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "4ffec3fa588dc39472f143ae406c43b36d27af6bc47af5ed70cd44adc5a6c605"
+    },
+    {
+      "identity": "PIC5.DAX:057:003",
+      "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_003.png",
+      "source_label": "PIC5/frame_003_return.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "6b8dfb0041b613ed076d3a09a6a23a4dbeffa80261b557d2910dcb4118c59e91"
+    },
+    {
+      "identity": "PIC5.DAX:060:000",
+      "candidate": "approved/recovered/PIC5/PIC5_block_060_frame_000.png",
+      "source_label": "PIC5/PIC5_block_060_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "7bbd3291ce70781d99eaea3ab443a261bba437c9eaa6ad6d1c1492f1c3637e00"
+    },
+    {
+      "identity": "PIC6.DAX:068:000",
+      "candidate": "approved/recovered/PIC6/PIC6_block_068_frame_000.png",
+      "source_label": "PIC6_static_upscales/PIC6_block_068_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "cdaafd21594ef77a523aa86d3c4d645b19ebe9ccf140a2789133c015dd543884"
+    },
+    {
+      "identity": "PIC6.DAX:072:000",
+      "candidate": "approved/recovered/PIC6/PIC6_block_072_frame_000.png",
+      "source_label": "PIC6/PIC6_block_072_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "d307f2288d269ecd9d15ac79310a0332126bcf93d28aa07cb46b0cbdb985d161"
+    },
+    {
+      "identity": "PIC6.DAX:073:000",
+      "candidate": "approved/recovered/PIC6/PIC6_block_073_frame_000.png",
+      "source_label": "PIC6/PIC6_block_073_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "849cdb448035da7432572aead92d7de43351a8e1908b46f25a5826da65b2c710"
+    },
+    {
+      "identity": "PIC6.DAX:077:000",
+      "candidate": "approved/recovered/PIC6/PIC6_block_077_frame_000.png",
+      "source_label": "PIC6_static_upscales/PIC6_block_077_frame_000.png",
+      "width": 1254,
+      "height": 1254,
+      "sha256": "02b7c92da900da318eec7aa27d4c4cbec8e81e8f52f7932428d4c09adf520ad1"
+    }
+  ]
+}

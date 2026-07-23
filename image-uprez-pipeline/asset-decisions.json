@@ -1,24 +1,24 @@
 {
   "BIGPIC1.DAX:121:000": {
-    "candidate": "../HDAssets/BIGPIC1_block_121.png",
+    "candidate": "approved/legacy-hdassets/BIGPIC1_block_121.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Existing retained-HD replacement; clears at the outer-frame boundary."
   },
   "BIGPIC1.DAX:123:000": {
-    "candidate": "../HDAssets/BIGPIC1_block_123.png",
+    "candidate": "approved/legacy-hdassets/BIGPIC1_block_123.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Existing retained-HD replacement; clears at the outer-frame boundary."
   },
   "BIGPIC2.DAX:120:000": {
-    "candidate": "../HDAssets/BIGPIC2/BIGPIC2_block_120_frame_000.png",
+    "candidate": "approved/legacy-hdassets/BIGPIC2/BIGPIC2_block_120_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Candidate B exact-ratio crop preserves the three-head composition; the older flat BIGPIC1_block_120.png remains rejected legacy material."
   },
   "BIGPIC6.DAX:122:000": {
-    "candidate": "../HDAssets/BIGPIC1_block_122.png",
+    "candidate": "approved/legacy-hdassets/BIGPIC1_block_122.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Legacy filename retained as source only; runtime identity follows BIGPIC6.DAX."
@@ -30,7 +30,7 @@
     "notes": "The maintainer explicitly requested the supplied 2026-07-21 treasure still for every treasure scene. PIC1-PIC6 block 001 source frames are byte-identical (SHA-256 1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb), so one reviewed 1254x1254 replacement is deliberately shared across all six archive identities. It preserves the dominant diagonal blade, helmet, coins, parchment, bottle and jewel composition. The normal-picture retained layer uses the shared ovr030 panel-replacement lifecycle."
   },
   "PIC1.DAX:080:000": {
-    "candidate": "../HDAssets/PIC1_block_080_village.png",
+    "candidate": "approved/legacy-hdassets/PIC1_block_080_village.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Project realism baseline; verified through wilderness, camp, and combat transitions."
@@ -72,25 +72,25 @@
     "notes": "Correct person-reference attempt and localized edit both failed source lock: altered hands/arm crop, central plate and diagonal object geometry, purple cloth distribution, and hard black cutouts. Two-attempt gate reached; human QC and shared HEAD/BODY lighting contract required."
   },
   "PIC1.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "The maintainer supplied the replacement 10_16_59 AM four-frame set and explicitly requested integration on 2026-07-15. Filename order (1)-(4) maps to DAX frames 0-3 and supersedes the earlier 09_58_52/09_58_53 set. The generic normal-picture retained layer advances with each original animation frame. Initial live replay exposed a stale camp layer during combat. BattleSetup was corrected to retire all retained gameplay picture layers inside the stopped combat update batch. Post-fix native-rate replay passed: last camp frame 40.67s, first complete combat frame 41.00s, no stale overlay, fallback flash, blank panel, or partial combat frame."
   },
   "PIC1.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "The maintainer supplied the replacement 10_16_59 AM four-frame set and explicitly requested integration on 2026-07-15. Filename order (1)-(4) maps to DAX frames 0-3 and supersedes the earlier 09_58_52/09_58_53 set. The generic normal-picture retained layer advances with each original animation frame. Initial live replay exposed a stale camp layer during combat. BattleSetup was corrected to retire all retained gameplay picture layers inside the stopped combat update batch. Post-fix native-rate replay passed: last camp frame 40.67s, first complete combat frame 41.00s, no stale overlay, fallback flash, blank panel, or partial combat frame."
   },
   "PIC1.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "The maintainer supplied the replacement 10_16_59 AM four-frame set and explicitly requested integration on 2026-07-15. Filename order (1)-(4) maps to DAX frames 0-3 and supersedes the earlier 09_58_52/09_58_53 set. The generic normal-picture retained layer advances with each original animation frame. Initial live replay exposed a stale camp layer during combat. BattleSetup was corrected to retire all retained gameplay picture layers inside the stopped combat update batch. Post-fix native-rate replay passed: last camp frame 40.67s, first complete combat frame 41.00s, no stale overlay, fallback flash, blank panel, or partial combat frame."
   },
   "PIC1.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "The maintainer supplied the replacement 10_16_59 AM four-frame set and explicitly requested integration on 2026-07-15. Filename order (1)-(4) maps to DAX frames 0-3 and supersedes the earlier 09_58_52/09_58_53 set. The generic normal-picture retained layer advances with each original animation frame. Initial live replay exposed a stale camp layer during combat. BattleSetup was corrected to retire all retained gameplay picture layers inside the stopped combat update batch. Post-fix native-rate replay passed: last camp frame 40.67s, first complete combat frame 41.00s, no stale overlay, fallback flash, blank panel, or partial combat frame."
@@ -138,121 +138,121 @@
     "notes": "The maintainer explicitly requested the supplied 2026-07-21 treasure still for every treasure scene. PIC1-PIC6 block 001 source frames are byte-identical (SHA-256 1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb), so one reviewed 1254x1254 replacement is deliberately shared across all six archive identities. It preserves the dominant diagonal blade, helmet, coins, parchment, bottle and jewel composition. The normal-picture retained layer uses the shared ovr030 panel-replacement lifecycle."
   },
   "PIC2.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC2.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC2.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC2.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC3.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC3.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC3.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC3.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC4.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC4.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC4.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC4.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC5.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC5.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC5.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC5.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC6.DAX:029:000": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_000.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC6.DAX:029:001": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_001.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_001.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC6.DAX:029:002": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_002.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_002.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
   },
   "PIC6.DAX:029:003": {
-    "candidate": "../HDAssets/PIC1/PIC1_block_029_frame_003.png",
+    "candidate": "approved/legacy-hdassets/PIC1/PIC1_block_029_frame_003.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Reuses the already approved PIC1 block 029 HD camp frame because PIC1-PIC6 block 029 source animations are byte-identical frame-for-frame. The maintainer requested the existing high-resolution camping scene everywhere. The shared four-frame normal-picture lifecycle was previously live-tested through camp-to-combat and now resolves by exact archive/block/frame identity in every area."
@@ -532,5 +532,191 @@
     "review_status": "approved",
     "lifecycle_status": "verified",
     "notes": "Complete three-frame rakshasa smoke sequence. Contract records frame 000 as user-approved; visual review on 2026-07-23 confirmed the three numbered smoke-path states while the subject and props remain fixed. Uses the verified normal-picture retained-layer lifecycle."
+  },
+  "PIC3.DAX:016:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_016_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:017:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_017_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:018:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_018_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:019:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_019_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:025:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_025_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:027:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:027:001": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_001.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:027:002": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_002.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:027:003": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_027_frame_003.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC3.DAX:030:000": {
+    "candidate": "approved/recovered/PIC3/PIC3_block_030_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:033:000": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_033_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:035:000": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:035:001": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_001.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:035:002": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_035_frame_002.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:037:000": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_037_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC4.DAX:038:000": {
+    "candidate": "approved/recovered/PIC4/PIC4_block_038_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:051:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_051_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:052:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:052:001": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_001.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:052:002": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_052_frame_002.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:053:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_053_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:055:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_055_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:057:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:057:001": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_001.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:057:002": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_002.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:057:003": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_057_frame_003.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC5.DAX:060:000": {
+    "candidate": "approved/recovered/PIC5/PIC5_block_060_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC6.DAX:068:000": {
+    "candidate": "approved/recovered/PIC6/PIC6_block_068_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC6.DAX:072:000": {
+    "candidate": "approved/recovered/PIC6/PIC6_block_072_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC6.DAX:073:000": {
+    "candidate": "approved/recovered/PIC6/PIC6_block_073_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC6.DAX:077:000": {
+    "candidate": "approved/recovered/PIC6/PIC6_block_077_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
   }
 }
