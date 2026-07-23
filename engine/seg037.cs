@@ -127,6 +127,8 @@ namespace engine
         {
             Display.UpdateStop();
 
+            ovr030.ClearHdPictureOverlays(false);
+
             draw8x8_clear_area(0x10, 0x26, 1, 1);
 
             for (int col_x = 0; col_x <= 0x27; col_x++)
@@ -157,6 +159,8 @@ namespace engine
         internal static void DrawFrame_Combat() // draw8x8_06
         {
             Display.UpdateStop();
+
+            ovr030.ClearHdPictureOverlays(false);
 
             draw8x8_clear_area(0x17, 0x27, 0, 0);
 

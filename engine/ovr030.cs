@@ -280,6 +280,15 @@ namespace engine
         {
             string text = gbl.game_area.ToString();
 
+            if (System.Environment.GetEnvironmentVariable("COAB_HD_TRACE") == "1")
+            {
+                System.Console.Error.WriteLine(
+                    "COAB_HD_HEAD_BODY area={0} head={1} body={2}",
+                    text,
+                    head_id,
+                    body_id);
+            }
+
             if (head_id != 0xff &&
                 (gbl.current_head_id == 0xff || gbl.current_head_id != head_id))
             {
@@ -433,6 +442,50 @@ namespace engine
             ClearPortraitOverlays(false);
             if (publishImmediately && hadActiveLayers)
             {
+                Display.ForceUpdate();
+            }
+        }
+
+        static bool LayerIntersects(string key, System.Drawing.Rectangle logicalRect)
+        {
+            foreach (Display.ExternalImageLayer layer in Display.GetExternalImageSnapshot())
+            {
+                if (layer.Key == key)
+                {
+                    return logicalRect.IsEmpty ||
+                        layer.LogicalRect.IsEmpty ||
+                        layer.LogicalRect.IntersectsWith(logicalRect);
+                }
+            }
+
+            return false;
+        }
+
+        internal static void ClearHdPictureOverlaysIntersecting(
+            System.Drawing.Rectangle logicalRect,
+            bool publishImmediately)
+        {
+            bool cleared = false;
+            List<string> activeLayers = new List<string>(activeGameplayLayers);
+            foreach (string layer in activeLayers)
+            {
+                if (LayerIntersects(layer, logicalRect))
+                {
+                    ClearLayer(layer, false);
+                    cleared = true;
+
+                    if (layer == BigpicLayer)
+                    {
+                        hdBigpicOverlayActive = false;
+                        hdBigpicOverlayBlock = 0xff;
+                    }
+                }
+            }
+
+            if (publishImmediately && cleared)
+            {
+                // Publish once after all intersecting layers have retired so
+                // a split portrait can never expose a partial intermediate.
                 Display.ForceUpdate();
             }
         }

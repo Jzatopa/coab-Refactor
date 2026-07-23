@@ -1,0 +1,8 @@
+mode=full-auto-fixed-extended
+video_seconds=100
+record_fps=3
+game_alive=yes
+lifecycle_verdict=PASS
+last_camp_frame=40.67s
+first_complete_combat_frame=41.00s
+finding=Atomic clear; no stale camp, low-resolution fallback, blank panel, mixed overlay, or partial combat frame at 3 fps.

@@ -6,6 +6,13 @@ namespace engine
     {
         internal static void DrawRectangle(byte color, int yEnd, int xEnd, int yStart, int xStart)
         {
+            ovr030.ClearHdPictureOverlaysIntersecting(
+                new System.Drawing.Rectangle(
+                    xStart * 8,
+                    yStart * 8,
+                    (xEnd - xStart + 1) * 8,
+                    (yEnd - yStart + 1) * 8),
+                false);
             Display.ClearHighResText(yStart, yEnd, xStart, xEnd);
             xStart *= 8;
             xEnd = (xEnd + 1) * 8;

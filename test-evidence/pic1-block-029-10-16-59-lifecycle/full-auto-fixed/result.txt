@@ -1,0 +1,4 @@
+mode=full-auto-fixed
+video_seconds=55
+record_fps=5
+game_alive=yes

@@ -179,6 +179,24 @@ namespace Classes
             }
         }
 
+        static void InvalidateHighResText(Rectangle logicalRect)
+        {
+            if (logicalRect.Width <= 0 || logicalRect.Height <= 0)
+            {
+                lock (highResFontLock)
+                {
+                    highResGlyphs.Clear();
+                }
+                return;
+            }
+
+            ClearHighResText(
+                logicalRect.Top / 8,
+                (logicalRect.Bottom - 1) / 8,
+                logicalRect.Left / 8,
+                (logicalRect.Right - 1) / 8);
+        }
+
         public static Color GetEgaColor(int index)
         {
             index = Math.Max(0, Math.Min(15, index));
@@ -315,11 +333,11 @@ namespace Classes
                     ExternalImage = replacement;
                     ExternalImageLogicalRect = logicalRect;
                 }
-                lock (highResFontLock)
-                {
-                    highResGlyphs.Clear();
-                }
             }
+
+            // Each retained layer replaces only its own logical rectangle.
+            // Preserve unrelated HD text, including the party Name/AC/HP box.
+            InvalidateHighResText(logicalRect);
 
             if (previous != null && previous.Image != null)
             {
@@ -357,14 +375,11 @@ namespace Classes
                     ExternalImage = null;
                     ExternalImageLogicalRect = Rectangle.Empty;
                 }
-                lock (highResFontLock)
-                {
-                    highResGlyphs.Clear();
-                }
             }
 
             if (previous != null && previous.Image != null)
             {
+                InvalidateHighResText(previous.LogicalRect);
                 previous.Image.Dispose();
             }
 
@@ -383,14 +398,11 @@ namespace Classes
                 externalImages.Clear();
                 ExternalImage = null;
                 ExternalImageLogicalRect = Rectangle.Empty;
-                lock (highResFontLock)
-                {
-                    highResGlyphs.Clear();
-                }
             }
 
             foreach (ExternalImageLayer layer in previous)
             {
+                InvalidateHighResText(layer.LogicalRect);
                 if (layer.Image != null)
                 {
                     layer.Image.Dispose();

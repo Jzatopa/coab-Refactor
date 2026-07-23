@@ -1,0 +1,47 @@
+{
+  "batch": "batch-001-first-5",
+  "policy": "Generate complete 88x88-equivalent HEAD2/BODY2 portrait masters. Do not stage or modify protected HD assets. Human review is required before splitting or integration.",
+  "finish_reference": "external stable-runtime HDAssets/HEAD2_BODY2_block_003_frame_000.png",
+  "output": {
+    "size": "2048x2048",
+    "format": "png",
+    "seam": "HEAD 40/88, BODY 48/88; split only after master approval"
+  },
+  "assets": [
+    {
+      "block": 0,
+      "identity": "HEAD2_BODY2:000",
+      "source": "sources/HEAD2_BODY2_block_000_source_20x.png",
+      "candidate": "candidates/HEAD2_BODY2_block_000_candidate.png",
+      "prompt": "Edit input image 1 into a grounded photoreal live-action Forgotten Realms portrait. Input image 1 is authoritative for composition; input image 2 defines finish, skin, practical costume materials, and photographic lighting quality only. Preserve the exact square crop, frontal centered bust, head and shoulder scale, hair silhouette, all overlaps, and every pure-black negative-space region. Young dark-haired man facing forward; white central armor or tunic, simple rounded pale shoulder plates, one slim brown diagonal strap with small square gold fixtures, narrow magenta-purple collar accents, tiny cyan-gold throat accent, and one compact angular magenta chest mark at its source-relative size. Treat the chest mark and blue hair-edge pixels as ambiguous geometric color accents\u2014do not redesign or enlarge them. Even restrained frontal key light, warm natural face, crisp pale armor highlights, background completely pure black. Do not add scenery, text, border, extra straps, ornate armor, enlarged emblems, halo, smoke, or glow. Change rendering detail and materials only; do not change pose, geometry, crop, or color roles. Output one clean square portrait."
+    },
+    {
+      "block": 1,
+      "identity": "HEAD2_BODY2:001",
+      "source": "sources/HEAD2_BODY2_block_001_source_20x.png",
+      "candidate": "candidates/HEAD2_BODY2_block_001_candidate.png",
+      "prompt": "Edit input image 1 into a grounded photoreal live-action Forgotten Realms portrait. Input image 1 is authoritative for composition; input image 2 defines finish and practical material realism only. Preserve the exact square crop, mostly frontal masked figure, gray layered head wrap and face covering, narrow visible eye region, red tunic, dark gray bracers, magenta-red cloth masses, and both raised-arm silhouettes. Keep the screen-left hand near the chest and the screen-right forearm and hand upright near the side edge. Preserve the dark curved shape crossing the chest as an ambiguous blade-, hook-, strap-, or fold-like silhouette without inventing unsupported detail. Preserve all black cutouts around the head wrap, between the raised right arm and torso, and behind both shoulders. Hard side-biased key light catches gray folds and red fabric; background remains pure black. Do not reveal the face, lower the arms, add weapons or fingers beyond the source, add scenery, text, borders, smoke, or ornate decoration. Change rendering detail and materials only; do not change pose, geometry, crop, or color roles. Output one clean square portrait."
+    },
+    {
+      "block": 2,
+      "identity": "HEAD2_BODY2:002",
+      "source": "sources/HEAD2_BODY2_block_002_source_20x.png",
+      "candidate": "candidates/HEAD2_BODY2_block_002_candidate.png",
+      "prompt": "Edit input image 1 into a grounded photoreal live-action Forgotten Realms portrait. Input image 1 is authoritative for composition; input image 2 defines finish, anatomy quality, and practical fabric realism only. Preserve the exact square crop, compact frontal bust, short dark blue-black hair silhouette, cyan rolled-sleeve shirt and collar beneath a black vest, crossed lower arms and hands, and one short bright pale knife angled upward toward screen-right. Preserve the distinct pure-black wedge between knife and right shoulder and all black space around head and shoulders. Keep small gray shoulder marks as restrained ambiguous highlights rather than inventing objects. Soft frontal key light, bright cyan cloth highlights, controlled pale blade reflection, natural warm skin, background completely pure black. Do not change the knife angle, arm pose, torso scale, crop, facing, or clothing geometry. Do not add scenery, text, borders, extra weapons, jewelry, smoke, or glow. Change rendering detail and materials only. Output one clean square portrait."
+    },
+    {
+      "block": 4,
+      "identity": "HEAD2_BODY2:004",
+      "source": "sources/HEAD2_BODY2_block_004_source_20x.png",
+      "candidate": "candidates/HEAD2_BODY2_block_004_candidate.png",
+      "prompt": "Edit input image 1 into a grounded photoreal live-action Forgotten Realms portrait. Input image 1 is authoritative for composition; input image 2 defines finish, skin, hair, and practical costume materials only. Preserve the exact square crop and strict screen-right side-profile silhouette: brow, nose, mouth, beard, tied-back orange-brown hair, and broad squared shoulders. Preserve the red-brown mantle over the bright green tunic, one small round gold throat clasp, dark diagonal torso accent, and the tiny turquoise-blue geometric accent near the ear or cheek. Treat that turquoise accent and small red-orange texture marks as ambiguous jewelry or color details without enlarging or overexplaining them. Warm directional key from upper front/right shapes face, beard, mantle, and green torso; background remains completely pure black. Do not rotate the head, make the figure face camera, change the shoulder scale, add scenery, text, borders, weapons, horns, smoke, or glow. Change rendering detail and materials only; preserve pose, crop, geometry, and color roles. Output one clean square portrait."
+    },
+    {
+      "block": 5,
+      "identity": "HEAD2_BODY2:005",
+      "source": "sources/HEAD2_BODY2_block_005_source_20x.png",
+      "candidate": "candidates/HEAD2_BODY2_block_005_candidate.png",
+      "prompt": "Edit input image 1 into a grounded photoreal live-action Forgotten Realms portrait. Input image 1 is authoritative for composition; input image 2 defines finish, anatomy quality, and practical textile and jewelry realism only. Preserve the exact square crop, three-quarter head facing screen-right, white headband over orange-brown hair, small gold hoop accent, purple-magenta garment with restrained white trim, dark vertical robe folds, small blue-gold throat accent, crossed lower hand or forearm, and the vivid magenta arm extending horizontally to the screen-right edge. Preserve the pure-black gap beneath the extended arm and all black space around head and hair. Keep the small yellow-gold lower-center shape ambiguous\u2014as a compact clasp, jewel, light, or held detail\u2014without enlarging it into a major object or effect. Bright restrained frontal key on face and jewelry with motivated magenta fabric highlights; background fully pure black. Do not move the extended arm, change pose or crop, add scenery, text, borders, magic effects, extra jewelry, smoke, or glow. Change rendering detail and materials only. Output one clean square portrait."
+    }
+  ]
+}

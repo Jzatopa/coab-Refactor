@@ -1192,6 +1192,11 @@ namespace engine
             Display.UpdateStop();
             try
             {
+                // The original normal-PIC panel is replaced by the completed
+                // combat redraw. Retire every retained gameplay picture layer
+                // inside the same update batch so no stale camp image or
+                // low-resolution fallback frame is published.
+                ovr030.ClearHdPictureOverlays(false);
 
                 gbl.AutoPCsCastMagic = false; // TODO review this...
                 gbl.combat_round = 0;

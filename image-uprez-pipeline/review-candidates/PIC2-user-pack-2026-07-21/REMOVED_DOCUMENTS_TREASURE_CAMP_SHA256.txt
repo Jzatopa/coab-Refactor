@@ -1,0 +1,23 @@
+1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb  low-res treasure  $USER_ASSET_PACK/assets/PIC1/PIC1_block_001_frame_000.png
+8050a92e170319607694b89187e8366fb61cfff6c25b43d96eb39bc5a72e73c3  HD treasure  $USER_ASSET_PACK/assets/PIC2/ChatGPT Image Jul 21, 2026, 12_00_31 PM.png
+1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb  low-res treasure  $USER_ASSET_PACK/assets/PIC3/PIC3_block_001_frame_000.png
+2e13855f1171bf019fc2b390b9f9995bd3d7472be052104e85bd1263bbde2d18  low-res camp frame 0  $USER_ASSET_PACK/assets/PIC3/PIC3_block_029_frame_000.png
+4bcdb848300ce4653418b018118e15d7b519d6894142fae212674077167bd761  low-res camp frame 1  $USER_ASSET_PACK/assets/PIC3/PIC3_block_029_frame_001.png
+a0b96e504929cd27f4f219acbe4689a393aa1aa63b15dcb46ae464964d75e75a  low-res camp frame 2  $USER_ASSET_PACK/assets/PIC3/PIC3_block_029_frame_002.png
+be3805553eb724c2cf433774f2894561dd8eb91da476afa91c6da661b4dd0bcd  low-res camp frame 3  $USER_ASSET_PACK/assets/PIC3/PIC3_block_029_frame_003.png
+1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb  low-res treasure  $USER_ASSET_PACK/assets/PIC4/PIC4_block_001_frame_000.png
+2e13855f1171bf019fc2b390b9f9995bd3d7472be052104e85bd1263bbde2d18  low-res camp frame 0  $USER_ASSET_PACK/assets/PIC4/PIC4_block_029_frame_000.png
+4bcdb848300ce4653418b018118e15d7b519d6894142fae212674077167bd761  low-res camp frame 1  $USER_ASSET_PACK/assets/PIC4/PIC4_block_029_frame_001.png
+a0b96e504929cd27f4f219acbe4689a393aa1aa63b15dcb46ae464964d75e75a  low-res camp frame 2  $USER_ASSET_PACK/assets/PIC4/PIC4_block_029_frame_002.png
+be3805553eb724c2cf433774f2894561dd8eb91da476afa91c6da661b4dd0bcd  low-res camp frame 3  $USER_ASSET_PACK/assets/PIC4/PIC4_block_029_frame_003.png
+1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb  low-res treasure  $USER_ASSET_PACK/assets/PIC5/PIC5_block_001_frame_000.png
+2e13855f1171bf019fc2b390b9f9995bd3d7472be052104e85bd1263bbde2d18  low-res camp frame 0  $USER_ASSET_PACK/assets/PIC5/PIC5_block_029_frame_000.png
+4bcdb848300ce4653418b018118e15d7b519d6894142fae212674077167bd761  low-res camp frame 1  $USER_ASSET_PACK/assets/PIC5/PIC5_block_029_frame_001.png
+a0b96e504929cd27f4f219acbe4689a393aa1aa63b15dcb46ae464964d75e75a  low-res camp frame 2  $USER_ASSET_PACK/assets/PIC5/PIC5_block_029_frame_002.png
+be3805553eb724c2cf433774f2894561dd8eb91da476afa91c6da661b4dd0bcd  low-res camp frame 3  $USER_ASSET_PACK/assets/PIC5/PIC5_block_029_frame_003.png
+1e04224c78b230c67b72d58dd3f58e3fcfb3ee8c164aa95a7d44b722b12440fb  low-res treasure  $USER_ASSET_PACK/assets/PIC6/PIC6_block_001_frame_000.png
+2e13855f1171bf019fc2b390b9f9995bd3d7472be052104e85bd1263bbde2d18  low-res camp frame 0  $USER_ASSET_PACK/assets/PIC6/PIC6_block_029_frame_000.png
+4bcdb848300ce4653418b018118e15d7b519d6894142fae212674077167bd761  low-res camp frame 1  $USER_ASSET_PACK/assets/PIC6/PIC6_block_029_frame_001.png
+a0b96e504929cd27f4f219acbe4689a393aa1aa63b15dcb46ae464964d75e75a  low-res camp frame 2  $USER_ASSET_PACK/assets/PIC6/PIC6_block_029_frame_002.png
+be3805553eb724c2cf433774f2894561dd8eb91da476afa91c6da661b4dd0bcd  low-res camp frame 3  $USER_ASSET_PACK/assets/PIC6/PIC6_block_029_frame_003.png
+8050a92e170319607694b89187e8366fb61cfff6c25b43d96eb39bc5a72e73c3  HD treasure  $USER_ASSET_PACK_EXCLUDED/a60656bb-d837-4b8e-9337-07e13d58ec71.png

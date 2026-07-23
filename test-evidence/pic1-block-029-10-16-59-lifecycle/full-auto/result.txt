@@ -1,0 +1,6 @@
+mode=full-auto
+video_seconds=70
+record_fps=5
+game_alive=yes
+lifecycle_verdict=FAIL_PRE_FIX
+finding=HD camp remained stale beneath combat after transition.

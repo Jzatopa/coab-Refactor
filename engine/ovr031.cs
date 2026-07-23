@@ -322,6 +322,11 @@ namespace engine
         {
             Display.UpdateStop();
 
+            // The 3D viewport/area map replaces the complete gameplay-art
+            // panel. Retire any retained PIC, BIGPIC, or portrait inside the
+            // same stopped update so it cannot persist over the new view.
+            ovr030.ClearHdPictureOverlays(false);
+
             if (gbl.mapAreaDisplay == true)
             {
                 DrawAreaMap(partyDir, partyPosY, partyPosX);

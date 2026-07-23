@@ -6,9 +6,10 @@ import csv
 import os
 import shutil
 import tempfile
+import json
 from pathlib import Path
 
-from integration_common import build_rows, resolve_candidate
+from integration_common import build_rows, resolve_candidate, sha256
 from validate_candidates import validate
 
 FIELDS = [
@@ -18,10 +19,43 @@ FIELDS = [
     "runtime_path", "candidate_sha256"
 ]
 
+PIPELINE = Path(__file__).resolve().parent
+PROTECTED_LOCK = PIPELINE / "nextgen" / "protected-assets.json"
+
+
+def assert_protected_assets_unchanged(rows: list[dict], checks: dict[str, dict]) -> None:
+    """Do not let a future staging run replace an accepted HD asset.
+
+    The lock is intentionally opt-in for legacy checkouts.  Once created, a
+    protected identity must remain stageable from byte-identical candidate art.
+    New identities are unaffected.
+    """
+    if not PROTECTED_LOCK.is_file():
+        return
+    lock = json.loads(PROTECTED_LOCK.read_text())
+    entries = {item["identity"]: item for item in lock.get("protected_entries", [])}
+    for row in rows:
+        protected = entries.get(row["identity"])
+        if protected is None:
+            continue
+        check = checks[row["identity"]]
+        source = resolve_candidate(row["candidate"])
+        if not check["stageable"] or source is None:
+            raise RuntimeError(
+                f"protected asset {row['identity']} would be removed or unstaged; "
+                "create a new identity instead"
+            )
+        actual = sha256(source)
+        if actual != protected["candidate_sha256"]:
+            raise RuntimeError(
+                f"protected asset {row['identity']} would change; explicit approval and a new lock are required"
+            )
+
 
 def stage(destination: Path) -> dict:
     rows = build_rows()
     checks = {item["identity"]: item for item in validate(rows)["results"]}
+    assert_protected_assets_unchanged(rows, checks)
     destination = destination.resolve()
     destination.mkdir(parents=True, exist_ok=True)
     managed = destination / "integrated"

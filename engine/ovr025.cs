@@ -1450,6 +1450,7 @@ namespace engine
 				case GameState.AfterCombat:
 					seg037.draw8x8_03();
 					ovr030.load_pic_final(ref gbl.byte_1D556, 0, 1, "PIC");
+					ovr030.DrawMaybeOverlayed(gbl.byte_1D556.frames[0].picture, true, 3, 3);
 					PartySummary(gbl.SelectedPlayer);
 					break;
 			}

@@ -1,0 +1,6 @@
+Innkeeper live test: area=2, HEAD2 block 003, BODY2 block 003.
+HD catalog trace confirmed both identities loaded.
+Original neck width at HEAD seam row 39: 12 logical pixels (x=33..44).
+HD skin neck width at seam row 799: 239 physical pixels at 20x scale = 11.95 logical pixels.
+Difference: 0.05 logical pixels / 0.42%; tolerance: +/-1 logical pixel. PASS.
+Live render: PASS with minor polish recommended (3-5% larger shoulder/head silhouette and softer lower-body edge).

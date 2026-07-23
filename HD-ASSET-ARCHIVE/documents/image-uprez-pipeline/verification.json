@@ -1,0 +1,40 @@
+{
+  "status": "pass",
+  "archives": 20,
+  "blocks": 135,
+  "frames": 231,
+  "pngs": 231,
+  "animated_frame_rows": 124,
+  "unique_dimensions": [
+    [
+      88,
+      40
+    ],
+    [
+      88,
+      48
+    ],
+    [
+      88,
+      88
+    ],
+    [
+      240,
+      112
+    ],
+    [
+      304,
+      120
+    ],
+    [
+      320,
+      112
+    ],
+    [
+      320,
+      200
+    ]
+  ],
+  "sample_count": 20,
+  "sample_sheet": "verification-samples.png"
+}
