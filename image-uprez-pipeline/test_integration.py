@@ -17,7 +17,7 @@ assert len({row["identity"] for row in rows}) == 231
 assert len({row["runtime_name"] for row in rows}) == 231
 assert all(row["animation_frame_count"] >= 1 for row in rows)
 validation = validate(rows)
-assert validation["stageable_entries"] == 118
+assert validation["stageable_entries"] == 121
 treasure = [row for row in rows if row["block"] == 1 and row["archive"].startswith("PIC")]
 assert len(treasure) == 6
 assert all(row["review_status"] == "approved" for row in treasure)
@@ -84,11 +84,11 @@ for group, expected_count in recovered_groups.items():
 with tempfile.TemporaryDirectory() as temp:
     destination = Path(temp) / "HDAssets"
     report = stage(destination)
-    assert report["integrated_entries"] == 118
+    assert report["integrated_entries"] == 121
     with (destination / "runtime-lookup.tsv").open(newline="") as handle:
         staged = list(csv.DictReader(handle, dialect="excel-tab"))
     assert len(staged) == 231
-    assert sum(row["stage_status"] == "integrated" for row in staged) == 118
+    assert sum(row["stage_status"] == "integrated" for row in staged) == 121
     staged_treasure = [row for row in staged if row["block"] == "1" and row["archive"].startswith("PIC")]
     assert len(staged_treasure) == 6
     assert all(row["stage_status"] == "integrated" for row in staged_treasure)
@@ -142,4 +142,4 @@ battle_draw = ovr011.index("SetupGroundTiles();", battle)
 assert battle < battle_clear < battle_draw
 assert "externalImages[key] = new ExternalImageLayer" in display
 assert "externalImages.Remove(key);" in display
-print("integration tests passed: 231 lookups, 118 staged with byte-matched runtime files, shared six-area treasure/camp mappings, complete approved PIC2-PIC5 animations with duplicate-frame contracts, verified retained-layer replacement boundaries, and exact-ratio innkeeper/title assets")
+print("integration tests passed: 231 lookups, 121 staged with byte-matched runtime files, shared six-area treasure/camp mappings, complete approved PIC2-PIC6 animations with duplicate-frame contracts, verified retained-layer replacement boundaries, and exact-ratio innkeeper/title assets")

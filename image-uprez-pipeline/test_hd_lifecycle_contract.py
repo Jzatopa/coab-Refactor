@@ -43,9 +43,10 @@ assert cmd_combat.rfind("ovr025.LoadPic();") > cmd_combat.rfind(
 )
 
 # The standard demo launcher must prepare the same isolated, validated runtime
-# as run-full-auto. Launching Main.exe directly from tracked Data/ bypasses the
-# runtime lookup and silently falls back to the original low-resolution art.
-assert 'export COAB_GAME_DIR="${COAB_GAME_DIR:-$COAB_DIR/Data}"' in launch
+# as run-full-auto and take its default visual/source data from the refactor
+# checkout. Launching Main.exe directly from tracked Data/ bypasses the runtime
+# lookup and silently falls back to the original low-resolution art.
+assert 'export COAB_GAME_DIR="${COAB_GAME_DIR:-$COAB_DIR/../coab-refactor/Data}"' in launch
 assert 'exec "$COAB_DIR/run-full-auto.sh" "$@"' in launch
 assert 'exec mono "$COAB_DIR/Main/bin/Release/Main.exe"' not in launch
 

@@ -699,7 +699,25 @@
     "candidate": "approved/recovered/PIC6/PIC6_block_068_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
-    "notes": "Recovered completed HD artwork; canonical identity and animation order verified against the extracted PIC ledger. Uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+    "notes": "Maintainer-approved fire-breathing lizard replacement supplied on 2026-07-25. Canonical identity and single-frame lifecycle verified against the extracted PIC ledger; it uses the normal picture layer, which is cleared at panel replacement and world/combat transitions."
+  },
+  "PIC6.DAX:067:000": {
+    "candidate": "approved/PIC4/PIC4_block_067_frame_000.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Byte-identical source frame to the approved PIC4.DAX:067:000 smoke animation; deliberately reuses its verified HD frame and normal-picture lifecycle."
+  },
+  "PIC6.DAX:067:001": {
+    "candidate": "approved/PIC4/PIC4_block_067_frame_001.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Byte-identical source frame to the approved PIC4.DAX:067:001 smoke animation; deliberately reuses its verified HD frame and normal-picture lifecycle."
+  },
+  "PIC6.DAX:067:002": {
+    "candidate": "approved/PIC4/PIC4_block_067_frame_002.png",
+    "review_status": "approved",
+    "lifecycle_status": "verified",
+    "notes": "Byte-identical source frame to the approved PIC4.DAX:067:002 smoke animation; deliberately reuses its verified HD frame and normal-picture lifecycle."
   },
   "PIC6.DAX:072:000": {
     "candidate": "approved/recovered/PIC6/PIC6_block_072_frame_000.png",

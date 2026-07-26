@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_utc": "2026-07-23T18:29:59.083653+00:00",
+  "created_utc": "2026-07-26T01:50:25.679955+00:00",
   "policy": "Never overwrite, regenerate, restage, or silently replace these files or identities without explicit maintainer approval.",
   "roots": {
     "stable-runtime": "$COAB_GAME_DIR/HDAssets",
@@ -117,6 +117,9 @@
     "PIC6.DAX:029:001",
     "PIC6.DAX:029:002",
     "PIC6.DAX:029:003",
+    "PIC6.DAX:067:000",
+    "PIC6.DAX:067:001",
+    "PIC6.DAX:067:002",
     "PIC6.DAX:068:000",
     "PIC6.DAX:072:000",
     "PIC6.DAX:073:000",
@@ -678,9 +681,24 @@
       "candidate_sha256": "424efff8f4b6e242a422a9ca64ca901e5d10a461d3abf32cfd51dd10fbb71fd6"
     },
     {
+      "identity": "PIC6.DAX:067:000",
+      "runtime_name": "PIC6_block_067_frame_000.png",
+      "candidate_sha256": "f61b9727f4f28505fe67b71e476fab41dba8175e9657b256aa8016dde9ac0301"
+    },
+    {
+      "identity": "PIC6.DAX:067:001",
+      "runtime_name": "PIC6_block_067_frame_001.png",
+      "candidate_sha256": "ba94e55054c4c4744e430f2df63e4c34c0bff459cc5dbe41a64eaf159f27639f"
+    },
+    {
+      "identity": "PIC6.DAX:067:002",
+      "runtime_name": "PIC6_block_067_frame_002.png",
+      "candidate_sha256": "fb136a7d8e6afb07784a3a25ed289cc4e086439f219fbd5104cc3f7eafb8245e"
+    },
+    {
       "identity": "PIC6.DAX:068:000",
       "runtime_name": "PIC6_block_068_frame_000.png",
-      "candidate_sha256": "cdaafd21594ef77a523aa86d3c4d645b19ebe9ccf140a2789133c015dd543884"
+      "candidate_sha256": "d073b12b0741a14b240ed19fb44471a4b339f3f9135dcfc58a86727159d624c0"
     },
     {
       "identity": "PIC6.DAX:072:000",
@@ -2761,9 +2779,33 @@
     },
     {
       "root": "full-auto-runtime",
+      "relative_path": "integrated/PIC6_block_067_frame_000.png",
+      "sha256": "f61b9727f4f28505fe67b71e476fab41dba8175e9657b256aa8016dde9ac0301",
+      "bytes": 3122187,
+      "width": 1408,
+      "height": 1408
+    },
+    {
+      "root": "full-auto-runtime",
+      "relative_path": "integrated/PIC6_block_067_frame_001.png",
+      "sha256": "ba94e55054c4c4744e430f2df63e4c34c0bff459cc5dbe41a64eaf159f27639f",
+      "bytes": 3029423,
+      "width": 1408,
+      "height": 1408
+    },
+    {
+      "root": "full-auto-runtime",
+      "relative_path": "integrated/PIC6_block_067_frame_002.png",
+      "sha256": "fb136a7d8e6afb07784a3a25ed289cc4e086439f219fbd5104cc3f7eafb8245e",
+      "bytes": 3043004,
+      "width": 1408,
+      "height": 1408
+    },
+    {
+      "root": "full-auto-runtime",
       "relative_path": "integrated/PIC6_block_068_frame_000.png",
-      "sha256": "cdaafd21594ef77a523aa86d3c4d645b19ebe9ccf140a2789133c015dd543884",
-      "bytes": 2941814,
+      "sha256": "d073b12b0741a14b240ed19fb44471a4b339f3f9135dcfc58a86727159d624c0",
+      "bytes": 3139692,
       "width": 1254,
       "height": 1254
     },

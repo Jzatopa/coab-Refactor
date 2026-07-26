@@ -2,7 +2,11 @@
 set -euo pipefail
 
 COAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-GAME_DIR="${COAB_GAME_DIR:-$HOME/Downloads/curseoftheazurebonds}"
+# The refactor checkout is the visual/source reference for the HD remake.
+# Defaulting to it keeps the opening TITLE/BIGPIC sequence in lockstep with
+# that version instead of relying on the duplicated Data/ copy in this fork.
+REFERENCE_GAME_DIR="$COAB_DIR/../coab-refactor/Data"
+GAME_DIR="${COAB_GAME_DIR:-$REFERENCE_GAME_DIR}"
 RUNTIME_DIR="${COAB_FULL_AUTO_RUNTIME_DIR:-$COAB_DIR/runtime/full-auto}"
 DATA_DIR="$RUNTIME_DIR/data"
 USER_DATA_DIR="$RUNTIME_DIR/user-data"

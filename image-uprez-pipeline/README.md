@@ -50,7 +50,7 @@ Deliberately excluded:
 - `HEAD2/BODY2 block 003`: The maintainer approved the Tiverton innkeeper pair after exact-seam reconstruction and live Full Auto testing. Neck width differs by only 0.42% from the original and both retained portrait layers load together correctly.
 - Eight strong prior eligible replacements are reused: four TITLE screens, BIGPIC1 blocks 121/123, BIGPIC6 block 122 (from a legacy misnamed file), and PIC1 block 80.
 
-No generated candidate is automatically installed in the game. Every image requires ratio, composition, object-count, quality and lifecycle approval first. Current deterministic staging: **118 approved/integrated, 2 rejected entries, 111 missing entries**. A production-folder reconciliation found 71 HD-sized PNG files representing 67 unique hashes; 70 files are covered by approved repository assets. The sole excluded file is the documented unused sixth PIC2 block 009 alternate, because that source animation has only five frames.
+No generated candidate is automatically installed in the game. Every image requires ratio, composition, object-count, quality and lifecycle approval first. Current deterministic staging: **121 approved/integrated, 2 rejected entries, 108 missing entries**. A production-folder reconciliation found 71 HD-sized PNG files representing 67 unique hashes; 70 files are covered by approved repository assets. The sole excluded file is the documented unused sixth PIC2 block 009 alternate, because that source animation has only five frames.
 
 ## Deterministic integration
 

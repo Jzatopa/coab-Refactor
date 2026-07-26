@@ -1,7 +1,7 @@
 {
   "ledger_entries": 231,
-  "candidate_entries": 120,
-  "stageable_entries": 118,
+  "candidate_entries": 123,
+  "stageable_entries": 121,
   "invalid_candidate_entries": 0,
   "results": [
     {
@@ -1980,40 +1980,40 @@
     },
     {
       "identity": "PIC6.DAX:067:000",
-      "candidate": null,
-      "candidate_width": null,
-      "candidate_height": null,
-      "candidate_sha256": null,
+      "candidate": "approved/PIC4/PIC4_block_067_frame_000.png",
+      "candidate_width": 1408,
+      "candidate_height": 1408,
+      "candidate_sha256": "f61b9727f4f28505fe67b71e476fab41dba8175e9657b256aa8016dde9ac0301",
       "errors": [],
       "warnings": [],
-      "stageable": false
+      "stageable": true
     },
     {
       "identity": "PIC6.DAX:067:001",
-      "candidate": null,
-      "candidate_width": null,
-      "candidate_height": null,
-      "candidate_sha256": null,
+      "candidate": "approved/PIC4/PIC4_block_067_frame_001.png",
+      "candidate_width": 1408,
+      "candidate_height": 1408,
+      "candidate_sha256": "ba94e55054c4c4744e430f2df63e4c34c0bff459cc5dbe41a64eaf159f27639f",
       "errors": [],
       "warnings": [],
-      "stageable": false
+      "stageable": true
     },
     {
       "identity": "PIC6.DAX:067:002",
-      "candidate": null,
-      "candidate_width": null,
-      "candidate_height": null,
-      "candidate_sha256": null,
+      "candidate": "approved/PIC4/PIC4_block_067_frame_002.png",
+      "candidate_width": 1408,
+      "candidate_height": 1408,
+      "candidate_sha256": "fb136a7d8e6afb07784a3a25ed289cc4e086439f219fbd5104cc3f7eafb8245e",
       "errors": [],
       "warnings": [],
-      "stageable": false
+      "stageable": true
     },
     {
       "identity": "PIC6.DAX:068:000",
       "candidate": "approved/recovered/PIC6/PIC6_block_068_frame_000.png",
       "candidate_width": 1254,
       "candidate_height": 1254,
-      "candidate_sha256": "cdaafd21594ef77a523aa86d3c4d645b19ebe9ccf140a2789133c015dd543884",
+      "candidate_sha256": "d073b12b0741a14b240ed19fb44471a4b339f3f9135dcfc58a86727159d624c0",
       "errors": [],
       "warnings": [],
       "stageable": true
