@@ -2,10 +2,10 @@
 set -euo pipefail
 
 COAB_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-# The refactor checkout is the visual/source reference for the HD remake.
-# Defaulting to it keeps the opening TITLE/BIGPIC sequence in lockstep with
-# that version instead of relying on the duplicated Data/ copy in this fork.
-REFERENCE_GAME_DIR="$COAB_DIR/../coab-refactor/Data"
+# Use this release's own tracked original-data reference by default. The
+# runtime always copies it into an isolated mutable tree, so Data/ is never
+# modified. COAB_GAME_DIR may point at another user-owned Curse installation.
+REFERENCE_GAME_DIR="$COAB_DIR/Data"
 GAME_DIR="${COAB_GAME_DIR:-$REFERENCE_GAME_DIR}"
 RUNTIME_DIR="${COAB_FULL_AUTO_RUNTIME_DIR:-$COAB_DIR/runtime/full-auto}"
 DATA_DIR="$RUNTIME_DIR/data"

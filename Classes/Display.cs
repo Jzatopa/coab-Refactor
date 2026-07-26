@@ -293,6 +293,7 @@ namespace Classes
             if (key == "game-picture") return 20;
             if (key == "portrait-head") return 30;
             if (key == "portrait-body") return 31;
+            if (key == "ui-frame") return 90;
             return 100;
         }
 

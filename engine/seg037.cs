@@ -56,6 +56,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, outer_frame_bottom[col_x] + 0x11e, 0x17, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_01_outer_overlay.png");
             Display.UpdateStart();
         }
 
@@ -72,6 +73,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, x8x8_07[col_x] + 0x11E, 8, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_02_menu_dividers_overlay.png");
             Display.UpdateStart();
         }
 
@@ -104,6 +106,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, rightFrameSymbols2[row_y] + 0x114, row_y, 14);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_03_inset_panel_overlay.png");
             Display.UpdateStart();
         }
 
@@ -119,6 +122,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, x8x8_07[col_x] + 0x11E, 0x10, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_04_wilderness_overlay.png");
             Display.UpdateStart();
         }
 
@@ -152,6 +156,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, x8x8_07[col_x] + 0x11E, 0x10, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_05_short_overlay.png");
             Display.UpdateStart();
         }
 
@@ -184,6 +189,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, outer_frame_bottom[col_x] + 0x11e, 0x16, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_06_combat_overlay.png");
             Display.UpdateStart();
         }
 
@@ -199,6 +205,7 @@ namespace engine
                 ovr038.Put8x8Symbol(0, false, x8x8_07[col_x] + 0x11e, 2, col_x);
             }
 
+            HdUiFrameCatalog.Show("UI_FRAME_layout_07_status_overlay.png");
             Display.UpdateStart();
         }
 
