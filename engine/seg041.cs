@@ -325,6 +325,11 @@ namespace engine
 
         internal static void ClearScreen()
         {
+            // UI frames are retained presentation layers, while the original
+            // frame lives in the framebuffer. A full framebuffer clear must
+            // retire the HD frame at the same boundary or it leaks into
+            // intentionally frameless screens such as the Play Demo prompt.
+            Display.ClearExternalImage("ui-frame", false);
             DrawRectangle(0, 0x18, 0x27, 0, 0);
         }
 
