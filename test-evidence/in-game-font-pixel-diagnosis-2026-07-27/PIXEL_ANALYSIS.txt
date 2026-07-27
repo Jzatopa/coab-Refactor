@@ -1,0 +1,2 @@
+gameplay-lossless.png: unique_green=186, pure_green=134958, partial_edge=23828, partial_percent=15.006%
+gameplay-software-raster.png: unique_green=3, pure_green=148988, partial_edge=2, partial_percent=0.001%

@@ -41,11 +41,20 @@ def main() -> None:
     assert sha256(RUNTIME / "coab-font-atlas.png") == sha256(
         RUNTIME / "coab-font-atlas-original-uprez.png"
     )
+    with Image.open(RUNTIME / "coab-font-atlas.png") as faithful_atlas:
+        assert set(faithful_atlas.getchannel("A").getdata()) == {0, 255}
 
     renderer = (ROOT / "Main" / "PixelDisplay.cs").read_text(encoding="utf-8")
     display = (ROOT / "Classes" / "Display.cs").read_text(encoding="utf-8")
     startup = (ROOT / "engine" / "seg001.cs").read_text(encoding="utf-8")
-    assert "InterpolationMode.HighQualityBicubic" in renderer
+    text_renderer = renderer.split("static void DrawHighResolutionText", 1)[1].split(
+        "protected override void OnPaint", 1
+    )[0]
+    assert "GetRasterizedGlyph" in renderer
+    assert "((gx * 128) / width)" in renderer
+    assert "((gy * 128) / height)" in renderer
+    assert "DrawImageUnscaled" in text_renderer
+    assert "InterpolationMode.HighQualityBicubic" not in text_renderer
     assert "title artwork remains an" in renderer
     assert "public static bool HighResFontActive" in display
     assert "bool highResFont = HighResFontActive;" in display
@@ -53,8 +62,8 @@ def main() -> None:
     assert startup.count("Display.HighResFontEnabled = true;") == 2
 
     print(
-        "HD in-game font contract passed: faithful atlas staged with "
-        "high-quality glyph downsampling"
+        "HD in-game font contract passed: binary faithful atlas staged with "
+        "manual final-size razor-sharp glyph rasterization"
     )
 
 

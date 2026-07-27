@@ -11,11 +11,12 @@ namespace Main
     // without changing the game's coordinate system or artwork.
     public class PixelDisplay : PictureBox
     {
-        // The same atlas glyph/color combinations are painted repeatedly.
-        // Cache the tinted cells so repainting the 2K presentation does not
-        // perform thousands of GetPixel/SetPixel calls every frame.
-        static readonly object tintedGlyphLock = new object();
-        static readonly Dictionary<long, Bitmap> tintedGlyphs = new Dictionary<long, Bitmap>();
+        // Cache each glyph/color/output-size raster. Mono/libgdiplus applies
+        // filtered alpha edges even when Graphics requests nearest-neighbor,
+        // so the final-size bitmap is built with explicit integer sampling and
+        // then copied unscaled.
+        static readonly object rasterizedGlyphLock = new object();
+        static readonly Dictionary<long, Bitmap> rasterizedGlyphs = new Dictionary<long, Bitmap>();
 
         public PixelDisplay()
         {
@@ -27,31 +28,41 @@ namespace Main
 
         }
 
-        static Bitmap GetTintedGlyph(Bitmap atlas, int glyphIndex, Color color)
+        static Bitmap GetRasterizedGlyph(
+            Bitmap atlas, int glyphIndex, Color color, int width, int height)
         {
-            long key = ((long)glyphIndex << 32) | (uint)color.ToArgb();
+            ulong packedKey = ((ulong)(uint)color.ToArgb() << 26) |
+                ((ulong)(uint)(glyphIndex & 0x3f) << 20) |
+                ((ulong)(uint)(width & 0x3ff) << 10) |
+                (uint)(height & 0x3ff);
+            long key = unchecked((long)packedKey);
 
-            lock (tintedGlyphLock)
+            lock (rasterizedGlyphLock)
             {
                 Bitmap cached;
-                if (tintedGlyphs.TryGetValue(key, out cached))
+                if (rasterizedGlyphs.TryGetValue(key, out cached))
                 {
                     return cached;
                 }
 
-                Bitmap tinted = new Bitmap(128, 128, PixelFormat.Format32bppArgb);
-                Rectangle source = new Rectangle((glyphIndex % 8) * 128, (glyphIndex / 8) * 128, 128, 128);
-                for (int gy = 0; gy < 128; gy++)
+                Bitmap rasterized = new Bitmap(width, height, PixelFormat.Format32bppArgb);
+                int sourceLeft = (glyphIndex % 8) * 128;
+                int sourceTop = (glyphIndex / 8) * 128;
+                for (int gy = 0; gy < height; gy++)
                 {
-                    for (int gx = 0; gx < 128; gx++)
+                    int sourceY = sourceTop + ((gy * 128) / height);
+                    for (int gx = 0; gx < width; gx++)
                     {
-                        Color sourcePixel = atlas.GetPixel(source.X + gx, source.Y + gy);
-                        tinted.SetPixel(gx, gy, Color.FromArgb(sourcePixel.A, color.R, color.G, color.B));
+                        int sourceX = sourceLeft + ((gx * 128) / width);
+                        Color sourcePixel = atlas.GetPixel(sourceX, sourceY);
+                        rasterized.SetPixel(
+                            gx, gy,
+                            Color.FromArgb(sourcePixel.A, color.R, color.G, color.B));
                     }
                 }
 
-                tintedGlyphs.Add(key, tinted);
-                return tinted;
+                rasterizedGlyphs.Add(key, rasterized);
+                return rasterized;
             }
         }
 
@@ -65,14 +76,11 @@ namespace Main
 
             var glyphs = Classes.Display.GetHighResGlyphSnapshot();
             graphics.CompositingMode = CompositingMode.SourceOver;
-            // The atlas preserves the original 8x8 glyph topology at a much
-            // higher source resolution. Downsample it with a high-quality
-            // filter so diagonal and curved strokes receive a clean one-pixel
-            // antialias rather than retaining enlarged DOS pixel stair-steps.
-            // This affects only queued in-game text; title artwork remains an
+            // Keep the faithful bitmap atlas binary at presentation time.
+            // Final-size glyphs are sampled manually and copied unscaled so
+            // libgdiplus cannot add partially transparent fringe pixels. This
+            // affects only queued in-game text; title artwork remains an
             // independent retained-image layer.
-            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
-            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
             foreach (var entry in glyphs)
             {
@@ -82,16 +90,15 @@ namespace Main
                 if (glyphIndex < 0 || glyphIndex >= 64) continue;
 
                 Color color = Classes.Display.GetEgaColor(entry.Value.ForegroundColor);
-                Bitmap tintedGlyph = GetTintedGlyph(atlas, glyphIndex, color);
                 int destinationLeft = left + (int)Math.Round(xCol * 8 * scale);
                 int destinationTop = top + (int)Math.Round(yCol * 8 * scale);
                 int destinationRight = left + (int)Math.Round((xCol + 1) * 8 * scale);
                 int destinationBottom = top + (int)Math.Round((yCol + 1) * 8 * scale);
-                Rectangle destination = new Rectangle(
-                    destinationLeft, destinationTop,
-                    destinationRight - destinationLeft,
-                    destinationBottom - destinationTop);
-                graphics.DrawImage(tintedGlyph, destination, 0, 0, tintedGlyph.Width, tintedGlyph.Height, GraphicsUnit.Pixel);
+                int destinationWidth = destinationRight - destinationLeft;
+                int destinationHeight = destinationBottom - destinationTop;
+                Bitmap rasterizedGlyph = GetRasterizedGlyph(
+                    atlas, glyphIndex, color, destinationWidth, destinationHeight);
+                graphics.DrawImageUnscaled(rasterizedGlyph, destinationLeft, destinationTop);
             }
         }
 
