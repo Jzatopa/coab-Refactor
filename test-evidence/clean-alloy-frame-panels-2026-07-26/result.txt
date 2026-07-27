@@ -1,0 +1,3 @@
+game_alive_after_live_smoke=yes
+window_id=2097179
+captures=16

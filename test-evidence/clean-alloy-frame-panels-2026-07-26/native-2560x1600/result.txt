@@ -1,0 +1,3 @@
+game_alive=yes
+window_id=2097179
+captures=6
