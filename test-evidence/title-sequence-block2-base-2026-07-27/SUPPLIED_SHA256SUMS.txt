@@ -1,0 +1,4 @@
+4a7410c1e7c5eb32cce0884ceb020488a2f9e70e651ab15abdf84f61be68b8db  /home/jzatopa/Downloads/Title Block 1.png
+115cdbd986d32c4c5beb81c3fd27787ea858c4af3d9741c1721d72297dc8deef  /home/jzatopa/Downloads/Title Block 2.png
+f9be42f35468a1c9d4dfb9989afa98e46ec73354e561d3fd53bbeb7371f9d8bf  /home/jzatopa/Downloads/Title Block 3.png
+f3a449bce5e293e069c8de81aabbdbe247d03332627ccb61e497af6763574f18  /home/jzatopa/Downloads/curseoftheazurebonds/HDAssets/Title Block 4.png

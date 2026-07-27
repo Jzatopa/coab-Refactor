@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "created_utc": "2026-07-26T01:50:25.679955+00:00",
+  "created_utc": "2026-07-27T01:02:51.324725+00:00",
   "policy": "Never overwrite, regenerate, restage, or silently replace these files or identities without explicit maintainer approval.",
   "roots": {
     "stable-runtime": "$COAB_GAME_DIR/HDAssets",
@@ -718,22 +718,22 @@
     {
       "identity": "TITLE.DAX:001:000",
       "runtime_name": "TITLE_block_001_frame_000.png",
-      "candidate_sha256": "5eac3adf67dbba77023c296091a85b50b13de8f6d3997030c53894617110fdd4"
+      "candidate_sha256": "695f48cd2788ceb05172f59a209bc9366bd808ef2ca0c6c3b0840840e21beaab"
     },
     {
       "identity": "TITLE.DAX:002:000",
       "runtime_name": "TITLE_block_002_frame_000.png",
-      "candidate_sha256": "e4ed39fc465509dc1479fb077ca74151b187807aba8a94e66cef6e85687c40ff"
+      "candidate_sha256": "a86add3ff56174c2d3c1b186c53c99b4064124defc4d6caf01b93929c12aac55"
     },
     {
       "identity": "TITLE.DAX:003:000",
       "runtime_name": "TITLE_block_003_frame_000.png",
-      "candidate_sha256": "e8f2f73293779324e5ad097a9c8d7f51c8ae4009cf660de8bc643bf8e217c7ab"
+      "candidate_sha256": "c0f0a3822cbe9e11a33c443889550d84db7376eb06fd91b071954db085c4dc50"
     },
     {
       "identity": "TITLE.DAX:004:000",
       "runtime_name": "TITLE_block_004_frame_000.png",
-      "candidate_sha256": "347d2d66402e1f9968f53bdd7abc400aca71190f9cbb9fc05ed0545faefccf8b"
+      "candidate_sha256": "3c831bb6342d1a08175dfca94f64f30ef74e783ab2cfbf353b1f28d992f66308"
     }
   ],
   "files": [
