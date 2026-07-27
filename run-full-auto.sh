@@ -39,6 +39,23 @@ rsync -a --delete \
 rm -rf "$DATA_DIR/HDAssets"
 cp -a "$COAB_DIR/HDAssets" "$DATA_DIR/HDAssets"
 
+# Global presentation assets are archived separately from the DAX identity
+# tree. Restore the faithful original-topology font atlas for the in-game text
+# presentation layer, plus its documented optional variants. These files do
+# not participate in title-screen composition.
+FONT_ARCHIVE="$COAB_DIR/HD-ASSET-ARCHIVE/images/runtime"
+for font_asset in \
+  coab-font-atlas.png \
+  coab-font-atlas-original-uprez.png \
+  coab-font-atlas-quill-brush.png
+do
+  if [[ ! -f "$FONT_ARCHIVE/$font_asset" ]]; then
+    echo "Archived runtime font asset not found: $FONT_ARCHIVE/$font_asset" >&2
+    exit 1
+  fi
+  cp "$FONT_ARCHIVE/$font_asset" "$DATA_DIR/HDAssets/$font_asset"
+done
+
 # Validate all 231 ledger identities and atomically stage only assets whose
 # art review and retained-HD lifecycle are both approved.
 python3 "$PIPELINE/validate_candidates.py" --strict

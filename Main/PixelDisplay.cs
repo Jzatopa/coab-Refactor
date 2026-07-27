@@ -65,8 +65,14 @@ namespace Main
 
             var glyphs = Classes.Display.GetHighResGlyphSnapshot();
             graphics.CompositingMode = CompositingMode.SourceOver;
-            graphics.InterpolationMode = InterpolationMode.NearestNeighbor;
-            graphics.PixelOffsetMode = PixelOffsetMode.Half;
+            // The atlas preserves the original 8x8 glyph topology at a much
+            // higher source resolution. Downsample it with a high-quality
+            // filter so diagonal and curved strokes receive a clean one-pixel
+            // antialias rather than retaining enlarged DOS pixel stair-steps.
+            // This affects only queued in-game text; title artwork remains an
+            // independent retained-image layer.
+            graphics.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            graphics.PixelOffsetMode = PixelOffsetMode.HighQuality;
 
             foreach (var entry in glyphs)
             {

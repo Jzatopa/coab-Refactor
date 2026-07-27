@@ -106,6 +106,11 @@ namespace engine
 
 
 
+            // Preserve the complete opening presentation exactly as before.
+            // The sharpened HD glyph layer begins only after the title,
+            // credits, Play/Demo prompt, and copy-protection screens.
+            Display.HighResFontEnabled = false;
+
             if (Cheats.skip_title_screen == false)
             {
                 ovr002.title_screen();
@@ -130,6 +135,8 @@ namespace engine
                 ovr004.copy_protection();
             }
 
+            Display.HighResFontEnabled = true;
+
             while (true)
             {
                 if (gbl.inDemo == true)
@@ -153,6 +160,7 @@ namespace engine
 
                 if (gbl.inDemo == true)
                 {
+                    Display.HighResFontEnabled = false;
                     ovr002.title_screen();
                     seg043.clear_keyboard();
 
@@ -172,6 +180,7 @@ namespace engine
                         ovr004.copy_protection();
                     }
 
+                    Display.HighResFontEnabled = true;
                     seg044.PlaySound(Sound.sound_0);
                 }
             }

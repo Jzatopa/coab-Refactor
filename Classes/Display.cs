@@ -60,6 +60,7 @@ namespace Classes
         static readonly object highResFontLock = new object();
         static readonly Dictionary<int, HighResGlyph> highResGlyphs = new Dictionary<int, HighResGlyph>();
         static Bitmap highResFontAtlas;
+        static bool highResFontEnabled;
 
         public delegate void VoidDeledate();
 
@@ -91,7 +92,7 @@ namespace Classes
         public static void DisplayMono8x8(int xCol, int yCol, byte[] monoData8x8, int bgColor, int fgColor)
         {
             int pX = xCol * 8;
-            bool highResFont = HighResFontAvailable;
+            bool highResFont = HighResFontActive;
 
             for (int yStep = 0; yStep < 8; yStep++)
             {
@@ -132,12 +133,38 @@ namespace Classes
             }
         }
 
+        public static bool HighResFontEnabled
+        {
+            get
+            {
+                lock (highResFontLock)
+                {
+                    return highResFontEnabled;
+                }
+            }
+            set
+            {
+                lock (highResFontLock)
+                {
+                    highResFontEnabled = value;
+                    if (!value)
+                    {
+                        highResGlyphs.Clear();
+                    }
+                }
+            }
+        }
+
+        public static bool HighResFontActive
+        {
+            get { return HighResFontEnabled && HighResFontAvailable; }
+        }
+
         public static Bitmap HighResFontAtlas
         {
             get
             {
-                HighResFontAvailable.ToString();
-                return highResFontAtlas;
+                return HighResFontActive ? highResFontAtlas : null;
             }
         }
 
@@ -151,7 +178,7 @@ namespace Classes
 
         public static void QueueHighResGlyph(int glyphIndex, int xCol, int yCol, int bgColor, int fgColor)
         {
-            if (!HighResFontAvailable || xCol < 0 || xCol >= 40 || yCol < 0 || yCol >= 25)
+            if (!HighResFontActive || xCol < 0 || xCol >= 40 || yCol < 0 || yCol >= 25)
             {
                 return;
             }
