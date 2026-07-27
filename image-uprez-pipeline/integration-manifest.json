@@ -5697,7 +5697,7 @@
     "candidate": "approved/TITLE/TITLE_block_001_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
-    "notes": "Supplied Title Block 1, fitted to the exact 8:5 full-screen title canvas without stretching."
+    "notes": "Supplied Title Block 1, rendered directly at native 8x (2560x1600) with restrained lettering sharpening and no layout stretch."
   },
   {
     "identity": "TITLE.DAX:002:000",
@@ -5722,7 +5722,7 @@
     "candidate": "approved/TITLE/TITLE_block_002_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
-    "notes": "Supplied Title Block 2, fitted to the exact 8:5 full-screen title canvas and retained as the scene base for subsequent logos."
+    "notes": "Supplied Title Block 2, rendered directly at native 8x (2560x1600) and retained unchanged as the scene base for subsequent logos."
   },
   {
     "identity": "TITLE.DAX:003:000",
@@ -5747,7 +5747,7 @@
     "candidate": "approved/TITLE/TITLE_block_003_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
-    "notes": "Transparent logo-only 15:7 retained overlay for logical rectangle (48,88,240,112); preserves the supplied Title Block 2 scene beneath it."
+    "notes": "Native-8x transparent logo-only overlay for logical rectangle (48,88,240,112), selectively sharpened with a tighter alpha matte over Title Block 2."
   },
   {
     "identity": "TITLE.DAX:004:000",
@@ -5772,6 +5772,6 @@
     "candidate": "approved/TITLE/TITLE_block_004_frame_000.png",
     "review_status": "approved",
     "lifecycle_status": "verified",
-    "notes": "Transparent logo-only 20:7 retained overlay for logical rectangle (0,88,320,112); rebuilt independently over Title Block 2 so no Curse-logo pixels remain."
+    "notes": "Native-8x transparent logo-only overlay for logical rectangle (0,88,320,112), selectively sharpened with a tighter alpha matte over Title Block 2."
   }
 ]

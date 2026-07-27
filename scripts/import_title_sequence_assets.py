@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Import the supplied COAB opening artwork and rebuild title logo overlays.
 
-TITLE blocks 1 and 2 are full-screen 320x200 replacements rendered at 6x.
+TITLE blocks 1 and 2 are full-screen 320x200 replacements rendered at 8x.
 The original engine keeps block 2 visible while blocks 3 and 4 replace lower
 logical rectangles.  Blocks 3 and 4 are therefore emitted as transparent
 logo-only RGBA overlays.  Their placement/topology comes from the original
@@ -18,7 +18,7 @@ from pathlib import Path
 
 from PIL import Image, ImageChops, ImageFilter, ImageOps
 
-SCALE = 6
+SCALE = 8
 FULL_SIZE = (320 * SCALE, 200 * SCALE)
 EXPECTED_SOURCES = {
     1: "4a7410c1e7c5eb32cce0884ceb020488a2f9e70e651ab15abdf84f61be68b8db",
@@ -62,6 +62,13 @@ def fit_full_screen(source: Path, background: tuple[int, int, int]) -> Image.Ima
     )
 
 
+def sharpen_lettering(image: Image.Image, *, percent: int) -> Image.Image:
+    """Restore edge contrast lost when supplied raster lettering is enlarged."""
+    return image.filter(
+        ImageFilter.UnsharpMask(radius=1.0, percent=percent, threshold=2)
+    )
+
+
 def original_change_mask(repo: Path, block: int) -> Image.Image:
     x, y, width, height = OVERLAYS[block]
     original_dir = repo / "original assets" / "TITLE"
@@ -83,7 +90,7 @@ def logo_overlay(repo: Path, block: int, donor_source: Path) -> Image.Image:
     # The original per-pixel difference supplies an evidence-based placement
     # gate. Block 3 needs a wider allowance because the remastered C extends
     # beyond the low-resolution glyph silhouette.
-    gate_size = 101 if block == 3 else 41
+    gate_size = 135 if block == 3 else 55
     gate = original_change_mask(repo, block).resize(
         donor.size, Image.Resampling.NEAREST
     ).filter(ImageFilter.MaxFilter(gate_size))
@@ -105,8 +112,8 @@ def logo_overlay(repo: Path, block: int, donor_source: Path) -> Image.Image:
             )
             stone_plaque = (
                 block == 4
-                and 40 <= py <= 410
-                and 170 <= px <= 1570
+                and 53 <= py <= 547
+                and 227 <= px <= 2093
                 and red > 45
                 and green > 38
                 and red >= blue - 2
@@ -115,8 +122,9 @@ def logo_overlay(repo: Path, block: int, donor_source: Path) -> Image.Image:
             if warm_logo or stone_plaque:
                 seed_pixels[px, py] = 255
 
-    alpha = seed.filter(ImageFilter.MaxFilter(7)).filter(ImageFilter.GaussianBlur(1.0))
+    alpha = seed.filter(ImageFilter.MaxFilter(9)).filter(ImageFilter.GaussianBlur(0.45))
     alpha = ImageChops.multiply(alpha, gate)
+    donor = sharpen_lettering(donor, percent=155)
     donor.putalpha(alpha)
     return donor
 
@@ -156,7 +164,9 @@ def main() -> None:
     for block, path in sources.items():
         require_source(path, block)
 
-    block_1 = fit_full_screen(sources[1], (1, 9, 114))
+    block_1 = sharpen_lettering(
+        fit_full_screen(sources[1], (1, 9, 114)), percent=125
+    )
     block_2 = fit_full_screen(sources[2], (0, 0, 0))
     block_3 = logo_overlay(repo, 3, sources[3])
     block_4 = logo_overlay(repo, 4, sources[4])
