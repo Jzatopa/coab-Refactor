@@ -11,6 +11,8 @@ namespace Main
     // without changing the game's coordinate system or artwork.
     public class PixelDisplay : PictureBox
     {
+        const double HighResGlyphPresentationScale = 0.95;
+
         // Cache each glyph/color/output-size raster. Mono/libgdiplus applies
         // filtered alpha edges even when Graphics requests nearest-neighbor,
         // so the final-size bitmap is built with explicit integer sampling and
@@ -96,9 +98,15 @@ namespace Main
                 int destinationBottom = top + (int)Math.Round((yCol + 1) * 8 * scale);
                 int destinationWidth = destinationRight - destinationLeft;
                 int destinationHeight = destinationBottom - destinationTop;
+                int glyphWidth = Math.Max(
+                    1, (int)Math.Round(destinationWidth * HighResGlyphPresentationScale));
+                int glyphHeight = Math.Max(
+                    1, (int)Math.Round(destinationHeight * HighResGlyphPresentationScale));
+                int glyphLeft = destinationLeft + ((destinationWidth - glyphWidth) / 2);
+                int glyphTop = destinationTop + ((destinationHeight - glyphHeight) / 2);
                 Bitmap rasterizedGlyph = GetRasterizedGlyph(
-                    atlas, glyphIndex, color, destinationWidth, destinationHeight);
-                graphics.DrawImageUnscaled(rasterizedGlyph, destinationLeft, destinationTop);
+                    atlas, glyphIndex, color, glyphWidth, glyphHeight);
+                graphics.DrawImageUnscaled(rasterizedGlyph, glyphLeft, glyphTop);
             }
         }
 

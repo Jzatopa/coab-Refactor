@@ -50,6 +50,14 @@ def main() -> None:
     text_renderer = renderer.split("static void DrawHighResolutionText", 1)[1].split(
         "protected override void OnPaint", 1
     )[0]
+    assert "const double HighResGlyphPresentationScale = 0.95;" in renderer
+    assert "destinationWidth * HighResGlyphPresentationScale" in text_renderer
+    assert "destinationHeight * HighResGlyphPresentationScale" in text_renderer
+    assert "destinationLeft + ((destinationWidth - glyphWidth) / 2)" in text_renderer
+    assert "destinationTop + ((destinationHeight - glyphHeight) / 2)" in text_renderer
+    assert round(64 * 0.95) == 61
+    assert round(58 * 0.95) == 55
+    assert round(57 * 0.95) == 54
     assert "GetRasterizedGlyph" in renderer
     assert "((gx * 128) / width)" in renderer
     assert "((gy * 128) / height)" in renderer
@@ -65,7 +73,7 @@ def main() -> None:
 
     print(
         "HD all-screen font contract passed: binary faithful atlas staged with "
-        "manual final-size razor-sharp glyph rasterization"
+        "centered 95-percent razor-sharp glyph rasterization"
     )
 
 

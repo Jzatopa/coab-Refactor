@@ -1,0 +1,2 @@
+2560x1600: before_colored_pixels=46432, after_colored_pixels=41351, change=-10.943%
+2560x1440: before_colored_pixels=36660, after_colored_pixels=33743, change=-7.957%
