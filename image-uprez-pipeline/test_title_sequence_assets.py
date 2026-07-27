@@ -25,10 +25,10 @@ def path_for(base: Path, block: int) -> Path:
 
 def main() -> None:
     expected = {
-        1: ("RGB", (2560, 1600)),
-        2: ("RGB", (2560, 1600)),
-        3: ("RGBA", (1920, 896)),
-        4: ("RGBA", (2560, 896)),
+        1: ("RGB", (1920, 1200)),
+        2: ("RGB", (1920, 1200)),
+        3: ("RGBA", (1440, 672)),
+        4: ("RGBA", (1920, 672)),
     }
     images: dict[int, Image.Image] = {}
 
@@ -49,18 +49,18 @@ def main() -> None:
     # The remastered C extends left of the original low-resolution glyph, but
     # must remain fully represented inside block 3's retained rectangle.
     block_3_bbox = images[3].getchannel("A").getbbox()
-    assert block_3_bbox is not None and block_3_bbox[0] <= 225, block_3_bbox
+    assert block_3_bbox is not None and block_3_bbox[0] <= 170, block_3_bbox
 
     # Block 4 must not retain the previous Curse logo near the heroine's neck.
     block_4_alpha = images[4].getchannel("A")
-    assert block_4_alpha.crop((0, 0, block_4_alpha.width, 200)).getbbox() is None
+    assert block_4_alpha.crop((0, 0, block_4_alpha.width, 150)).getbbox() is None
     block_4_bbox = block_4_alpha.getbbox()
-    assert block_4_bbox is not None and block_4_bbox[1] >= 200, block_4_bbox
+    assert block_4_bbox is not None and block_4_bbox[1] >= 150, block_4_bbox
 
     # Transparent overlay pixels reveal the unchanged block-2 scene rather
     # than a second generated background or a rectangular donor-image patch.
     base = images[2].convert("RGBA")
-    for block, (x, y) in {3: (48 * 8, 88 * 8), 4: (0, 88 * 8)}.items():
+    for block, (x, y) in {3: (48 * 6, 88 * 6), 4: (0, 88 * 6)}.items():
         overlay = images[block]
         composite = base.copy()
         composite.alpha_composite(overlay, (x, y))
