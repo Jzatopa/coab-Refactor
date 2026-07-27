@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Focused contract for the faithful high-resolution in-game font layer."""
+"""Focused contract for the faithful high-resolution all-screen font layer."""
 
 from __future__ import annotations
 
@@ -55,14 +55,16 @@ def main() -> None:
     assert "((gy * 128) / height)" in renderer
     assert "DrawImageUnscaled" in text_renderer
     assert "InterpolationMode.HighQualityBicubic" not in text_renderer
-    assert "title artwork remains an" in renderer
+    assert "title artwork" in renderer
+    assert "remains an independent retained-image layer" in renderer
     assert "public static bool HighResFontActive" in display
     assert "bool highResFont = HighResFontActive;" in display
-    assert "Display.HighResFontEnabled = false;" in startup
-    assert startup.count("Display.HighResFontEnabled = true;") == 2
+    assert "Display.HighResFontEnabled = false;" not in startup
+    assert startup.count("Display.HighResFontEnabled = true;") == 4
+    assert "title, credits, Play/Demo prompt" in startup
 
     print(
-        "HD in-game font contract passed: binary faithful atlas staged with "
+        "HD all-screen font contract passed: binary faithful atlas staged with "
         "manual final-size razor-sharp glyph rasterization"
     )
 

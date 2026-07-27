@@ -106,10 +106,10 @@ namespace engine
 
 
 
-            // Preserve the complete opening presentation exactly as before.
-            // The sharpened HD glyph layer begins only after the title,
-            // credits, Play/Demo prompt, and copy-protection screens.
-            Display.HighResFontEnabled = false;
+            // Keep the faithful high-resolution glyph layer active throughout
+            // the complete presentation: title, credits, Play/Demo prompt,
+            // copy protection/loading, demo, and gameplay.
+            Display.HighResFontEnabled = true;
 
             if (Cheats.skip_title_screen == false)
             {
@@ -160,7 +160,7 @@ namespace engine
 
                 if (gbl.inDemo == true)
                 {
-                    Display.HighResFontEnabled = false;
+                    Display.HighResFontEnabled = true;
                     ovr002.title_screen();
                     seg043.clear_keyboard();
 

@@ -79,8 +79,8 @@ namespace Main
             // Keep the faithful bitmap atlas binary at presentation time.
             // Final-size glyphs are sampled manually and copied unscaled so
             // libgdiplus cannot add partially transparent fringe pixels. This
-            // affects only queued in-game text; title artwork remains an
-            // independent retained-image layer.
+            // affects queued runtime text on every screen; title artwork
+            // remains an independent retained-image layer.
 
             foreach (var entry in glyphs)
             {
